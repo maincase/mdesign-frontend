@@ -1,9 +1,17 @@
 @use "../../../style/variables" as variables;
 
 .new_render_container {
-    color: #fff;
-    border: 1px solid #fff;
-    height: variables.$middle-elements-height;
-    width: variables.$new-render-width;
-    position: absolute;
+  color: #fff;
+  height: variables.$middle-elements-height;
+  width: variables.$new-render-width;
+  position: absolute;
+  padding-left: 21px;
+  padding-right: 21px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+.sub_info {
+  font-size: 12px;
+  display: block;
+  margin-top: 7px;
 }

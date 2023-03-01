@@ -6,4 +6,44 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   background: #000;
+  h2 {
+    margin: 0 auto;
+    color:#fff;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
+
+.header_right {
+  position: absolute;
+  margin: 0;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.button_animation {
+  // background: linear-gradient(60deg,#f79533,#f37055,#ef4e7b,#a166ab,#5073b8,#1098ad,#07b39b,#6fba82);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  // animation: animatedgradient 6s ease infinite alternate;
+  // animation-name: animatedgradient;
+  // animation-duration: 4s;
+  // animation-iteration-count: infinite;
+  animation: animatedgradient 15s ease infinite;
+  color: #fff;
 }
