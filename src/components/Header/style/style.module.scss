@@ -1,0 +1,9 @@
+@use "../../../style/variables" as variables;
+.header {
+  width: 100%;
+  height: variables.$header-height;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  background: #000;
+}

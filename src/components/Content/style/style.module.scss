@@ -1,0 +1,9 @@
+@use "../../../style/variables" as variables;
+.content_wrapper{
+    color: red;
+    height: variables.$middle-elements-height;
+    width: variables.$content-wrapper-width;
+    position: absolute;
+    border:1px solid #fff;
+    right: 0;
+}

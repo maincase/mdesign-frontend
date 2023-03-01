@@ -1,0 +1,9 @@
+@use "../../../style/variables" as variables;
+
+.new_render_container {
+    color: #fff;
+    border: 1px solid #fff;
+    height: variables.$middle-elements-height;
+    width: variables.$new-render-width;
+    position: absolute;
+}
