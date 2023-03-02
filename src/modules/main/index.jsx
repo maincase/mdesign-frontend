@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Content from "../../components/Content";
-import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import NewRender from "../../components/NewRender";
 import StyleGallery from "../../components/StyleGallery";
@@ -18,7 +17,6 @@ const Main = () => {
       <NewRender />
       <Content />
       <StyleGallery />
-      <Footer />
     </div>
   );
 };

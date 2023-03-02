@@ -1,9 +1,18 @@
 @use "../../../style/variables" as variables;
-.content_wrapper{
-    color: red;
-    height: variables.$middle-elements-height;
-    width: variables.$content-wrapper-width;
-    position: absolute;
-    border:1px solid #fff;
-    right: 0;
+.content_wrapper {
+  height: variables.$middle-elements-height;
+  width: variables.$content-wrapper-width;
+  position: absolute;
+  right: 0;
+  padding: 21px;
+  padding-right: 0;
+  box-sizing: border-box;
+  > h3 {
+    color: #fff;
+    margin: 0;
+  }
+  .interior_content {
+    overflow-y: scroll;
+    height: 100%;
+  }
 }

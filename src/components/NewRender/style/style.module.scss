@@ -5,10 +5,20 @@
   height: variables.$middle-elements-height;
   width: variables.$new-render-width;
   position: absolute;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+.new_render_content {
+  overflow-y: scroll;
   padding-left: 21px;
   padding-right: 21px;
-  box-sizing: border-box;
-  overflow-y: scroll;
+  height: calc(100% - 82px);
+}
+.new_render_button {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 21px;
+  
+
 }
 .sub_info {
   font-size: 12px;
