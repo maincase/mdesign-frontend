@@ -139,7 +139,6 @@ const NewRender = () => {
         </ColorButton>
         <h3>Your current interior</h3>
         <UploadButton
-          component="span"
           sx={{ textTransform: "none", border: "1px dashed grey" }}
           startIcon={<UploadIcon />}
         >

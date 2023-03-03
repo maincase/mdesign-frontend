@@ -1,9 +1,9 @@
 import { MenuItem, Select } from "@mui/material";
 import React from "react";
 
-const SelectElement = ({ selectList, title }) => {
+const SelectElement = ({ selectList, title }: {selectList: any, title: string}) => {
   const [selectedElement, setSelectedElement] = React.useState(selectList[0]);
-  const elementChange = (event) => {
+  const elementChange = (event: any) => {
     setSelectedElement(event.target.value);
   };
   return (
@@ -12,7 +12,7 @@ const SelectElement = ({ selectList, title }) => {
       <Select
         value={selectedElement}
         onChange={elementChange}
-        inputProps={{ IconComponent: () => null }}
+        inputProps={{ IconComponent: (): undefined => null }}
         style={{
           color: "#fff",
           backgroundColor: "#161616",
@@ -21,7 +21,7 @@ const SelectElement = ({ selectList, title }) => {
           borderRadius: 12,
         }}
       >
-        {selectList.map((el) => {
+        {selectList.map((el: string) => {
           return (
             <MenuItem value={el} key={el}>
               {el}

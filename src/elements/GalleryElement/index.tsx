@@ -1,7 +1,7 @@
-import { Grid } from "@mui/material";
+import React from "react";
 import styles from "./style/style.module.scss";
 
-const GalleryElement = ({ content }) => {
+const GalleryElement = ({ content }: {content: any}) => {
   return (
     <div className={styles.content_element}>
       <img src={content.img} alt={content.description} />
