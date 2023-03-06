@@ -1,9 +1,16 @@
 html {
   height: 100%;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: black;
   height: 100%;
+  color: #dcdcdc;
+  font-family: -apple-system,"system-ui","Segoe UI",sans-serif;
 }
 
 ::-webkit-scrollbar {

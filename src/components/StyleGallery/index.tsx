@@ -52,6 +52,22 @@ const interiorElementsList = [
     img: "https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp",
     description: "Scandinavian",
   },
+  {
+    id: 11,
+    img: "https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp",
+    description: "Scandinavian",
+  },
+  {
+    id: 12,
+    img: "https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp",
+    description: "Scandinavian",
+  },
+  {
+    id: 13,
+    img: "https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp",
+    description: "Scandinavian",
+  },
+
 ];
 const StyleGallery = () => {
   return (
