@@ -1,0 +1,5 @@
+$header-height: 60px;
+$style-gallery-height: 160px;
+$middle-elements-height: calc(100% - $header-height - $style-gallery-height);
+$new-render-width: 500px;
+$content-wrapper-width: calc(100% - $new-render-width);

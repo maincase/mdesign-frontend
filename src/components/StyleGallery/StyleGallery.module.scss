@@ -1,0 +1,14 @@
+@use '../../styles/variables' as variables;
+
+.style_gallery {
+  position: fixed;
+  bottom: 0;
+  height: variables.$style-gallery-height;
+  width: 100%;
+  color: #fff;
+  border-top: 1px solid #ffffff33;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: #000000f2;
+}
