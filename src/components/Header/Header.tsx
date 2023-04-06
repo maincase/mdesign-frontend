@@ -12,9 +12,10 @@ export default function Header({ openNewRenderModal }: Props) {
   return (
     <Box className={clsx('flex flex-grow bg-black px-4 items-center justify-between', styles.header)}>
       <Link className="flex justify-center" href="/">
-        MDesignAI
+        ModernDesign
       </Link>
       {/* <h2>INTERIOR DESIGN MOCKUPS AND VIRTUAL STAGING BY AI</h2> */}
+      <span>Design Your Space, Empower Your Life</span>
       <div className={styles.header_right}>
         {/* <Button className={clsx(styles.billing_button, styles.button)} variant="text" sx={{ textTransform: 'none' }}>
           Billing
@@ -29,7 +30,7 @@ export default function Header({ openNewRenderModal }: Props) {
           Upgrade to Pro
         </Button> */}
         <Button className={clsx(styles.button_animation, styles.button)} onClick={openNewRenderModal}>
-          Create New Render
+          Create Your Design For FREE
         </Button>
       </div>
     </Box>

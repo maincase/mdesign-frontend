@@ -61,11 +61,11 @@ const roomsList = [
   'Drop zone',
 ]
 
-const modeList = [
-  'Virtual staging (locks walls, slower)',
-  'Interior design (more creative, fast)',
-  'Freestyle (no image needed, very fast)',
-]
+// const modeList = [
+//   'Virtual staging (locks walls, slower)',
+//   'Interior design (more creative, fast)',
+//   'Freestyle (no image needed, very fast)',
+// ]
 
 const styleList = [
   'Easter',
@@ -104,16 +104,16 @@ const styleList = [
   'Neoclassic (Pro)',
 ]
 
-const numberOfRendersList = [
-  '1 render (fast)',
-  '3 renders (slower) (Pro)',
-  '6 renders (slow) (Pro)',
-  '9 renders (very slow) (Pro)',
-]
+// const numberOfRendersList = [
+//   '1 render (fast)',
+//   '3 renders (slower) (Pro)',
+//   '6 renders (slow) (Pro)',
+//   '9 renders (very slow) (Pro)',
+// ]
 
-const resolutionsList = ['High (slow, takes 14s) (Pro)', 'Low (fast, takes 7s)']
+// const resolutionsList = ['High (slow, takes 14s) (Pro)', 'Low (fast, takes 7s)']
 
-const privacyList = ['Public', 'Private (Pro)']
+// const privacyList = ['Public', 'Private (Pro)']
 
 export default function NewRender() {
   return (
@@ -142,7 +142,7 @@ export default function NewRender() {
           are shown on site but auto deleted after 15 mins. To make 100% private HQ renders without deletion and
           watermark upgrade to Pro and you get your own private workspace.
         </p>
-        <SelectElement selectList={roomsList} title={'ROOM'} />
+        <SelectElement selectList={roomsList} title="ROOM" />
         {/* <SelectElement selectList={modeList} title={'MODE'} /> */}
         <p className={styles.sub_info}>
           You get widely different results with each mode. Virtual Staging mode will auto detect the construction (like
@@ -150,14 +150,10 @@ export default function NewRender() {
           more creative ideas. A good idea is to use Interior Design mode and then Mix w/ Original to get the original
           auto masked background back.
         </p>
-        <SelectElement selectList={styleList} title={'STYLE'} />
+        <SelectElement selectList={styleList} title="STYLE" />
         {/* <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} /> */}
         {/* <SelectElement selectList={resolutionsList} title={'RESOLUTION'} /> */}
         {/* <SelectElement selectList={privacyList} title={'PRIVACY'} /> */}
-        <p>
-          Tip: if you like a generated image, you can re-use it as an input for more results like it. If you like this,
-          tweet me at @levelsio and check out my other AI projects Photo AI, Avatar AI and This House Does Not Exist.
-        </p>
       </div>
       <div className={styles.new_render_button}>
         <ColorButton sx={{ textTransform: 'none' }} style={{ margin: 0 }}>

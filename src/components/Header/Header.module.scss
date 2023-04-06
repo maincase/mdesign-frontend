@@ -5,6 +5,7 @@
   height: variables.$header-height;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #202036;
   // position: relative;
   // background: #000;
 
@@ -23,8 +24,8 @@
     font-size: 21px;
     // top: 50%;
     // transform: translateY(-50%);
-    background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    background: -webkit-linear-gradient(45deg, #680aca, #202036);
+    background: linear-gradient(60deg, #c0c0c0, #5073b8, #1098ad, #148676);
     -webkit-animation: animatedgradient 6s ease infinite alternate;
     animation: animatedgradient 6s ease infinite alternate;
     background-size: 300% 300%;
@@ -47,8 +48,8 @@
   }
 
   .button_animation {
-    background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    background: -webkit-linear-gradient(45deg, #680aca, #202036);
+    background: linear-gradient(60deg, #c0c0c0, #5073b8, #1098ad, #148676);
     -webkit-animation: animatedgradient 6s ease infinite alternate;
     animation: animatedgradient 6s ease infinite alternate;
     background-size: 300% 300%;

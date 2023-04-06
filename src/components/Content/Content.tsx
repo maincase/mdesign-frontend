@@ -8,7 +8,7 @@ import styles from './Content.module.scss'
 export default function Content() {
   return (
     <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>
-      <h3 className="flex text-black">Latest renders</h3>
+      <span className={clsx('flex', styles.header_text)}>Latest designs and recommendations created by our AI:</span>
 
       <Grid
         container
@@ -26,7 +26,7 @@ export default function Content() {
             marginTop={2}
             display="flex"
             className="items-center !pt-0 rounded-md px-3 border hover:shadow-xl cursor-pointer"
-            sx={{ height: '35vh' }}
+            sx={{ height: '33vh', backgroundColor: '#ebebeb' }}
             container
             item
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
