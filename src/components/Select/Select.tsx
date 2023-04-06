@@ -1,7 +1,7 @@
-import { MenuItem, Select } from '@mui/material'
+import { MenuItem, Select as MuiSelect } from '@mui/material'
 import React from 'react'
 
-export default function SelectElement({ selectList, title }: { selectList: any; title: string }) {
+export default function Select({ selectList, title }: { selectList: any; title: string }) {
   const [selectedElement, setSelectedElement] = React.useState(selectList[0])
   const elementChange = (event: any) => {
     setSelectedElement(event.target.value)
@@ -10,7 +10,7 @@ export default function SelectElement({ selectList, title }: { selectList: any; 
   return (
     <>
       <h5 style={{ marginBottom: 5 }}>{title}</h5>
-      <Select
+      <MuiSelect
         value={selectedElement}
         onChange={elementChange}
         inputProps={{ IconComponent: (): undefined => undefined }}
@@ -27,7 +27,7 @@ export default function SelectElement({ selectList, title }: { selectList: any; 
             {el}
           </MenuItem>
         ))}
-      </Select>
+      </MuiSelect>
     </>
   )
 }

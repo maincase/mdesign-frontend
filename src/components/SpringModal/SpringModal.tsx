@@ -6,7 +6,7 @@ type Props = ComponentPropsWithoutRef<typeof Modal> & {
   open: boolean
 }
 
-export default function NewRenderModal({ children, open, onClose }: Props) {
+export default function SpringModal({ children, open, onClose }: Props) {
   return (
     <Modal
       aria-labelledby="new-render-modal-title"

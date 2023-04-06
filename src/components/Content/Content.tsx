@@ -1,64 +1,52 @@
-import { Grid } from '@mui/material'
-import ContentElement from '../ContentElement/ContentElement'
-import styles from './Content.module.scss'
+import { Card, CardMedia, Grid, Stack } from '@mui/material'
 
-const interiorElementsList = [
-  {
-    id: 0,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (15s ago, took 6s)',
-  },
-  {
-    id: 1,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (12s ago, took 6s)',
-  },
-  {
-    id: 2,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (16s ago, took 6s)',
-  },
-  {
-    id: 3,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (19s ago, took 6s)',
-  },
-  {
-    id: 4,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (11s ago, took 6s)',
-  },
-  {
-    id: 5,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (11s ago, took 6s)',
-  },
-  {
-    id: 6,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (11s ago, took 6s)',
-  },
-  {
-    id: 7,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (11s ago, took 6s)',
-  },
-  {
-    id: 8,
-    img: 'https://actionaidrecycling.org.uk/wp-content/uploads/2021/01/johann-siemens-EPy0gBJzzZU-unsplash-1208x800.webp',
-    description: 'Original Bath Room (11s ago, took 6s)',
-  },
-]
+import clsx from 'clsx'
+import interiorElementsList from './inter-items'
+
+import styles from './Content.module.scss'
 
 export default function Content() {
   return (
-    <div className={styles.content_wrapper}>
-      <h3>Latest renders</h3>
-      <Grid className={styles.interior_content} container columnSpacing={{ xs: 1, sm: 2, md: 0 }}>
+    <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>
+      <h3 className="flex text-black">Latest renders</h3>
+
+      <Grid
+        container
+        rowSpacing={{ xs: 1, sm: 2, md: 3 }}
+        paddingLeft={3}
+        style={{
+          marginTop: 0,
+        }}
+      >
         {interiorElementsList.map((el) => (
-          <ContentElement key={el.id} content={el} />
+          <Grid
+            key={el.name}
+            // paddingTop={0}
+            paddingLeft={0}
+            marginTop={2}
+            display="flex"
+            className="items-center !pt-0 rounded-md px-3 border hover:shadow-xl cursor-pointer"
+            sx={{ height: '35vh' }}
+            container
+            item
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            // boxShadow={3}
+          >
+            {el.images.map((image) => (
+              <Grid sx={{ height: '30vh' }} display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
+                <Card
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <CardMedia sx={{ height: '100%' }} image={image.img} title={image.description} />
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         ))}
       </Grid>
-    </div>
+    </Stack>
   )
 }

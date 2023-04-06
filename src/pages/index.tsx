@@ -1,7 +1,7 @@
 import Content from '@/components/Content/Content'
+import Dialog from '@/components/Dialog/Dialog'
 import Header from '@/components/Header/Header'
 import NewRender from '@/components/NewRender/NewRender'
-import NewRenderModal from '@/components/NewRender/NewRenderModal'
 import Head from 'next/head'
 import { useState } from 'react'
 
@@ -20,9 +20,7 @@ export default function Home() {
       </Head>
       <Header openNewRenderModal={() => setNewRenderOpen(true)} />
       <Content />
-      <NewRenderModal open={newRenderOpen} onClose={() => setNewRenderOpen(false)}>
-        <NewRender />
-      </NewRenderModal>
+      <Dialog open={newRenderOpen} onClose={() => setNewRenderOpen(false)} content={<NewRender />} />
       {/* <StyleGallery /> */}
     </>
   )

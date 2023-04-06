@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { ComponentPropsWithoutRef } from 'react'
@@ -10,8 +10,10 @@ type Props = ComponentPropsWithoutRef<'div'> & {
 
 export default function Header({ openNewRenderModal }: Props) {
   return (
-    <div className={styles.header}>
-      <Link href="/">Modern Design AI</Link>
+    <Box className={clsx('flex flex-grow bg-black px-4 items-center justify-between', styles.header)}>
+      <Link className="flex justify-center" href="/">
+        MDesignAI
+      </Link>
       {/* <h2>INTERIOR DESIGN MOCKUPS AND VIRTUAL STAGING BY AI</h2> */}
       <div className={styles.header_right}>
         {/* <Button className={clsx(styles.billing_button, styles.button)} variant="text" sx={{ textTransform: 'none' }}>
@@ -30,6 +32,6 @@ export default function Header({ openNewRenderModal }: Props) {
           Create New Render
         </Button>
       </div>
-    </div>
+    </Box>
   )
 }

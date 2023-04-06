@@ -1,4 +1,4 @@
-import GalleryElement from '../GalleryElement/GalleryElement'
+import Image from 'next/image'
 import styles from './StyleGallery.module.scss'
 
 const interiorElementsList = [
@@ -72,9 +72,12 @@ const interiorElementsList = [
 export default function StyleGallery() {
   return (
     <div className={styles.style_gallery}>
-      {interiorElementsList.map((el) => {
-        return <GalleryElement key={el.id} content={el} />
-      })}
+      {interiorElementsList.map((el) => (
+        <div key={el.id} className={styles.content_element}>
+          <Image width={100} height={100} src={el.img} alt={el.description} />
+          <div className={styles.content_description}>{el.description}</div>
+        </div>
+      ))}
     </div>
   )
 }

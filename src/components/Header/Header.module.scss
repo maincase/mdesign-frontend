@@ -5,36 +5,26 @@
   height: variables.$header-height;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  background: #000;
+  // position: relative;
+  // background: #000;
 
   a {
     user-select: none;
-    padding-left: 7px;
-    padding-right: 21px;
+    // padding-left: 7px;
+    // padding-right: 21px;
     line-height: 1.88;
     color: #fff;
-    position: absolute;
+    // position: absolute;
 
     height: 34px;
     overflow: hidden;
     margin: 0;
-    left: 21px;
+    // left: 21px;
     font-size: 21px;
-    top: 50%;
-    transform: translateY(-50%);
+    // top: 50%;
+    // transform: translateY(-50%);
     background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
-    background: linear-gradient(
-      60deg,
-      #f79533,
-      #f37055,
-      #ef4e7b,
-      #a166ab,
-      #5073b8,
-      #1098ad,
-      #07b39b,
-      #6fba82
-    );
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     -webkit-animation: animatedgradient 6s ease infinite alternate;
     animation: animatedgradient 6s ease infinite alternate;
     background-size: 300% 300%;
@@ -58,17 +48,7 @@
 
   .button_animation {
     background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
-    background: linear-gradient(
-      60deg,
-      #f79533,
-      #f37055,
-      #ef4e7b,
-      #a166ab,
-      #5073b8,
-      #1098ad,
-      #07b39b,
-      #6fba82
-    );
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     -webkit-animation: animatedgradient 6s ease infinite alternate;
     animation: animatedgradient 6s ease infinite alternate;
     background-size: 300% 300%;
@@ -94,13 +74,13 @@
   }
 }
 
-.header_right {
-  position: absolute;
-  margin: 0;
-  right: 21px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+// .header_right {
+//   position: absolute;
+//   margin: 0;
+//   right: 21px;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
 
 @keyframes animatedgradient {
   0% {

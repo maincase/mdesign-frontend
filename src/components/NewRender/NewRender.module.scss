@@ -1,12 +1,13 @@
 @use '../../styles/variables' as variables;
 
-.new_render_container {
-  margin: auto;
-  height: variables.$middle-elements-height;
-  width: variables.$new-render-width;
-  box-sizing: border-box;
-  // overflow-y: hidden;
-}
+// .new_render_container {
+//   // height: variables.$middle-elements-height;
+//   // width: variables.$new-render-width;
+//   box-sizing: border-box;
+//   // top: 50%;
+//   // left: 50%;
+//   // transform: translate(-50%, -50%);
+// }
 
 .new_render_content {
   overflow-y: scroll;

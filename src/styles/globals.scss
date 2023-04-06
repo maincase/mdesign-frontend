@@ -95,11 +95,11 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+// }
 
 ::-webkit-scrollbar {
   height: 12px;
@@ -113,4 +113,14 @@ a {
 }
 ::-webkit-scrollbar-corner {
   background: #2c2c2c;
+}
+
+#__next {
+  // display: flex;
+  // flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

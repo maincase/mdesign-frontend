@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import UploadIcon from '@mui/icons-material/Upload'
-import { Button, OutlinedInput } from '@mui/material'
-import SelectElement from '../SelectElement/SelectElement'
+import { Button } from '@mui/material'
+import SelectElement from '../Select/Select'
 import styles from './NewRender.module.scss'
 
 const ColorButton = styled(Button)(() => ({
@@ -117,9 +117,9 @@ const privacyList = ['Public', 'Private (Pro)']
 
 export default function NewRender() {
   return (
-    <div className={styles.new_render_container}>
+    <div /* className={styles.new_render_container} */>
       <div className={styles.new_render_content}>
-        <h3>Start using Interior AI for free</h3>
+        {/* <h3>Start using Interior AI for free</h3>
         <OutlinedInput
           placeholder="Your real email"
           style={{
@@ -130,7 +130,7 @@ export default function NewRender() {
             borderRadius: 12,
           }}
         />
-        <ColorButton sx={{ textTransform: 'none' }}>Confirm your email to use Interior AI</ColorButton>
+        <ColorButton sx={{ textTransform: 'none' }}>Confirm your email to use Interior AI</ColorButton> */}
         <h3>Your current interior</h3>
         <UploadButton sx={{ textTransform: 'none', border: '1px dashed grey' }} startIcon={<UploadIcon />}>
           Drop an image, tap to select, take a photo, or ⌘ + V
@@ -143,7 +143,7 @@ export default function NewRender() {
           watermark upgrade to Pro and you get your own private workspace.
         </p>
         <SelectElement selectList={roomsList} title={'ROOM'} />
-        <SelectElement selectList={modeList} title={'MODE'} />
+        {/* <SelectElement selectList={modeList} title={'MODE'} /> */}
         <p className={styles.sub_info}>
           You get widely different results with each mode. Virtual Staging mode will auto detect the construction (like
           walls, ceiling, beams) and tries to avoid changing it, while Interior Design mode doesn&apos;t but gives you
@@ -151,9 +151,9 @@ export default function NewRender() {
           auto masked background back.
         </p>
         <SelectElement selectList={styleList} title={'STYLE'} />
-        <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} />
-        <SelectElement selectList={resolutionsList} title={'RESOLUTION'} />
-        <SelectElement selectList={privacyList} title={'PRIVACY'} />
+        {/* <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} /> */}
+        {/* <SelectElement selectList={resolutionsList} title={'RESOLUTION'} /> */}
+        {/* <SelectElement selectList={privacyList} title={'PRIVACY'} /> */}
         <p>
           Tip: if you like a generated image, you can re-use it as an input for more results like it. If you like this,
           tweet me at @levelsio and check out my other AI projects Photo AI, Avatar AI and This House Does Not Exist.

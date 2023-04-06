@@ -12,3 +12,27 @@
   white-space: nowrap;
   background-color: #000000f2;
 }
+
+.content_element {
+  color: #fff;
+  margin: 15px;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  width: 150px;
+  display: inline-block;
+  border: 1px solid #ffffff33;
+  border-radius: 12px;
+  background-color: #161616;
+  overflow: hidden;
+  > img {
+    width: 100%;
+  }
+  .content_description {
+    right: 21px;
+    bottom: 4px;
+    background: #00000080;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 5px;
+  }
+}
