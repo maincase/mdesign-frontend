@@ -34,7 +34,7 @@ export default function Content() {
             // boxShadow={3}
           >
             {el.images.map((image) => (
-              <Grid sx={{ height: '30vh' }} display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
+              <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
                 <PredictionCard
                   image={image}
                   predictions={[
