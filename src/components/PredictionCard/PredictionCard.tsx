@@ -9,7 +9,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
     img: string
     description: string
   }
-  predictions?: Array<Array<number[] | number | string>>
+  prediction?: Array<Array<number[] | number | string>>
 }
 
 function PredictionObject({
@@ -44,7 +44,7 @@ function PredictionObject({
   )
 }
 
-export default function PredictionCard({ image, predictions }: Props) {
+export default function PredictionCard({ image, prediction, onClick }: Props) {
   const [isRaised, setIsRaised] = useState<boolean>(false)
 
   const [squareRef, { width, height }] = useElementSize()
@@ -64,6 +64,7 @@ export default function PredictionCard({ image, predictions }: Props) {
     <Card
       onMouseEnter={() => setIsRaised(true)}
       onMouseLeave={() => setIsRaised(false)}
+      onClick={onClick}
       raised={isRaised}
       ref={squareRef}
       className="relative flex items-center justify-center"
@@ -78,7 +79,7 @@ export default function PredictionCard({ image, predictions }: Props) {
       <img src={image.img} alt={image.description} className="flex object-contain" />
 
       <div className={clsx('absolute top-0 left-0 w-full h-full', isRaised ? 'visible' : 'hidden')}>
-        {predictions?.map(
+        {prediction?.map(
           (prediction, ind) =>
             ((prediction?.[1] as number) ?? 0) > 0.8 && (
               <PredictionObject

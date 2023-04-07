@@ -16,7 +16,8 @@ export default function Select({ selectList, title }: { selectList: any; title: 
         inputProps={{ IconComponent: (): undefined => undefined }}
         style={{
           color: '#fff',
-          backgroundColor: '#161616',
+          // backgroundColor: '#161616',
+          backgroundColor: '#202036',
           border: '1px solid #ffffff33',
           width: '100%',
           borderRadius: 12,

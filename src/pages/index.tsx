@@ -1,6 +1,7 @@
 import Content from '@/components/Content/Content'
 import Dialog from '@/components/Dialog/Dialog'
 import Header from '@/components/Header/Header'
+import Interior from '@/components/Interior/Interior'
 import NewRender from '@/components/NewRender/NewRender'
 import Head from 'next/head'
 import { useState } from 'react'
@@ -9,6 +10,17 @@ import { useState } from 'react'
 
 export default function Home() {
   const [newRenderOpen, setNewRenderOpen] = useState<boolean>(false)
+  const [interiorCurrent, setInteriorCurrent] = useState<
+    | {
+        name: string
+        images: {
+          id: number
+          img: string
+          description: string
+        }[]
+      }
+    | undefined
+  >(undefined)
 
   return (
     <>
@@ -19,8 +31,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header openNewRenderModal={() => setNewRenderOpen(true)} />
-      <Content />
+      <Content onInteriorSelect={(interior) => setInteriorCurrent(interior)} />
       <Dialog open={newRenderOpen} onClose={() => setNewRenderOpen(false)} content={<NewRender />} />
+      <Dialog
+        open={!!interiorCurrent}
+        onClose={() => setInteriorCurrent(undefined)}
+        content={<Interior currentInterior={interiorCurrent} />}
+        // fullScreen
+        // // fullWidth
+        // maxWidth="md"
+        // sx={{
+        //   '& .MuiDialog-container': {
+        //     '& .MuiPaper-root': {
+        //       width: '100%',
+        //       maxWidth: '900px', // Set your width here
+        //     },
+        //   },
+        // }}
+        // style={{ maxWidth: '900px' }}
+      />
       {/* <StyleGallery /> */}
     </>
   )

@@ -5,23 +5,28 @@ import SelectElement from '../Select/Select'
 import styles from './NewRender.module.scss'
 
 const ColorButton = styled(Button)(() => ({
-  color: '#000',
+  // color: '#000',
+  color: '#202036',
   backgroundColor: '#fff',
   width: '100%',
   marginTop: '10px',
   border: '1px solid',
   borderRadius: 12,
   '&:hover': {
-    color: '#fff',
-    borderColor: '#fff',
+    // color: '#fff',
+    // borderColor: '#fff',
+    color: '#202036',
+    borderColor: 'transparent',
   },
 }))
 
 const UploadButton = styled(Button)(() => ({
-  color: '#8c8c8c',
+  // color: '#8c8c8c',
+  color: '#fff',
   height: '206px',
   width: '100%',
-  backgroundColor: '#161616',
+  // backgroundColor: '#161616',
+  backgroundColor: '#202036 !important',
   borderRadius: 12,
   '&:hover': {
     backgroundColor: '#161616',
@@ -138,9 +143,10 @@ export default function NewRender() {
         <p className={styles.sub_info}>
           Take a photo of your current room. For best results make sure it shows the entire room in a 90° straight angle
           facing a wall or window horizontally (click for example). Not from a corner or angled, and not a wide angle
-          photo as it&apos;s trained on regular photos. The AI isn&apos;t great at angled pics (yet)! Uploads + renders
+          photo as it&apos;s trained on regular photos. The AI isn&apos;t great at angled pics (yet)!
+          {/* Uploads + renders
           are shown on site but auto deleted after 15 mins. To make 100% private HQ renders without deletion and
-          watermark upgrade to Pro and you get your own private workspace.
+          watermark upgrade to Pro and you get your own private workspace. */}
         </p>
         <SelectElement selectList={roomsList} title="ROOM" />
         {/* <SelectElement selectList={modeList} title={'MODE'} /> */}
@@ -157,7 +163,7 @@ export default function NewRender() {
       </div>
       <div className={styles.new_render_button}>
         <ColorButton sx={{ textTransform: 'none' }} style={{ margin: 0 }}>
-          Render new idea
+          Render new designs
         </ColorButton>
       </div>
     </div>
