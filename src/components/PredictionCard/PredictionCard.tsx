@@ -1,5 +1,6 @@
 import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
+import clsx from 'clsx'
 import { ComponentPropsWithoutRef, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 
@@ -8,7 +9,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
     img: string
     description: string
   }
-  predictions?: Array<Array<Array<number[] | number | string>>>
+  predictions?: Array<Array<number[] | number | string>>
 }
 
 function PredictionObject({
@@ -28,8 +29,6 @@ function PredictionObject({
   const objectY = (objectShape[1] ?? 0) * ratioY
   const objectWidth = ((objectShape[2] ?? 0) - (objectShape[0] ?? 0)) * ratioX
   const objectHeight = ((objectShape[3] ?? 0) - (objectShape[1] ?? 0)) * ratioY
-
-  console.log(objectShape, 'this is the prediction')
 
   return (
     <div
@@ -75,25 +74,11 @@ export default function PredictionCard({ image, predictions }: Props) {
         backgroundSize: 'contain',
       }}
     >
-      {/* <CardMedia
-        sx={{
-          // height: '100%',
-          backgroundPosition: 'left top',
-          backgroundSize: 'contain',
-          objectFit: 'contain',
-        }}
-        image={image.img}
-        title={image.description}
-      /> */}
-      {/* <div style={{ width: '100%', /* height: '100%', *\/ position: 'relative' }}> */}
-      {/* <Image alt="Mountains" src="/mountains.jpg" layout="fill" objectFit="contain" /> */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={image.img} alt={image.description} className="flex object-contain" />
-      {/* </div> */}
-      {/* </CardMedia> */}
 
-      <div className="absolute top-0 left-0 w-full h-full">
-        {predictions?.[0]?.map(
+      <div className={clsx('absolute top-0 left-0 w-full h-full', isRaised ? 'visible' : 'hidden')}>
+        {predictions?.map(
           (prediction, ind) =>
             ((prediction?.[1] as number) ?? 0) > 0.8 && (
               <PredictionObject

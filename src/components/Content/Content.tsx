@@ -5,6 +5,7 @@ import interiorElementsList from './inter-items'
 
 import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
+import predictionItems from './prediction-items'
 
 export default function Content() {
   return (
@@ -37,14 +38,7 @@ export default function Content() {
               <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
                 <PredictionCard
                   image={image}
-                  predictions={[
-                    [
-                      ['potted plant', 0.843, [234.03, 256.13, 285.51, 314.18]],
-                      ['bowl', 0.863, [238.3, 353.3, 261.15, 379.45]],
-                      ['potted plant', 0.995, [201.82, 288.67, 246.86, 376.29]],
-                      ['couch', 0.994, [224.97, 299.32, 578.57, 422.34]],
-                    ],
-                  ]}
+                  predictions={predictionItems.find((pred) => pred.name === image.img)?.predictions}
                 />
               </Grid>
             ))}
