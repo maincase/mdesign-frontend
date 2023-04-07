@@ -1,7 +1,7 @@
 import { Grid, Stack } from '@mui/material'
 
 import clsx from 'clsx'
-import interiorElementsList from './inter-items'
+import interiorElementsList from './interior-items'
 
 import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
@@ -11,7 +11,6 @@ export default function Content() {
   return (
     <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>
       <span className={clsx('flex', styles.header_text)}>Latest designs and recommendations created by our AI:</span>
-
       <Grid
         container
         rowSpacing={{ xs: 1, sm: 2, md: 3 }}
