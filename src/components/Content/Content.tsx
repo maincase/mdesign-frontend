@@ -1,8 +1,9 @@
-import { Card, CardMedia, Grid, Stack } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 
 import clsx from 'clsx'
 import interiorElementsList from './inter-items'
 
+import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
 
 export default function Content() {
@@ -18,9 +19,9 @@ export default function Content() {
           marginTop: 0,
         }}
       >
-        {interiorElementsList.map((el) => (
+        {interiorElementsList.map((el, ind) => (
           <Grid
-            key={el.name}
+            key={`${el.name}+${ind}`}
             // paddingTop={0}
             paddingLeft={0}
             marginTop={2}
@@ -34,14 +35,17 @@ export default function Content() {
           >
             {el.images.map((image) => (
               <Grid sx={{ height: '30vh' }} display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
-                <Card
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                  }}
-                >
-                  <CardMedia sx={{ height: '100%' }} image={image.img} title={image.description} />
-                </Card>
+                <PredictionCard
+                  image={image}
+                  predictions={[
+                    [
+                      ['potted plant', 0.843, [234.03, 256.13, 285.51, 314.18]],
+                      ['bowl', 0.863, [238.3, 353.3, 261.15, 379.45]],
+                      ['potted plant', 0.995, [201.82, 288.67, 246.86, 376.29]],
+                      ['couch', 0.994, [224.97, 299.32, 578.57, 422.34]],
+                    ],
+                  ]}
+                />
               </Grid>
             ))}
           </Grid>
