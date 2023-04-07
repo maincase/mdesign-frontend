@@ -1,11 +1,9 @@
 import { Grid, Stack } from '@mui/material'
-
 import clsx from 'clsx'
-import interiorElementsList from './interior-items'
-
 import { ComponentPropsWithoutRef } from 'react'
 import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
+import interiorElementsList from './interior-items'
 import predictionItems from './prediction-items'
 
 type Props = ComponentPropsWithoutRef<typeof Stack> & {
@@ -38,7 +36,7 @@ export default function Content({ onInteriorSelect }: Props) {
             paddingLeft={0}
             marginTop={2}
             display="flex"
-            className="items-center !pt-0 rounded-md px-3 border hover:shadow-xl cursor-pointer"
+            className="items-center !pt-0 rounded-md px-3 border hover:shadow-xl"
             sx={{ height: '33vh', backgroundColor: '#ebebeb' }}
             container
             item
@@ -51,6 +49,7 @@ export default function Content({ onInteriorSelect }: Props) {
                   image={image}
                   prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
                   onClick={() => (imgInd === 0 ? onInteriorSelect(el) : undefined)}
+                  showCursor
                 />
               </Grid>
             ))}

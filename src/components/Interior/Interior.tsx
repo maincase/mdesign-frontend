@@ -16,16 +16,20 @@ type Props = {
 export default function Interior({ currentInterior }: Props) {
   return (
     <>
-      {currentInterior
-        ? currentInterior.images.map((image) => (
-            <Grid display="flex" className="first-of-type:pl-0 float-left" xs={3} item key={image.img}>
+      {currentInterior ? (
+        <Grid container spacing={2}>
+          {currentInterior.images.map((image, ind) => (
+            <Grid display="flex" className="first-of-type:pl-0 float-left" xs={6} item key={image.img}>
               <PredictionCard
                 image={image}
                 prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
+                raised={false}
+                showCursor={ind > 0}
               />
             </Grid>
-          ))
-        : null}
+          ))}
+        </Grid>
+      ) : null}
     </>
   )
 }

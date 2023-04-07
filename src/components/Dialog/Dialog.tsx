@@ -8,7 +8,7 @@ type Props = Omit<ComponentPropsWithoutRef<typeof MuiDialog>, 'title' | 'content
   actions?: JSX.Element
 }
 
-export default function Dialog({ open, onClose, title, content, actions }: Props) {
+export default function Dialog({ open, onClose, title, content, children, actions, ...props }: Props) {
   return (
     <MuiDialog
       open={open}
@@ -16,9 +16,10 @@ export default function Dialog({ open, onClose, title, content, actions }: Props
       keepMounted
       onClose={onClose}
       aria-describedby="alert-dialog-slide-description"
+      {...props}
     >
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>{content}</DialogContent>
+      <DialogContent>{content ?? children}</DialogContent>
       <DialogActions>{actions}</DialogActions>
     </MuiDialog>
   )

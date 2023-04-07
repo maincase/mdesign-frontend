@@ -10,6 +10,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
     description: string
   }
   prediction?: Array<Array<number[] | number | string>>
+  showCursor?: boolean
 }
 
 function PredictionObject({
@@ -44,8 +45,10 @@ function PredictionObject({
   )
 }
 
-export default function PredictionCard({ image, prediction, onClick }: Props) {
-  const [isRaised, setIsRaised] = useState<boolean>(false)
+export default function PredictionCard({ image, prediction, raised, onClick, showCursor }: Props) {
+  const [showObjects, setShowObjects] = useState<boolean>(false)
+
+  const [isRaised, setIsRaised] = useState<boolean>(raised ?? false)
 
   const [squareRef, { width, height }] = useElementSize()
 
@@ -62,12 +65,22 @@ export default function PredictionCard({ image, prediction, onClick }: Props) {
 
   return (
     <Card
-      onMouseEnter={() => setIsRaised(true)}
-      onMouseLeave={() => setIsRaised(false)}
+      onMouseEnter={() => {
+        setIsRaised(raised ?? true)
+
+        setShowObjects(true)
+      }}
+      onMouseLeave={() => {
+        setIsRaised(raised ?? false)
+
+        setShowObjects(false)
+      }}
       onClick={onClick}
       raised={isRaised}
       ref={squareRef}
-      className="relative flex items-center justify-center"
+      className={clsx('relative flex items-center justify-center', {
+        'cursor-pointer': showCursor,
+      })}
       sx={{
         width: '100%',
         // height: '100%',
@@ -78,7 +91,7 @@ export default function PredictionCard({ image, prediction, onClick }: Props) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={image.img} alt={image.description} className="flex object-contain" />
 
-      <div className={clsx('absolute top-0 left-0 w-full h-full', isRaised ? 'visible' : 'hidden')}>
+      <div className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}>
         {prediction?.map(
           (prediction, ind) =>
             ((prediction?.[1] as number) ?? 0) > 0.8 && (

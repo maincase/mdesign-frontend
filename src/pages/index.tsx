@@ -32,24 +32,12 @@ export default function Home() {
       </Head>
       <Header openNewRenderModal={() => setNewRenderOpen(true)} />
       <Content onInteriorSelect={(interior) => setInteriorCurrent(interior)} />
-      <Dialog open={newRenderOpen} onClose={() => setNewRenderOpen(false)} content={<NewRender />} />
-      <Dialog
-        open={!!interiorCurrent}
-        onClose={() => setInteriorCurrent(undefined)}
-        content={<Interior currentInterior={interiorCurrent} />}
-        // fullScreen
-        // // fullWidth
-        // maxWidth="md"
-        // sx={{
-        //   '& .MuiDialog-container': {
-        //     '& .MuiPaper-root': {
-        //       width: '100%',
-        //       maxWidth: '900px', // Set your width here
-        //     },
-        //   },
-        // }}
-        // style={{ maxWidth: '900px' }}
-      />
+      <Dialog fullWidth maxWidth="sm" open={newRenderOpen} onClose={() => setNewRenderOpen(false)}>
+        <NewRender />
+      </Dialog>
+      <Dialog fullWidth={true} maxWidth="xl" open={!!interiorCurrent} onClose={() => setInteriorCurrent(undefined)}>
+        <Interior currentInterior={interiorCurrent} />
+      </Dialog>
       {/* <StyleGallery /> */}
     </>
   )
