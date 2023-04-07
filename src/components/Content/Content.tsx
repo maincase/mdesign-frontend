@@ -1,6 +1,7 @@
 import { Grid, Stack } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef } from 'react'
+import { Render } from '../Interior/Interior'
 import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
 import interiorElementsList from './interior-items'
@@ -15,9 +16,10 @@ type Props = ComponentPropsWithoutRef<typeof Stack> & {
       description: string
     }[]
   }) => void
+  onRenderSelect: (render: Render) => void
 }
 
-export default function Content({ onInteriorSelect }: Props) {
+export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
   return (
     <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>
       <span className={clsx('flex', styles.header_text)}>Latest designs and recommendations created by our AI:</span>
@@ -48,7 +50,7 @@ export default function Content({ onInteriorSelect }: Props) {
                 <PredictionCard
                   image={image}
                   prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
-                  onClick={() => (imgInd === 0 ? onInteriorSelect(el) : undefined)}
+                  onClick={() => (imgInd === 0 ? onInteriorSelect(el) : onRenderSelect(image))}
                   showCursor
                 />
               </Grid>

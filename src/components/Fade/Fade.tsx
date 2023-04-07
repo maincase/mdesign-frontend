@@ -1,20 +1,21 @@
 import { animated, useSpring } from '@react-spring/web'
-import { cloneElement, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ForwardedRef, cloneElement, forwardRef } from 'react'
 
-interface FadeProps {
+type FadeProps = ComponentPropsWithoutRef<'div'> & {
   children: React.ReactElement
   in?: boolean
-  onClick?: any
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
   onExited?: (node: HTMLElement, isAppearing: boolean) => void
   ownerState?: any
 }
 
-export default forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
-  const { children, in: open, onClick, onEnter, onExited, ownerState, ...other } = props
+export default forwardRef<HTMLDivElement, FadeProps>(function Fade(
+  { children, in: open, onClick, onEnter, onExited, ownerState, ...other }: FadeProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const style = useSpring({
     from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
+    to: { opacity: open ? 1 : 0, display: open ? 'flex' : 'none' },
     onStart: () => {
       if (open && onEnter) {
         onEnter(null as any, true)

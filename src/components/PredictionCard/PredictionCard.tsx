@@ -10,6 +10,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
     description: string
   }
   prediction?: Array<Array<number[] | number | string>>
+  objectsShown?: boolean
   showCursor?: boolean
 }
 
@@ -45,20 +46,21 @@ function PredictionObject({
   )
 }
 
-export default function PredictionCard({ image, prediction, raised, onClick, showCursor }: Props) {
-  const [showObjects, setShowObjects] = useState<boolean>(false)
+export default function PredictionCard({
+  image,
+  prediction,
+  raised = false,
+  onClick,
+  objectsShown = false,
+  showCursor,
+}: Props) {
+  const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
-  const [isRaised, setIsRaised] = useState<boolean>(raised ?? false)
+  const [isRaised, setIsRaised] = useState<boolean>(raised)
 
   const [squareRef, { width, height }] = useElementSize()
 
-  const [imgWidth, imgHeight] = useImageSize(image.img)
-
-  // console.log(imgWidth, imgHeight, 'this is the image size', width, height, 'this is the square size', image.img)
-
-  if (imgWidth === 0 || imgHeight === 0) {
-    return null
-  }
+  const [imgWidth, imgHeight] = useImageSize(image?.img)
 
   const ratioX = width / imgWidth
   const ratioY = height / imgHeight
@@ -68,28 +70,32 @@ export default function PredictionCard({ image, prediction, raised, onClick, sho
       onMouseEnter={() => {
         setIsRaised(raised ?? true)
 
-        setShowObjects(true)
+        if (!objectsShown) {
+          setShowObjects(true)
+        }
       }}
       onMouseLeave={() => {
         setIsRaised(raised ?? false)
 
-        setShowObjects(false)
+        if (!objectsShown) {
+          setShowObjects(false)
+        }
       }}
       onClick={onClick}
       raised={isRaised}
       ref={squareRef}
-      className={clsx('relative flex items-center justify-center', {
+      className={clsx('relative inline-flex items-center justify-center', {
         'cursor-pointer': showCursor,
       })}
       sx={{
-        width: '100%',
+        // width: '100%',
         // height: '100%',
         backgroundPosition: 'left top',
         backgroundSize: 'contain',
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={image.img} alt={image.description} className="flex object-contain" />
+      {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+      {!!image?.img && <img src={image.img} /* alt={image.description} */ className="flex object-contain" />}
 
       <div className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}>
         {prediction?.map(

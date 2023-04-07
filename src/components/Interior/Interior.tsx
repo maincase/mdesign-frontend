@@ -1,22 +1,27 @@
 import { Grid } from '@mui/material'
+import { Dispatch, SetStateAction } from 'react'
 import predictionItems from '../Content/prediction-items'
+import Fade from '../Fade/Fade'
 import PredictionCard from '../PredictionCard/PredictionCard'
+
+export type Render = {
+  id: number
+  img: string
+  description: string
+}
 
 type Props = {
   currentInterior?: {
-    name: string
-    images: {
-      id: number
-      img: string
-      description: string
-    }[]
+    images: Render[]
   }
+  currentRender?: Render
+  setCurrentRender?: Dispatch<SetStateAction<Render | undefined>>
 }
 
-export default function Interior({ currentInterior }: Props) {
+export default function Interior({ currentInterior, currentRender, setCurrentRender }: Props) {
   return (
     <>
-      {currentInterior ? (
+      <Fade in={!currentRender && !!currentInterior}>
         <Grid
           container
           spacing={2}
@@ -24,7 +29,7 @@ export default function Interior({ currentInterior }: Props) {
             height: '85vh',
           }}
         >
-          {currentInterior.images.map((image, ind) => (
+          {currentInterior?.images?.map((image, ind) => (
             <Grid
               display="flex"
               className="first-of-type:pl-0 float-left"
@@ -38,13 +43,25 @@ export default function Interior({ currentInterior }: Props) {
               <PredictionCard
                 image={image}
                 prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
+                onClick={() => setCurrentRender?.(image)}
                 raised={false}
                 showCursor={ind > 0}
               />
             </Grid>
           ))}
         </Grid>
-      ) : null}
+      </Fade>
+
+      <Fade in={!!currentRender} className="flex items-center justify-center">
+        <PredictionCard
+          image={currentRender as Render}
+          prediction={predictionItems.find((pred) => pred.name === (currentRender as Render)?.img)?.predictions}
+          onClick={() => setCurrentRender?.(currentRender)}
+          objectsShown={true}
+          raised={false}
+          showCursor
+        />
+      </Fade>
     </>
   )
 }

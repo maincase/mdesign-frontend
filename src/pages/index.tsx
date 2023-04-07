@@ -1,7 +1,7 @@
 import Content from '@/components/Content/Content'
 import Dialog from '@/components/Dialog/Dialog'
 import Header from '@/components/Header/Header'
-import Interior from '@/components/Interior/Interior'
+import Interior, { Render } from '@/components/Interior/Interior'
 import NewRender from '@/components/NewRender/NewRender'
 import Head from 'next/head'
 import { useState } from 'react'
@@ -21,6 +21,7 @@ export default function Home() {
       }
     | undefined
   >(undefined)
+  const [currentRender, setCurrentRender] = useState<Render | undefined>(undefined)
 
   return (
     <>
@@ -31,7 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header openNewRenderModal={() => setNewRenderOpen(true)} />
-      <Content onInteriorSelect={(interior) => setInteriorCurrent(interior)} />
+      <Content onInteriorSelect={setInteriorCurrent} onRenderSelect={setCurrentRender} />
       <Dialog fullWidth maxWidth="sm" open={newRenderOpen} onClose={() => setNewRenderOpen(false)}>
         <NewRender />
       </Dialog>
@@ -39,10 +40,14 @@ export default function Home() {
         fullWidth={true}
         // fullScreen
         maxWidth="xl"
-        open={!!interiorCurrent}
-        onClose={() => setInteriorCurrent(undefined)}
+        open={!!interiorCurrent || !!currentRender}
+        onClose={() => {
+          setInteriorCurrent(undefined)
+          setCurrentRender(undefined)
+        }}
+        keepMounted={false}
       >
-        <Interior currentInterior={interiorCurrent} />
+        <Interior currentInterior={interiorCurrent} currentRender={currentRender} setCurrentRender={setCurrentRender} />
       </Dialog>
       {/* <StyleGallery /> */}
     </>
