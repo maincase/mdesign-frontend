@@ -1,0 +1,41 @@
+service: mdesign-frontend
+
+runtime: nodejs18
+
+instance_class: B2
+
+inbound_services:
+  - warmup
+
+manual_scaling:
+  instances: 1
+
+# automatic_scaling:
+#   min_idle_instances: 1
+#   min_instances: 1
+
+# entrypoint: node ./node_modules/.bin/serve -n -s dist -l tcp://127.0.0.1:$PORT
+
+# handlers:
+#   - url: /favicon.png
+#     static_files: dist/favicon.png
+#     upload: dist/favicon.png
+#     secure: always
+#     redirect_http_response_code: 301
+
+#   - url: /
+#     static_files: dist/index.html
+#     upload: dist/index.html
+#     secure: always
+#     redirect_http_response_code: 301
+
+#   - url: /login
+#     static_files: dist/index.html
+#     upload: dist/index.html
+#     secure: always
+#     redirect_http_response_code: 301
+
+handlers:
+  - url: /.*
+    secure: always
+    script: auto

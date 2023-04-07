@@ -51,7 +51,7 @@ export default function PredictionCard({ image, predictions }: Props) {
 
   const [imgWidth, imgHeight] = useImageSize(image.img)
 
-  console.log(imgWidth, imgHeight, 'this is the image size', width, height, 'this is the square size', image.img)
+  // console.log(imgWidth, imgHeight, 'this is the image size', width, height, 'this is the square size', image.img)
 
   if (imgWidth === 0 || imgHeight === 0) {
     return null
