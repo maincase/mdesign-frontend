@@ -40,7 +40,7 @@ export default function Home() {
       <Dialog
         fullWidth={true}
         // fullScreen
-        maxWidth="xl"
+        maxWidth={!!currentRender ? 'lg' : 'xl'}
         open={!!interiorCurrent || !!currentRender}
         onClose={() => {
           setInteriorCurrent(undefined)
@@ -51,7 +51,7 @@ export default function Home() {
         <Interior currentInterior={interiorCurrent} currentRender={currentRender} setCurrentRender={setCurrentRender} />
       </Dialog>
       {/* <StyleGallery /> */}
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-B62T0MRV0M" strategy="afterInteractive" />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-B62T0MRV0M" strategy="afterInteractive" async />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];

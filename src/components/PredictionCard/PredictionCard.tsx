@@ -3,6 +3,7 @@ import { Card } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
+import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
   image: {
@@ -12,38 +13,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   prediction?: Array<Array<number[] | number | string>>
   objectsShown?: boolean
   showCursor?: boolean
-}
-
-function PredictionObject({
-  prediction,
-  ratioX,
-  ratioY,
-}: {
-  prediction: Array<number[] | number | string>
-  ratioX: number
-  ratioY: number
-}) {
-  const [objectColor] = useState(Math.floor(Math.random() * 16777215).toString(16))
-
-  const objectShape = prediction[2] as number[]
-
-  const objectX = (objectShape[0] ?? 0) * ratioX
-  const objectY = (objectShape[1] ?? 0) * ratioY
-  const objectWidth = ((objectShape[2] ?? 0) - (objectShape[0] ?? 0)) * ratioX
-  const objectHeight = ((objectShape[3] ?? 0) - (objectShape[1] ?? 0)) * ratioY
-
-  return (
-    <div
-      className="absolute border-2"
-      style={{
-        left: objectX,
-        top: objectY,
-        width: objectWidth,
-        height: objectHeight,
-        borderColor: `#${objectColor}`,
-      }}
-    ></div>
-  )
+  onObjectHover?: (object?: PredictionObjectType) => void
 }
 
 export default function PredictionCard({
@@ -53,10 +23,13 @@ export default function PredictionCard({
   onClick,
   objectsShown = false,
   showCursor,
+  onObjectHover,
 }: Props) {
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
   const [isRaised, setIsRaised] = useState<boolean>(raised)
+
+  const [mouseCoords, setMouseCoords] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
   const [squareRef, { width, height }] = useElementSize()
 
@@ -97,15 +70,35 @@ export default function PredictionCard({
       {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
       {!!image?.img && <img src={image.img} /* alt={image.description} */ className="flex object-contain" />}
 
-      <div className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}>
+      <div
+        className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}
+        {...(objectsShown
+          ? {
+              onMouseMove: (e) => {
+                const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
+                const x = e.pageX - rect.x
+                const y = e.pageY - rect.top
+
+                setMouseCoords({ x, y })
+              },
+            }
+          : {})}
+      >
         {prediction?.map(
           (prediction, ind) =>
             ((prediction?.[1] as number) ?? 0) > 0.8 && (
               <PredictionObject
                 key={`${(prediction?.[0] as string).replace(' ', '')}+${ind}`}
                 prediction={prediction}
-                ratioX={ratioX}
-                ratioY={ratioY}
+                mouse={{
+                  x: mouseCoords.x ?? 0,
+                  y: mouseCoords.y ?? 0,
+                }}
+                ratio={{
+                  x: ratioX,
+                  y: ratioY,
+                }}
+                onObjectHover={onObjectHover}
               />
             )
         )}
