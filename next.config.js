@@ -1,5 +1,5 @@
 let commitHash
-let tag
+// let tag
 let branch
 
 try {
