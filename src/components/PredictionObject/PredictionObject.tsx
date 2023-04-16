@@ -57,8 +57,6 @@ export default function PredictionObject({
     }
   }, [objectNameVisible])
 
-  console.log('This is test')
-
   return (
     <>
       {!!objectNameVisible ? (
