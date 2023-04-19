@@ -1,4 +1,4 @@
-const interiorElementsList = [
+const interiorItems = [
   {
     name: 'prediction4',
     images: [
@@ -251,4 +251,4 @@ const interiorElementsList = [
   },
 ]
 
-export default interiorElementsList
+export default interiorItems

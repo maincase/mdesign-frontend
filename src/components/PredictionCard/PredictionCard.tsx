@@ -10,7 +10,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
     img: string
     description: string
   }
-  prediction?: Array<Array<number[] | number | string>>
+  prediction?: Array<Array<number[] | number | string | Array<string>>>
   objectsShown?: boolean
   showCursor?: boolean
   onObjectHover?: (object?: PredictionObjectType) => void

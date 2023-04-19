@@ -377,12 +377,39 @@ const predictionItems = [
     name: '/test6-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
     predictions: [
       ['chair', 0.977, [31.76, 382.12, 292.08, 462.79]],
-      ['couch', 0.965, [77.31, 289.37, 371.82, 393.29]],
-      ['vase', 0.924, [374.87, 256.82, 385.29, 305.03]],
+      [
+        'couch',
+        0.965,
+        [77.31, 289.37, 371.82, 393.29],
+        ['https://www.amazon.com/U-Shaped-Sectional-Removeable-Ottoman-Pillows/dp/B094VSCGH2?th=1'],
+      ],
+      [
+        'vase',
+        0.924,
+        [374.87, 256.82, 385.29, 305.03],
+        [
+          'https://www.amazon.com/Ceramic-Metallic-Decorative-Minimalist-Wedding/dp/B0B2NWY6BH',
+          'https://www.amazon.com/Uniquewise-Decorative-Contemporary-Display-Cylinder/dp/B09JX2DH42',
+          'https://www.amazon.com/Flower-Container-Hydroponic-Decoration-Decorative/dp/B08M36492V',
+          'https://p-nt-www-amazon-com-kalias.amazon.com/Z-W-Dong-Desktop-Transparent-Bedroom-Decorative/dp/B09KH2QX38?th=1',
+        ],
+      ],
       ['couch', 0.897, [0.59, 290, 367.67, 396.28]],
       ['couch', 0.895, [-0.52, 319.25, 295.01, 461.8]],
-      ['dining table', 0.954, [289.24, 320.54, 423.72, 432.43]],
-      ['couch', 0.995, [400.16, 285.95, 607.23, 439.96]],
+      [
+        'dining table',
+        0.954,
+        [289.24, 320.54, 423.72, 432.43],
+        ['https://www.amazon.com/FINECASA-Wooden-Coffee-Decoration-Natural/dp/B08YDJ3KDH'],
+      ],
+      [
+        'couch',
+        0.995,
+        [400.16, 285.95, 607.23, 439.96],
+        [
+          'https://www.amazon.com/Garhelper-Sectional-Convertible-Upholstered-combination/dp/B09JNN18PT?source=ps-sl-shoppingads-lpcontext&smid=AKINEZW8WR5VF',
+        ],
+      ],
     ],
   },
   {

@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef } from 'react'
 import { Render } from '../Interior/Interior'
 import PredictionCard from '../PredictionCard/PredictionCard'
 import styles from './Content.module.scss'
-import interiorElementsList from './interior-items'
+import interiorItems from './interior-items'
 import predictionItems from './prediction-items'
 
 type Props = ComponentPropsWithoutRef<typeof Stack> & {
@@ -31,7 +31,7 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
           marginTop: 0,
         }}
       >
-        {interiorElementsList.map((el, ind) => (
+        {interiorItems.map((el, ind) => (
           <Grid
             key={`${el.name}+${ind}`}
             // paddingTop={0}

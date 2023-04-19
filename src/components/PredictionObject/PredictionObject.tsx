@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 
 export type PredictionObjectType = {
-  prediction: Array<number[] | number | string>
+  prediction: Array<number[] | number | string | Array<string>>
 }
 
 export default function PredictionObject({
@@ -11,7 +11,7 @@ export default function PredictionObject({
   ratio,
   onObjectHover,
 }: {
-  prediction: Array<number[] | number | string>
+  prediction: Array<number[] | number | string | Array<string>>
   mouse?: {
     x: number
     y: number
