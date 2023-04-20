@@ -38,6 +38,8 @@ export default function PredictionCard({
   const ratioX = width === 0 ? undefined : width / imgWidth
   const ratioY = height === 0 ? undefined : height / imgHeight
 
+  console.log(squareRef, 'this is the square ref')
+
   return (
     <Card
       onMouseEnter={() => {
