@@ -17,8 +17,8 @@ export default function PredictionObject({
     y: number
   }
   ratio: {
-    x: number
-    y: number
+    x?: number
+    y?: number
   }
   onObjectHover?: (object?: PredictionObjectType) => void
 }) {
@@ -35,12 +35,6 @@ export default function PredictionObject({
   const objectWidth = (objectShape[2] ?? 0) - (objectShape[0] ?? 0)
   const objectHeight = (objectShape[3] ?? 0) - (objectShape[1] ?? 0)
 
-  // Ratio object rect.
-  const ratioX = objectX * ratio.x
-  const ratioY = objectY * ratio.y
-  const ratioWidth = objectWidth * ratio.x
-  const ratioHeight = objectHeight * ratio.y
-
   const objectNameVisible =
     !!mouse?.x &&
     !!mouse?.y &&
@@ -56,6 +50,16 @@ export default function PredictionObject({
       onObjectHover?.(undefined)
     }
   }, [objectNameVisible])
+
+  if (!ratio.x || !ratio.y) {
+    return null
+  }
+
+  // Ratio object rect.
+  const ratioX = objectX * ratio.x
+  const ratioY = objectY * ratio.y
+  const ratioWidth = objectWidth * ratio.x
+  const ratioHeight = objectHeight * ratio.y
 
   return (
     <>

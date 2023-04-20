@@ -35,8 +35,8 @@ export default function PredictionCard({
 
   const [imgWidth, imgHeight] = useImageSize(image?.img)
 
-  const ratioX = width / imgWidth
-  const ratioY = height / imgHeight
+  const ratioX = width === 0 ? undefined : width / imgWidth
+  const ratioY = height === 0 ? undefined : height / imgHeight
 
   return (
     <Card
