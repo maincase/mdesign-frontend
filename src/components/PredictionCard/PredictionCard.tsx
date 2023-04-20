@@ -1,7 +1,7 @@
 import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
+import { ComponentPropsWithoutRef, useEffect, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
 
@@ -25,7 +25,7 @@ export default function PredictionCard({
   showCursor,
   onObjectHover,
 }: Props) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const [cardRef, setCardRef] = useState<HTMLDivElement | null>(null)
 
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
@@ -43,8 +43,8 @@ export default function PredictionCard({
   const ratioY = height === 0 ? undefined : height / imgHeight
 
   useEffect(() => {
-    if (imageLoaded && !!cardRef.current) {
-      squareRef(cardRef.current)
+    if (imageLoaded && !!cardRef) {
+      squareRef(cardRef)
     }
   }, [imageLoaded, squareRef])
 
@@ -66,7 +66,7 @@ export default function PredictionCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      ref={cardRef}
+      ref={setCardRef}
       className={clsx('relative inline-flex items-center justify-center', {
         'cursor-pointer': showCursor,
       })}
