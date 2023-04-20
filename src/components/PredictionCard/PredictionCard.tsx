@@ -38,7 +38,7 @@ export default function PredictionCard({
   const ratioX = width === 0 ? undefined : width / imgWidth
   const ratioY = height === 0 ? undefined : height / imgHeight
 
-  console.log(squareRef, 'this is the square ref')
+  console.log(squareRef, 'this is the square ref', width, height)
 
   return (
     <Card
