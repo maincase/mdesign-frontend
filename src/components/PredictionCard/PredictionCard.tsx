@@ -1,4 +1,3 @@
-import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
@@ -39,16 +38,21 @@ export default function PredictionCard({
 
   const [squareRef, { width, height }] = useElementSize()
 
-  const [imgWidth, imgHeight] = useImageSize(image?.img)
+  const [[imgWidth, imgHeight], setImgSize] = useState([0, 0])
 
-  const ratioX = width === 0 ? undefined : width / imgWidth
-  const ratioY = height === 0 ? undefined : height / imgHeight
+  const ratioX = width === 0 || imgWidth == 0 ? undefined : width / imgWidth
+  const ratioY = height === 0 || imgHeight === 0 ? undefined : height / imgHeight
 
-  const onImageLoad = () => setImageLoaded(true)
+  const onImageLoad = (e: any) => {
+    const { naturalHeight, naturalWidth } = e.target
+    setImgSize([naturalWidth, naturalHeight])
+
+    setImageLoaded(true)
+  }
 
   useEffect(() => {
     if (imgRef.current?.complete) {
-      onImageLoad()
+      onImageLoad({ target: imgRef.current })
     }
   }, [])
 
