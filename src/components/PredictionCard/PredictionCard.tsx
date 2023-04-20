@@ -1,7 +1,8 @@
 import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, useState } from 'react'
+import Image from 'next/image'
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
 
@@ -25,7 +26,11 @@ export default function PredictionCard({
   showCursor,
   onObjectHover,
 }: Props) {
+  const cardRef = useRef<HTMLDivElement>(null)
+
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
+
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false)
 
   const [isRaised, setIsRaised] = useState<boolean>(raised)
 
@@ -38,7 +43,11 @@ export default function PredictionCard({
   const ratioX = width === 0 ? undefined : width / imgWidth
   const ratioY = height === 0 ? undefined : height / imgHeight
 
-  console.log(squareRef, 'this is the square ref', width, height)
+  useEffect(() => {
+    if (imageLoaded && !!cardRef.current) {
+      squareRef(cardRef.current)
+    }
+  }, [imageLoaded, squareRef])
 
   return (
     <Card
@@ -58,7 +67,7 @@ export default function PredictionCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      ref={squareRef}
+      ref={cardRef}
       className={clsx('relative inline-flex items-center justify-center', {
         'cursor-pointer': showCursor,
       })}
@@ -69,8 +78,14 @@ export default function PredictionCard({
         backgroundSize: 'contain',
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-      {!!image?.img && <img src={image.img} /* alt={image.description} */ className="flex object-contain" />}
+      {!!image?.img && (
+        <Image
+          onLoad={() => setImageLoaded(true)}
+          src={image.img}
+          /* alt={image.description} */ className="flex object-contain"
+          alt={''}
+        />
+      )}
 
       <div
         className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}
