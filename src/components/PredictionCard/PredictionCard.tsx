@@ -1,7 +1,6 @@
 import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import Image from 'next/image'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
@@ -79,7 +78,8 @@ export default function PredictionCard({
       }}
     >
       {!!image?.img && (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           onLoad={() => setImageLoaded(true)}
           src={image.img}
           /* alt={image.description} */ className="flex object-contain"
