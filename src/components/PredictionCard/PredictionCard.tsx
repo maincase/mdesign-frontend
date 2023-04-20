@@ -1,7 +1,7 @@
 import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, useEffect, useState } from 'react'
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { useElementSize } from 'usehooks-ts'
 import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
 
@@ -27,6 +27,8 @@ export default function PredictionCard({
 }: Props) {
   const [cardRef, setCardRef] = useState<HTMLDivElement | null>(null)
 
+  const imgRef = useRef<HTMLImageElement>(null)
+
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
   const [imageLoaded, setImageLoaded] = useState<boolean>(false)
@@ -41,6 +43,14 @@ export default function PredictionCard({
 
   const ratioX = width === 0 ? undefined : width / imgWidth
   const ratioY = height === 0 ? undefined : height / imgHeight
+
+  const onImageLoad = () => setImageLoaded(true)
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      onImageLoad()
+    }
+  }, [])
 
   useEffect(() => {
     if (imageLoaded && !!cardRef) {
@@ -80,10 +90,11 @@ export default function PredictionCard({
       {!!image?.img && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          onLoad={() => setImageLoaded(true)}
+          ref={imgRef}
+          onLoad={onImageLoad}
           src={image.img}
           /* alt={image.description} */ className="flex object-contain"
-          alt={''}
+          alt=""
         />
       )}
 

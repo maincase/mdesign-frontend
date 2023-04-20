@@ -46,7 +46,7 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
             // boxShadow={3}
           >
             {el.images.map((image, imgInd) => (
-              <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={image.img}>
+              <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={`${image.id}+${imgInd}`}>
                 <PredictionCard
                   image={image}
                   prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
