@@ -1,53 +1,58 @@
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
-import { useElementSize } from 'usehooks-ts'
-import PredictionObject, { PredictionObjectType } from '../PredictionObject/PredictionObject'
+import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
   image: {
     img: string
     description: string
   }
-  prediction?: Array<Array<number[] | number | string | Array<string>>>
+  objects?: Array<Array<number[] | number | string | Array<string>>>
   objectsShown?: boolean
   showCursor?: boolean
-  onObjectHover?: (object?: PredictionObjectType) => void
+  interiorInd?: number
+  renderInd?: number
+  onObjectHover?: (object: RenderObjectType) => void
 }
 
-export default function PredictionCard({
+export default function RenderCard({
   image,
-  prediction,
+  objects,
   raised = false,
   onClick,
   objectsShown = false,
   showCursor,
+  interiorInd,
+  renderInd,
   onObjectHover,
 }: Props) {
-  const [cardRef, setCardRef] = useState<HTMLDivElement | null>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   const imgRef = useRef<HTMLImageElement>(null)
 
-  const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
+  const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
 
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false)
+  const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
   const [isRaised, setIsRaised] = useState<boolean>(raised)
 
   const [mouseCoords, setMouseCoords] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
-  const [squareRef, { width, height }] = useElementSize()
-
-  const [[imgWidth, imgHeight], setImgSize] = useState([0, 0])
-
-  const ratioX = width === 0 || imgWidth == 0 ? undefined : width / imgWidth
-  const ratioY = height === 0 || imgHeight === 0 ? undefined : height / imgHeight
+  const [ratio, setRatio] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
   const onImageLoad = (e: any) => {
-    const { naturalHeight, naturalWidth } = e.target
-    setImgSize([naturalWidth, naturalHeight])
+    const { naturalHeight: imgHeight, naturalWidth: imgWidth } = e.target
 
-    setImageLoaded(true)
+    if (cardRef.current) {
+      const width = cardRef.current.offsetWidth
+      const height = cardRef.current.offsetHeight
+
+      setRatio({
+        x: width / imgWidth,
+        y: height / imgHeight,
+      })
+    }
   }
 
   useEffect(() => {
@@ -55,12 +60,6 @@ export default function PredictionCard({
       onImageLoad({ target: imgRef.current })
     }
   }, [])
-
-  useEffect(() => {
-    if (imageLoaded && !!cardRef) {
-      squareRef(cardRef)
-    }
-  }, [imageLoaded, squareRef])
 
   return (
     <Card
@@ -80,8 +79,8 @@ export default function PredictionCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      ref={setCardRef}
-      className={clsx('relative inline-flex items-center justify-center', {
+      ref={cardRef}
+      className={clsx('relative flex h-max', {
         'cursor-pointer': showCursor,
       })}
       sx={{
@@ -110,27 +109,28 @@ export default function PredictionCard({
                 const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
                 const x = e.pageX - rect.x
                 const y = e.pageY - rect.top
-
                 setMouseCoords({ x, y })
               },
             }
           : {})}
       >
-        {prediction?.map(
-          (prediction, ind) =>
-            ((prediction?.[1] as number) ?? 0) > 0.8 && (
-              <PredictionObject
-                key={`${(prediction?.[0] as string).replace(' ', '')}+${ind}`}
-                prediction={prediction}
+        {objects?.map(
+          (obj, ind) =>
+            ((obj?.[1] as number) ?? 0) > 0.8 && (
+              <RenderObject
+                key={`${(obj?.[0] as string).replace(' ', '')}+${ind}`}
+                interiorInd={interiorInd}
+                renderInd={renderInd}
+                objectInd={ind}
+                object={obj}
+                isSingleObject={objects?.length === 1}
                 mouse={{
                   x: mouseCoords.x ?? 0,
                   y: mouseCoords.y ?? 0,
                 }}
-                ratio={{
-                  x: ratioX,
-                  y: ratioY,
-                }}
+                ratio={ratio}
                 onObjectHover={onObjectHover}
+                objectHoverTimeoutRef={objectHoverTimeoutRef}
               />
             )
         )}

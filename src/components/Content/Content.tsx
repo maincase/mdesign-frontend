@@ -1,25 +1,27 @@
 import { Grid, Stack } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef } from 'react'
-import { Render } from '../Interior/Interior'
-import PredictionCard from '../PredictionCard/PredictionCard'
+import { Render } from '../InteriorManager/InteriorManager'
+import { useInteriorItems } from '../InteriorManager/useInteriorItems'
+import RenderCard from '../RenderCard/RenderCard'
 import styles from './Content.module.scss'
-import interiorItems from './interior-items'
-import predictionItems from './prediction-items'
 
 type Props = ComponentPropsWithoutRef<typeof Stack> & {
-  onInteriorSelect: (interior: {
-    name: string
-    images: {
-      id: number
-      img: string
-      description: string
-    }[]
+  onInteriorSelect: ({
+    currentInterior,
+    interiorIndex,
+  }: {
+    currentInterior?: {
+      images: Render[]
+    }
+    interiorIndex: number
   }) => void
-  onRenderSelect: (render: Render) => void
+  onRenderSelect: ({ currentRender, renderIndex }: { currentRender?: Render; renderIndex: number }) => void
 }
 
 export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
+  const [interiorItems] = useInteriorItems()
+
   return (
     <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>
       <span className={clsx('flex', styles.header_text)}>Latest designs and recommendations created by our AI:</span>
@@ -47,10 +49,16 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
           >
             {el.images.map((image, imgInd) => (
               <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={`${image.id}+${imgInd}`}>
-                <PredictionCard
+                <RenderCard
                   image={image}
-                  prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
-                  onClick={() => (imgInd === 0 ? onInteriorSelect(el) : onRenderSelect(image))}
+                  interiorInd={ind}
+                  renderInd={imgInd}
+                  objects={image?.objects}
+                  onClick={() =>
+                    imgInd === 0
+                      ? onInteriorSelect({ currentInterior: el, interiorIndex: ind })
+                      : onRenderSelect({ currentRender: image, renderIndex: imgInd })
+                  }
                   showCursor
                 />
               </Grid>

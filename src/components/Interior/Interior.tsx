@@ -1,57 +1,58 @@
 import { Grid } from '@mui/material'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
-import predictionItems from '../Content/prediction-items'
 import Fade from '../Fade/Fade'
-import PredictionCard from '../PredictionCard/PredictionCard'
-import { PredictionObjectType } from '../PredictionObject/PredictionObject'
-
-export type Render = {
-  id: number
-  img: string
-  description: string
-}
+import { Render } from '../InteriorManager/InteriorManager'
+import Referrals from '../Referrals/Referrals'
+import RenderCard from '../RenderCard/RenderCard'
+import { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = {
-  currentInterior?: {
-    images: Render[]
+  interior: {
+    currentInterior?: {
+      images: Render[]
+    }
+    interiorIndex: number
   }
-  currentRender?: Render
-  setCurrentRender?: Dispatch<SetStateAction<Render | undefined>>
+
+  render: {
+    currentRender?: Render
+    renderIndex: number
+  }
+  setRender?: Dispatch<SetStateAction<{ currentRender?: Render; renderIndex: number }>>
 }
 
-export default function Interior({ currentInterior, currentRender, setCurrentRender }: Props) {
-  const [predictionObject, setPredictionObject] = useState<PredictionObjectType>()
+export default function Interior({ interior, render, setRender }: Props) {
+  const [predictionObject, setPredictionObject] = useState<RenderObjectType['object']>()
+  const [referralObject, setReferralObject] = useState<RenderObjectType['object']>()
 
   const onObjectHover = useCallback(
-    (object?: PredictionObjectType) => setPredictionObject(object),
-    [setPredictionObject]
+    (object: RenderObjectType) => {
+      if (object?.isReferral) {
+        setReferralObject(object.object)
+      } else {
+        setPredictionObject(object?.object)
+      }
+    },
+    [setReferralObject, setPredictionObject]
   )
 
   return (
     <>
-      <Fade in={!currentRender && !!currentInterior}>
-        <Grid
-          container
-          spacing={2}
-          style={{
-            height: '85vh',
-          }}
-        >
-          {currentInterior?.images?.map((image, ind) => (
+      <Fade in={!render.currentRender && !!interior.currentInterior}>
+        <Grid container spacing={2}>
+          {interior?.currentInterior?.images?.map((image, ind) => (
             <Grid
               display="flex"
-              className="first-of-type:pl-0 float-left"
+              // className="first-of-type:pl-0 float-left"
+              className="float-left"
               xs={6}
               item
               key={image.img}
-              style={{
-                height: '50%',
-              }}
             >
-              <PredictionCard
+              <RenderCard
                 image={image}
-                prediction={predictionItems.find((pred) => pred.name === image.img)?.predictions}
-                onClick={() => setCurrentRender?.(image)}
+                objects={image?.objects}
+                onClick={() => setRender?.({ currentRender: image, renderIndex: ind })}
                 raised={false}
                 showCursor={ind > 0}
               />
@@ -60,21 +61,36 @@ export default function Interior({ currentInterior, currentRender, setCurrentRen
         </Grid>
       </Fade>
 
-      <Fade in={!!currentRender} className="flex justify-center">
+      <Fade in={!!render?.currentRender} className="flex max-h-full overflow-hidden justify-between">
         <>
-          <PredictionCard
-            image={currentRender as Render}
-            prediction={predictionItems.find((pred) => pred.name === (currentRender as Render)?.img)?.predictions}
-            onClick={() => setCurrentRender?.(currentRender)}
-            objectsShown={true}
-            onObjectHover={onObjectHover}
-            raised={false}
-            showCursor
-          />
+          <div
+            className="flex flex-grow justify-center items-start"
+            style={{
+              minWidth: '50vw',
+            }}
+          >
+            <RenderCard
+              image={render?.currentRender as Render}
+              objects={render?.currentRender?.objects?.filter((obj) => !referralObject || obj === referralObject)}
+              objectsShown={true}
+              onObjectHover={onObjectHover}
+              raised={false}
+              showCursor
+            />
+          </div>
 
-          {/* <Fade in={predictionObject === undefined || !!predictionObject}>
-            <Referrals />
-          </Fade> */}
+          <Fade
+            className="overflow-auto max-h-full ml-2"
+            style={{
+              maxWidth: '50%',
+              minWidth: '30vw',
+            }}
+          >
+            <Referrals
+              objects={render?.currentRender?.objects?.filter((obj) => !predictionObject || obj === predictionObject)}
+              onObjectHover={onObjectHover}
+            />
+          </Fade>
         </>
       </Fade>
     </>

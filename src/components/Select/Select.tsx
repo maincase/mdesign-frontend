@@ -3,9 +3,7 @@ import React from 'react'
 
 export default function Select({ selectList, title }: { selectList: any; title: string }) {
   const [selectedElement, setSelectedElement] = React.useState(selectList[0])
-  const elementChange = (event: any) => {
-    setSelectedElement(event.target.value)
-  }
+  const elementChange = (event: any) => setSelectedElement(event.target.value)
 
   return (
     <>

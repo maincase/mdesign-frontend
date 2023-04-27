@@ -1,5 +1,4 @@
-import interiorItems from '@/components/Content/interior-items'
-import predictionItems from '@/components/Content/prediction-items'
+import interiorItems from '@/components/InteriorManager/interior-items'
 import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -11,9 +10,6 @@ export default function Document() {
             <link key={`${image.img}+${ind}+${index}`} rel="preload" href={image.img} as="image" />
           ))
         )}
-        {predictionItems.map((prediction, ind) => (
-          <link key={`${prediction.name}+${ind}`} rel="preload" href={prediction.name} as="image" />
-        ))}
       </Head>
       <body>
         <Main />

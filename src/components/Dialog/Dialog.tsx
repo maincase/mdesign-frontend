@@ -1,4 +1,4 @@
-import { DialogActions, DialogContent, DialogTitle, Dialog as MuiDialog } from '@mui/material'
+import { DialogActions, DialogContent, DialogContentClasses, DialogTitle, Dialog as MuiDialog } from '@mui/material'
 import { ComponentPropsWithoutRef } from 'react'
 import SlideTransition from './SlideTransition'
 
@@ -6,9 +6,11 @@ type Props = Omit<ComponentPropsWithoutRef<typeof MuiDialog>, 'title' | 'content
   title?: JSX.Element
   content?: JSX.Element
   actions?: JSX.Element
+
+  contentClasses?: Partial<DialogContentClasses>
 }
 
-export default function Dialog({ open, onClose, title, content, children, actions, ...props }: Props) {
+export default function Dialog({ open, onClose, title, content, contentClasses, children, actions, ...props }: Props) {
   return (
     <MuiDialog
       open={open}
@@ -19,7 +21,7 @@ export default function Dialog({ open, onClose, title, content, children, action
       {...props}
     >
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>{content ?? children}</DialogContent>
+      <DialogContent classes={contentClasses}>{content ?? children}</DialogContent>
       <DialogActions>{actions}</DialogActions>
     </MuiDialog>
   )
