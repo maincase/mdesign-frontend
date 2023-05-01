@@ -10,6 +10,9 @@ const nextConfig = {
         },
       }
     : {}),
+  images: {
+    domains: ['moderndesign.ai', 'mdesign.ai'],
+  },
 
   // images: {
   //   remotePatterns: [
