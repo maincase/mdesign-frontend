@@ -6,12 +6,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test5-before.jpeg',
+        img: '/interior5.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test5-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior5-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['potted plant', 0.843, [234.03, 256.13, 285.51, 314.18]],
@@ -27,7 +27,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test5-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior5-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['chair', 0.996, [336.31, 271.11, 383.58, 330.71], ['https://amzn.to/3LgUDKG']],
@@ -47,7 +47,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test5-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior5-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['couch', 0.894, [92.7, 329.13, 220.53, 398.08], ['https://amzn.to/41pPwO2']],
@@ -72,12 +72,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test6-before.jpeg',
+        img: '/interior6.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test6-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior6-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['chair', 0.977, [31.76, 382.12, 292.08, 462.79]],
@@ -118,7 +118,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test6-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior6-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['potted plant', 0.91, [351.63, 219.61, 369.9, 237.5]],
@@ -129,7 +129,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test6-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior6-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['chair', 0.874, [0.07, 324.08, 91.26, 448.75]],
@@ -147,12 +147,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test7-before.jpeg',
+        img: '/interior7.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test7-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior7-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['vase', 0.99, [375.01, 277.61, 390.59, 302.77], ['https://amzn.to/3KKKa8I']],
@@ -167,7 +167,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test7-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior7-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['tv', 0.954, [0.06, 209.13, 27.55, 310.56]],
@@ -178,7 +178,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test7-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior7-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['couch', 0.991, [390.07, 319.17, 695.18, 460.52]],
@@ -195,12 +195,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test8-before.jpeg',
+        img: '/interior8.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test8-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior8-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['potted plant', 0.995, [37.03, 196.8, 115.22, 289.77]],
@@ -211,7 +211,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test8-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior8-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['potted plant', 0.966, [301.76, 277.56, 338.32, 306.85]],
@@ -223,7 +223,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test8-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior8-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['book', 0.814, [335.25, 333.51, 390.16, 346.29]],
@@ -241,12 +241,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test9-before.jpeg',
+        img: '/interior9.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test9-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior9-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['couch', 0.955, [440.1, 288.06, 611.34, 414.78]],
@@ -262,7 +262,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test9-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior9-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['potted plant', 0.974, [268.47, 225.83, 301.17, 261.06]],
@@ -277,7 +277,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test9-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior9-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['couch', 0.945, [218.89, 295.86, 349.52, 379.28]],
@@ -296,12 +296,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test10-before.jpeg',
+        img: '/interior10.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test10-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior10-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['couch', 0.99, [3.66, 337.39, 337.08, 461.61]],
@@ -320,7 +320,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test10-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior10-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['couch', 0.971, [637.43, 266.89, 695.96, 394.22]],
@@ -331,7 +331,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test10-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior10-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['potted plant', 0.985, [0.04, 163.16, 35.93, 228.37]],
@@ -349,12 +349,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test4-before.jpeg',
+        img: '/interior4.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test4-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior4-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['potted plant', 0.997, [350.03, 232.28, 400.54, 281.19]],
@@ -365,7 +365,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test4-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior4-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['tv', 0.993, [302.53, 240.5, 338.95, 266.56]],
@@ -383,7 +383,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test4-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior4-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['vase', 0.919, [324.56, 294.52, 342.49, 326.11]],
@@ -401,12 +401,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test1-before.jpeg',
+        img: '/interior1.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test1-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior1-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['couch', 0.978, [49.73, 344.32, 293.35, 461.94]],
@@ -423,7 +423,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test1-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior1-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['chair', 0.963, [577.07, 336.2, 695.86, 463.34]],
@@ -439,7 +439,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test1-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior1-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['couch', 0.826, [-0.37, 318.58, 296.82, 461.7]],
@@ -459,12 +459,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test2-before.jpeg',
+        img: '/interior2.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test2-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior2-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['potted plant', 0.958, [213.3, 359.47, 246.44, 384.95]],
@@ -479,7 +479,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test2-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior2-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['vase', 0.953, [364.66, 245.96, 379.32, 266.96]],
@@ -494,7 +494,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test2-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior2-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['potted plant', 0.983, [198.85, 212.69, 226.51, 247.76]],
@@ -511,12 +511,12 @@ const interiorItems: Interior[] = [
     images: [
       {
         id: 0,
-        img: '/test3-before.jpeg',
+        img: '/interior3.jpeg',
         description: 'Original Bath Room (15s ago, took 6s)',
       },
       {
         id: 1,
-        img: '/test3-before_-1seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior3-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['book', 0.839, [19.99, 342.72, 93.44, 373.02]],
@@ -537,7 +537,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 2,
-        img: '/test3-before_-11seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior3-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
           ['book', 0.805, [87.68, 176.31, 95.46, 197.76]],
@@ -570,7 +570,7 @@ const interiorItems: Interior[] = [
       },
       {
         id: 3,
-        img: '/test3-before_-22seed_strength_0.65_steps_100_guidance_25-Final.jpeg',
+        img: '/interior3-render3.jpeg',
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['book', 0.828, [107.53, 199.17, 115.25, 240.06]],
