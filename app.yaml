@@ -1,44 +1,74 @@
+# service: mdesign-frontend
+
+# runtime: nodejs18
+
+# instance_class: B2
+
+# build_env_variables:
+#   GOOGLE_NODE_RUN_SCRIPTS: ''
+
+# inbound_services:
+#   - warmup
+
+# manual_scaling:
+#   instances: 1
+
+# # automatic_scaling:
+# #   min_idle_instances: 1
+# #   min_instances: 1
+
+# # entrypoint: node ./node_modules/.bin/serve -n -s dist -l tcp://127.0.0.1:$PORT
+
+# # handlers:
+# #   - url: /favicon.png
+# #     static_files: dist/favicon.png
+# #     upload: dist/favicon.png
+# #     secure: always
+# #     redirect_http_response_code: 301
+
+# #   - url: /
+# #     static_files: dist/index.html
+# #     upload: dist/index.html
+# #     secure: always
+# #     redirect_http_response_code: 301
+
+# #   - url: /login
+# #     static_files: dist/index.html
+# #     upload: dist/index.html
+# #     secure: always
+# #     redirect_http_response_code: 301
+
+# handlers:
+#   - url: /.*
+#     secure: always
+#     script: auto
+
 service: mdesign-frontend
+env: standard
+runtime: nodejs16
 
-runtime: nodejs18
-
-instance_class: B2
+instance_class: F1
 
 build_env_variables:
   GOOGLE_NODE_RUN_SCRIPTS: ''
 
-inbound_services:
-  - warmup
-
-manual_scaling:
-  instances: 1
-
-# automatic_scaling:
-#   min_idle_instances: 1
-#   min_instances: 1
-
-# entrypoint: node ./node_modules/.bin/serve -n -s dist -l tcp://127.0.0.1:$PORT
-
-# handlers:
-#   - url: /favicon.png
-#     static_files: dist/favicon.png
-#     upload: dist/favicon.png
-#     secure: always
-#     redirect_http_response_code: 301
-
-#   - url: /
-#     static_files: dist/index.html
-#     upload: dist/index.html
-#     secure: always
-#     redirect_http_response_code: 301
-
-#   - url: /login
-#     static_files: dist/index.html
-#     upload: dist/index.html
-#     secure: always
-#     redirect_http_response_code: 301
+automatic_scaling:
+  max_instances: 1
+  max_idle_instances: 1
+  min_instances: 0
+  min_idle_instances: 0
 
 handlers:
+  - url: /_next/static
+    static_dir: .next/static
+  - url: /(.*\.(gif|png|jpg|ico|txt|svg))$
+    static_files: public/\1
+    upload: public/.*\.(gif|png|jpg|ico|txt|svg)$
   - url: /.*
-    secure: always
     script: auto
+    secure: always
+
+env_variables:
+  HOST: '0.0.0.0'
+  PORT: '8080'
+  NODE_ENV: 'production'
