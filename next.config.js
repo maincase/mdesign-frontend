@@ -13,6 +13,7 @@ const nextConfig = {
   images: {
     domains: ['moderndesign.ai', 'mdesign.ai'],
   },
+  distDir: 'build',
 
   // images: {
   //   remotePatterns: [
