@@ -1,6 +1,6 @@
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
+import { ComponentPropsWithoutRef, MutableRefObject, useEffect, useRef, useState } from 'react'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
@@ -14,6 +14,8 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   interiorInd?: number
   renderInd?: number
   onObjectHover?: (object: RenderObjectType) => void
+
+  objectHoverCountRef?: MutableRefObject<number>
 }
 
 export default function RenderCard({
@@ -26,12 +28,11 @@ export default function RenderCard({
   interiorInd,
   renderInd,
   onObjectHover,
+  objectHoverCountRef,
 }: Props) {
   const cardRef = useRef<HTMLDivElement>(null)
 
   const imgRef = useRef<HTMLImageElement>(null)
-
-  const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
 
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
@@ -123,14 +124,13 @@ export default function RenderCard({
                 renderInd={renderInd}
                 objectInd={ind}
                 object={obj}
-                isSingleObject={objects?.length === 1}
                 mouse={{
                   x: mouseCoords.x ?? 0,
                   y: mouseCoords.y ?? 0,
                 }}
                 ratio={ratio}
                 onObjectHover={onObjectHover}
-                objectHoverTimeoutRef={objectHoverTimeoutRef}
+                objectHoverCountRef={objectHoverCountRef}
               />
             )
         )}

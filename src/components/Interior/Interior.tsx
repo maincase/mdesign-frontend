@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react'
 import Fade from '../Fade/Fade'
 import { Render } from '../InteriorManager/InteriorManager'
 import Referrals from '../Referrals/Referrals'
@@ -25,15 +25,26 @@ export default function Interior({ interior, render, setRender }: Props) {
   const [predictionObject, setPredictionObject] = useState<RenderObjectType['object']>()
   const [referralObject, setReferralObject] = useState<RenderObjectType['object']>()
 
+  const objectHoverCountRef = useRef<number>(0)
+
   const onObjectHover = useCallback(
     (object: RenderObjectType) => {
+      if (!object.object) {
+        if (objectHoverCountRef.current === 0) {
+          setPredictionObject(undefined)
+          setReferralObject(undefined)
+        }
+
+        return
+      }
+
       if (object?.isReferral) {
         setReferralObject(object.object)
       } else {
         setPredictionObject(object?.object)
       }
     },
-    [setReferralObject, setPredictionObject]
+    [setReferralObject, setPredictionObject, objectHoverCountRef.current]
   )
 
   return (
@@ -71,9 +82,15 @@ export default function Interior({ interior, render, setRender }: Props) {
           >
             <RenderCard
               image={render?.currentRender as Render}
-              objects={render?.currentRender?.objects?.filter((obj) => !referralObject || obj === referralObject)}
+              objects={render?.currentRender?.objects?.filter(
+                (obj) =>
+                  (!!referralObject && obj === referralObject) ||
+                  (!!predictionObject && obj === predictionObject) ||
+                  (!predictionObject && !referralObject)
+              )}
               objectsShown={true}
               onObjectHover={onObjectHover}
+              objectHoverCountRef={objectHoverCountRef}
               raised={false}
               showCursor
             />

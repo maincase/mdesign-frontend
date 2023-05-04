@@ -9,7 +9,6 @@ export type RenderObjectType = {
 
 type Props = {
   object: Array<number[] | number | string | Array<string>>
-  isSingleObject: boolean
   mouse?: {
     x: number
     y: number
@@ -22,20 +21,20 @@ type Props = {
   renderInd?: number
   objectInd: number
 
-  objectHoverTimeoutRef: MutableRefObject<NodeJS.Timeout | undefined>
   onObjectHover?: (object: RenderObjectType) => void
+
+  objectHoverCountRef?: MutableRefObject<number>
 }
 
 export default function RenderObject({
   object,
-  isSingleObject,
   interiorInd = -1,
   renderInd = -1,
   objectInd,
   mouse,
   ratio,
-  objectHoverTimeoutRef,
   onObjectHover,
+  objectHoverCountRef,
 }: Props) {
   const setObjectColor = useSetObjectColor()
 
@@ -53,13 +52,12 @@ export default function RenderObject({
   const objectHeight = (objectShape[3] ?? 0) - (objectShape[1] ?? 0)
 
   const objectNameVisible =
-    (!!mouse?.x &&
-      !!mouse?.y &&
-      mouse?.x > objectX &&
-      mouse?.y > objectY &&
-      mouse?.x < objectX + objectWidth &&
-      mouse?.y < objectY + objectHeight) ||
-    isSingleObject // If we have single object then we always show object name.
+    !!mouse?.x &&
+    !!mouse?.y &&
+    mouse?.x > objectX &&
+    mouse?.y > objectY &&
+    mouse?.x < objectX + objectWidth &&
+    mouse?.y < objectY + objectHeight
 
   useEffect(() => {
     if (
@@ -73,19 +71,22 @@ export default function RenderObject({
     }
   }, [])
 
-  // If some name is visible, we need to clear out timeout for setting undefined.
-  if (objectNameVisible) {
-    clearTimeout(objectHoverTimeoutRef.current)
-  }
-
   useEffect(() => {
-    // If object name is visible then mouse cursor is on that object.
-    if (objectNameVisible && !isSingleObject) {
-      onObjectHover?.({ object })
-    } else {
-      objectHoverTimeoutRef.current = setTimeout(() => {
+    if (!!mouse?.x && !!mouse?.y) {
+      // If object name is visible then mouse cursor is on that object.
+      if (objectNameVisible) {
+        if (objectHoverCountRef?.current === 0) {
+          objectHoverCountRef.current += 1
+        }
+
+        setTimeout(() => onObjectHover?.({ object }), 0)
+      } else {
+        if (!!objectHoverCountRef && objectHoverCountRef.current === 1) {
+          objectHoverCountRef.current -= 1
+        }
+
         onObjectHover?.({ object: undefined })
-      }, 750)
+      }
     }
   }, [objectNameVisible])
 
