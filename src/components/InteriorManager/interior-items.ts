@@ -81,12 +81,7 @@ const interiorItems: Interior[] = [
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
           ['chair', 0.977, [31.76, 382.12, 292.08, 462.79]],
-          [
-            'couch',
-            0.965,
-            [77.31, 289.37, 371.82, 393.29],
-            ['https://amzn.to/428trns'],
-          ],
+          ['couch', 0.965, [77.31, 289.37, 371.82, 393.29], ['https://amzn.to/428trns']],
           [
             'vase',
             0.924,
@@ -100,20 +95,8 @@ const interiorItems: Interior[] = [
           ],
           ['couch', 0.897, [0.59, 290, 367.67, 396.28]],
           ['couch', 0.895, [-0.52, 319.25, 295.01, 461.8]],
-          [
-            'dining table',
-            0.954,
-            [289.24, 320.54, 423.72, 432.43],
-            ['https://amzn.to/3NQdyNY'],
-          ],
-          [
-            'couch',
-            0.995,
-            [400.16, 285.95, 607.23, 439.96],
-            [
-              'https://amzn.to/42szzXj',
-            ],
-          ],
+          ['dining table', 0.954, [289.24, 320.54, 423.72, 432.43], ['https://amzn.to/3NQdyNY']],
+          ['couch', 0.995, [400.16, 285.95, 607.23, 439.96], ['https://amzn.to/42szzXj']],
         ],
       },
       {
@@ -137,12 +120,7 @@ const interiorItems: Interior[] = [
           ['chair', 0.991, [78.41, 349.54, 251.32, 448.01]],
           ['couch', 0.896, [0.23, 325.48, 91.17, 446.96]],
           ['couch', 0.928, [78.05, 348.95, 251.02, 443.84]],
-          [
-            'couch',
-            0.993,
-            [161.87, 280.71, 646.9, 374.18],
-            ['https://amzn.to/3VxWuyl'],
-          ],
+          ['couch', 0.993, [161.87, 280.71, 646.9, 374.18], ['https://amzn.to/3VxWuyl']],
         ],
       },
     ],
@@ -208,20 +186,8 @@ const interiorItems: Interior[] = [
         img: '/interior8-render1.jpeg',
         description: 'Original Bath Room (12s ago, took 6s)',
         objects: [
-          [
-            'potted plant',
-            0.995,
-            [37.03, 196.8, 115.22, 289.77],
-            [
-              'https://amzn.to/3VzUnKa',
-            ],
-          ],
-          [
-            'potted plant',
-            0.986,
-            [351.96, 223.77, 411.33, 310.38],
-            ['https://amzn.to/4284ys5'],
-          ],
+          ['potted plant', 0.995, [37.03, 196.8, 115.22, 289.77], ['https://amzn.to/3VzUnKa']],
+          ['potted plant', 0.986, [351.96, 223.77, 411.33, 310.38], ['https://amzn.to/4284ys5']],
           ['chair', 0.811, [43.16, 314.87, 276.33, 462.78]],
           [
             'chair',
@@ -236,29 +202,10 @@ const interiorItems: Interior[] = [
         img: '/interior8-render2.jpeg',
         description: 'Original Bath Room (16s ago, took 6s)',
         objects: [
-          [
-            'potted plant',
-            0.966,
-            [301.76, 277.56, 338.32, 306.85],
-            [
-              'https://amzn.to/3NDllig',
-            ],
-          ],
+          ['potted plant', 0.966, [301.76, 277.56, 338.32, 306.85], ['https://amzn.to/3NDllig']],
           ['tv', 0.979, [172.08, 183.44, 264.43, 255.9]],
-          [
-            'couch',
-            0.958,
-            [357.91, 256.96, 446.82, 306.11],
-            [
-              'https://amzn.to/3nr4ggZ',
-            ],
-          ],
-          [
-            'couch',
-            0.998,
-            [281.57, 282.68, 529.08, 461.64],
-            ['https://amzn.to/3I5RLP1'],
-          ],
+          ['couch', 0.958, [357.91, 256.96, 446.82, 306.11], ['https://amzn.to/3nr4ggZ']],
+          ['couch', 0.998, [281.57, 282.68, 529.08, 461.64], ['https://amzn.to/3I5RLP1']],
           ['microwave', 0.972, [424.98, 210.61, 458.63, 226.39]],
         ],
       },
@@ -268,21 +215,11 @@ const interiorItems: Interior[] = [
         description: 'Original Bath Room (19s ago, took 6s)',
         objects: [
           ['book', 0.814, [335.25, 333.51, 390.16, 346.29]],
-          [
-            'couch',
-            0.963,
-            [318.99, 312.17, 694.64, 461.83],
-            ['https://amzn.to/3VDAstO'],
-          ],
+          ['couch', 0.963, [318.99, 312.17, 694.64, 461.83], ['https://amzn.to/3VDAstO']],
           ['chair', 0.984, [121.7, 335.72, 260.39, 435.59]],
           ['tv', 0.889, [203.48, 280.56, 267.66, 331.77]],
           ['couch', 0.985, [24.62, 298.2, 190.58, 431.16]],
-          [
-            'couch',
-            0.986,
-            [357.62, 287.27, 625.86, 368.24],
-            ['https://amzn.to/3pbBsJF'],
-          ],
+          ['couch', 0.986, [357.62, 287.27, 625.86, 368.24], ['https://amzn.to/3pbBsJF']],
         ],
       },
     ],
