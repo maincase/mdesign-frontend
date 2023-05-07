@@ -80,7 +80,7 @@ export default function RenderCard({
       onClick={onClick}
       raised={isRaised}
       ref={cardRef}
-      className={clsx('relative flex h-max', {
+      className={clsx('relative flex', {
         'cursor-pointer': showCursor,
       })}
       sx={{
@@ -96,7 +96,7 @@ export default function RenderCard({
           ref={imgRef}
           onLoad={onImageLoad}
           src={image.img}
-          /* alt={image.description} */ className="flex object-contain"
+          /* alt={image.description} */ className="flex max-h-full object-contain"
           alt=""
         />
       )}

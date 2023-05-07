@@ -57,7 +57,7 @@ export default function Referrals({ objects, onObjectHover }: Props) {
                     sx={{
                       maxWidth: '50%',
                     }}
-                    className="truncate group-hover:text-black p-1"
+                    className="truncate group-hover:text-black !p-1"
                   >
                     {ref}
                   </Item>

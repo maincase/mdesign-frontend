@@ -43,8 +43,9 @@ export default function Interior({ interior, render, setRender }: Props) {
           {interior?.currentInterior?.images?.map((image, ind) => (
             <Grid
               display="flex"
+              justifyContent="center"
               // className="first-of-type:pl-0 float-left"
-              className="float-left"
+              height="50%"
               xs={6}
               item
               key={image.img}
