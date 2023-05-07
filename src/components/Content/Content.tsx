@@ -48,7 +48,7 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
             // boxShadow={3}
           >
             {el.images.map((image, imgInd) => (
-              <Grid display="flex" className="first-of-type:pl-0" xs={3} item key={`${image.id}+${imgInd}`}>
+              <Grid display="flex" className="first-of-type:!pl-0" xs={3} item key={`${image.id}+${imgInd}`}>
                 <RenderCard
                   image={image}
                   interiorInd={ind}
