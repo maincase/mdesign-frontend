@@ -52,9 +52,13 @@ export default function Interior({ interior, render, setRender }: Props) {
               <RenderCard
                 image={image}
                 objects={image?.objects}
-                onClick={() => setRender?.({ currentRender: image, renderIndex: ind })}
                 raised={false}
                 showCursor={ind > 0}
+                {...(ind > 0
+                  ? {
+                      onClick: () => setRender?.({ currentRender: image, renderIndex: ind }),
+                    }
+                  : {})}
               />
             </Grid>
           ))}
