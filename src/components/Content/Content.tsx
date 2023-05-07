@@ -40,7 +40,7 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
             paddingLeft={0}
             marginTop={2}
             display="flex"
-            className="items-center !pt-0 rounded-md px-3 border hover:shadow-xl"
+            className="items-center !pt-0 rounded-md !px-3 border hover:shadow-xl"
             sx={{ height: '33vh', backgroundColor: '#ebebeb' }}
             container
             item
