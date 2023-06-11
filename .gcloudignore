@@ -2,6 +2,7 @@
 /[!.]*
 /.?*
 
+!/.next
 !/package.json
 !/public
 !/build
