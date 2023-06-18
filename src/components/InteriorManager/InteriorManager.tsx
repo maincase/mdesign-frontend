@@ -2,18 +2,17 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
 export type Render = {
-  id: number
-  img: string
-  description: string
+  id: string
+  image?: string
   objects?: (string | number | number[] | string[])[][]
 }
 
-export type Interior = { name: string; images: Render[] }
+export type InteriorType = { id: string; image: string; room: string; style: string; renders: Render[] }
 
 export type InteriorManagerProps = {
-  items: Interior[]
+  items: InteriorType[]
 
-  setItems: (items: Interior[]) => void
+  setItems: (items: InteriorType[]) => void
 
   setObjectColor: (interInd: number, renderInd: number, objectInd: number, color: string) => void
 }
@@ -46,8 +45,8 @@ export const useInteriorState = create<InteriorManagerProps>()(
         if (interInd < 0 || renderInd < 0 || objectInd < 0) return
 
         if (!!state.items?.[interInd]) {
-          if (!!state.items?.[interInd]?.images?.[renderInd]) {
-            const object = state.items?.[interInd]?.images?.[renderInd]?.objects?.[objectInd]
+          if (!!state.items?.[interInd]?.renders?.[renderInd]) {
+            const object = state.items?.[interInd]?.renders?.[renderInd]?.objects?.[objectInd]
 
             if (!!object && typeof object?.[3] !== 'string') {
               object.splice(3, 0, color)

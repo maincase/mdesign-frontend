@@ -9,7 +9,8 @@ import { RenderObjectType } from '../RenderObject/RenderObject'
 type Props = {
   interior: {
     currentInterior?: {
-      images: Render[]
+      image: string
+      renders: Render[]
     }
     interiorIndex: number
   }
@@ -40,7 +41,7 @@ export default function Interior({ interior, render, setRender }: Props) {
     <>
       <Fade in={!render.currentRender && !!interior.currentInterior}>
         <Grid container spacing={2}>
-          {interior?.currentInterior?.images?.map((image, ind) => (
+          {interior.currentInterior?.renders?.map((r, ind) => (
             <Grid
               display="flex"
               justifyContent="center"
@@ -48,16 +49,16 @@ export default function Interior({ interior, render, setRender }: Props) {
               height="50%"
               xs={6}
               item
-              key={image.img}
+              key={r.image}
             >
               <RenderCard
-                image={image}
-                objects={image?.objects}
+                render={r}
+                objects={r?.objects}
                 raised={false}
                 showCursor={ind > 0}
                 {...(ind > 0
                   ? {
-                      onClick: () => setRender?.({ currentRender: image, renderIndex: ind }),
+                      onClick: () => setRender?.({ currentRender: r, renderIndex: ind }),
                     }
                   : {})}
               />
@@ -75,7 +76,7 @@ export default function Interior({ interior, render, setRender }: Props) {
             }}
           >
             <RenderCard
-              image={render?.currentRender as Render}
+              render={render?.currentRender as Render}
               objects={render?.currentRender?.objects?.filter((obj) => !referralObject || obj === referralObject)}
               objectsShown={true}
               onObjectHover={onObjectHover}

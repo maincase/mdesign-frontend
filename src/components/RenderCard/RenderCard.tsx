@@ -1,13 +1,11 @@
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
+import { Render } from '../InteriorManager/InteriorManager'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
-  image: {
-    img: string
-    description: string
-  }
+  render: Render
   objects?: Array<Array<number[] | number | string | Array<string>>>
   objectsShown?: boolean
   showCursor?: boolean
@@ -17,7 +15,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
 }
 
 export default function RenderCard({
-  image,
+  render,
   objects,
   raised = false,
   onClick,
@@ -90,17 +88,16 @@ export default function RenderCard({
         backgroundSize: 'contain',
       }}
     >
-      {!!image?.img && (
+      {!!render?.image && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           ref={imgRef}
           onLoad={onImageLoad}
-          src={image.img}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
           /* alt={image.description} */ className="flex max-h-full object-contain"
           alt=""
         />
       )}
-
       <div
         className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}
         {...(objectsShown

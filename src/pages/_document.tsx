@@ -6,8 +6,13 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {interiorItems.map((interior, ind) =>
-          interior.images.map((image, index) => (
-            <link key={`${image.img}+${ind}+${index}`} rel="preload" href={image.img} as="image" />
+          interior.renders.map((render, index) => (
+            <link
+              key={`${render.id}+${ind}+${index}`}
+              rel="preload"
+              href={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
+              as="image"
+            />
           ))
         )}
       </Head>

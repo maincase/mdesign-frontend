@@ -12,7 +12,8 @@ type Props = ComponentPropsWithoutRef<typeof Stack> & {
     interiorIndex,
   }: {
     currentInterior?: {
-      images: Render[]
+      image: string
+      renders: Render[]
     }
     interiorIndex: number
   }) => void
@@ -33,9 +34,9 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
           marginTop: 0,
         }}
       >
-        {interiorItems.map((el, ind) => (
+        {interiorItems.map((interior, ind) => (
           <Grid
-            key={`${el.name}+${ind}`}
+            key={`${interior.id}+${ind}`}
             // paddingTop={0}
             paddingLeft={0}
             marginTop={2}
@@ -47,17 +48,17 @@ export default function Content({ onInteriorSelect, onRenderSelect }: Props) {
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             // boxShadow={3}
           >
-            {el.images.map((image, imgInd) => (
-              <Grid display="flex" className="first-of-type:!pl-0" xs={3} item key={`${image.id}+${imgInd}`}>
+            {interior.renders.map((render, renderInd) => (
+              <Grid display="flex" className="first-of-type:!pl-0" xs={3} item key={`${render.id}+${renderInd}`}>
                 <RenderCard
-                  image={image}
+                  render={render}
                   interiorInd={ind}
-                  renderInd={imgInd}
-                  objects={image?.objects}
+                  renderInd={renderInd}
+                  objects={render?.objects}
                   onClick={() =>
-                    imgInd === 0
-                      ? onInteriorSelect({ currentInterior: el, interiorIndex: ind })
-                      : onRenderSelect({ currentRender: image, renderIndex: imgInd })
+                    renderInd === 0
+                      ? onInteriorSelect({ currentInterior: interior, interiorIndex: ind })
+                      : onRenderSelect({ currentRender: render, renderIndex: renderInd })
                   }
                   showCursor
                 />
