@@ -1,20 +1,16 @@
 import { Grid } from '@mui/material'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import Fade from '../Fade/Fade'
-import { Render } from '../InteriorManager/InteriorManager'
+import { InteriorType, Render } from '../InteriorManager/InteriorManager'
 import Referrals from '../Referrals/Referrals'
 import RenderCard from '../RenderCard/RenderCard'
 import { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = {
   interior: {
-    currentInterior?: {
-      image: string
-      renders: Render[]
-    }
+    currentInterior?: InteriorType
     interiorIndex: number
   }
-
   render: {
     currentRender?: Render
     renderIndex: number
@@ -41,6 +37,23 @@ export default function Interior({ interior, render, setRender }: Props) {
     <>
       <Fade in={!render.currentRender && !!interior.currentInterior}>
         <Grid container spacing={2}>
+          <Grid
+            display="flex"
+            justifyContent="center"
+            // className="first-of-type:pl-0 float-left"
+            height="50%"
+            xs={6}
+            item
+            key={interior.currentInterior?.id}
+          >
+            <RenderCard
+              render={interior.currentInterior!}
+              // objects={r?.objects}
+              raised={false}
+              showCursor={false}
+            />
+          </Grid>
+
           {interior.currentInterior?.renders?.map((r, ind) => (
             <Grid
               display="flex"
@@ -49,18 +62,14 @@ export default function Interior({ interior, render, setRender }: Props) {
               height="50%"
               xs={6}
               item
-              key={r.image}
+              key={r.id}
             >
               <RenderCard
                 render={r}
                 objects={r?.objects}
                 raised={false}
                 showCursor={ind > 0}
-                {...(ind > 0
-                  ? {
-                      onClick: () => setRender?.({ currentRender: r, renderIndex: ind }),
-                    }
-                  : {})}
+                onClick={() => setRender?.({ currentRender: r, renderIndex: ind })}
               />
             </Grid>
           ))}

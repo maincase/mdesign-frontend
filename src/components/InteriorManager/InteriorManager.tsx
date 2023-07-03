@@ -7,7 +7,14 @@ export type Render = {
   objects?: (string | number | number[] | string[])[][]
 }
 
-export type InteriorType = { id: string; image: string; room: string; style: string; renders: Render[] }
+export type InteriorType = {
+  id: string
+  image: string
+  progress?: number
+  room: string
+  style: string
+  renders: Render[]
+}
 
 export type InteriorManagerProps = {
   items: InteriorType[]

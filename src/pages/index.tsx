@@ -1,3 +1,5 @@
+import { useQueryInteriors } from '@/api/query-hooks/Interior'
+import InteriorService from '@/api/services/Interior'
 import Content from '@/components/Content/Content'
 import Dialog from '@/components/Dialog/Dialog'
 import Header from '@/components/Header/Header'
@@ -5,12 +7,10 @@ import Interior from '@/components/Interior/Interior'
 import { InteriorType, Render } from '@/components/InteriorManager/InteriorManager'
 import { useInteriorItems } from '@/components/InteriorManager/useInteriorItems'
 import NewRender from '@/components/NewRender/NewRender'
-import ky from 'ky-universal'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Head from 'next/head.js'
 import Script from 'next/script.js'
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 
 // Load mock data
 // const [, setInteriorItems] = [, useInteriorState.getState().setItems]
@@ -18,37 +18,8 @@ import { useQuery } from 'react-query'
 
 // const inter = Inter({ subsets: ['latin'] })
 
-// NOTE: Get interiors and update each to put original interior image as first render
-async function getInteriors(skip = 0, limit = 10) {
-  if (Number.isNaN(limit) || limit > 10) {
-    limit = 10
-  }
-
-  if (Number.isNaN(skip) || skip < 0) {
-    skip = 0
-  }
-
-  const json = await ky(`${process.env.BACKEND_API_URL}/interior/get?limit=${limit}&skip=${skip}`).json<{
-    code: string
-    message: string
-    data: InteriorType[]
-  }>()
-
-  json.data.some((interior) => {
-    if (interior.id === interior.renders[0].id) {
-      return true
-    }
-
-    interior.renders.unshift({ id: interior.id, image: interior.image })
-
-    return false
-  })
-
-  return json.data
-}
-
 export const getServerSideProps: GetServerSideProps<{ interiors: InteriorType[] }> = async () => {
-  const interiors = await getInteriors(0, 10)
+  const interiors = await InteriorService.getInteriors(0, 10)
 
   return {
     props: {
@@ -58,11 +29,7 @@ export const getServerSideProps: GetServerSideProps<{ interiors: InteriorType[] 
 }
 
 export default function Home({ interiors }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { data: serverInteriors } = useQuery({
-    queryKey: ['interiors'],
-    queryFn: () => getInteriors(0, 10),
-    initialData: interiors,
-  })
+  const { data: serverInteriors } = useQueryInteriors(interiors)
 
   const [, setInteriorItems] = useInteriorItems()
 
@@ -81,7 +48,7 @@ export default function Home({ interiors }: InferGetServerSidePropsType<typeof g
 
   useEffect(() => {
     if (serverInteriors) {
-      setInteriorItems(serverInteriors)
+      setInteriorItems(serverInteriors.pages.flat())
     }
   }, [])
 

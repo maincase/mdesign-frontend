@@ -1,11 +1,10 @@
-import interiorItems from '@/components/InteriorManager/interior-items'
 import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {interiorItems.map((interior, ind) =>
+        {/* {interiorItems.map((interior, ind) =>
           interior.renders.map((render, index) => (
             <link
               key={`${render.id}+${ind}+${index}`}
@@ -14,7 +13,7 @@ export default function Document() {
               as="image"
             />
           ))
-        )}
+        )} */}
       </Head>
       <body>
         <Main />

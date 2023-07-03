@@ -1,14 +1,20 @@
 import { MenuItem, Select as MuiSelect } from '@mui/material'
-import React from 'react'
+import { ComponentPropsWithRef } from '@react-spring/web'
+import { ForwardedRef, forwardRef, useState } from 'react'
 
-export default function Select({ selectList, title }: { selectList: any; title: string }) {
-  const [selectedElement, setSelectedElement] = React.useState(selectList[0])
+type SelectProps = ComponentPropsWithRef<typeof MuiSelect> & {
+  selectList: string[]
+}
+
+function Select({ selectList, title }: SelectProps, ref: ForwardedRef<HTMLSelectElement>) {
+  const [selectedElement, setSelectedElement] = useState(selectList[0])
   const elementChange = (event: any) => setSelectedElement(event.target.value)
 
   return (
     <>
       <h5 style={{ marginBottom: 5 }}>{title}</h5>
       <MuiSelect
+        ref={ref}
         value={selectedElement}
         onChange={elementChange}
         inputProps={{ IconComponent: (): undefined => undefined }}
@@ -30,3 +36,5 @@ export default function Select({ selectList, title }: { selectList: any; title: 
     </>
   )
 }
+
+export default forwardRef(Select)
