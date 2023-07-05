@@ -1,17 +1,14 @@
+'use client'
+
 import { Box, Button } from '@mui/material'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { ComponentPropsWithoutRef } from 'react'
 import styles from './Header.module.scss'
 
-type Props = ComponentPropsWithoutRef<'div'> & {
-  openNewRenderModal: () => void
-}
-
-export default function Header({ openNewRenderModal }: Props) {
+export default function Header() {
   return (
-    <Box className={clsx('flex flex-grow bg-black px-4 items-center justify-between', styles.header)}>
-      <Link className="flex justify-center" href="/">
+    <Box className={clsx('flex flex-grow px-4 items-center justify-between', styles.header)}>
+      <Link className={clsx('flex justify-center', styles.logo)} href="/">
         ModernDesign
       </Link>
       {/* <h2>INTERIOR DESIGN MOCKUPS AND VIRTUAL STAGING BY AI</h2> */}
@@ -29,9 +26,10 @@ export default function Header({ openNewRenderModal }: Props) {
         >
           Upgrade to Pro
         </Button> */}
-        <Button className={clsx(styles.button_animation, styles.button)} onClick={openNewRenderModal}>
-          Create Your Design For FREE
-        </Button>
+
+        <Link href="/create">
+          <Button className={clsx(styles.button_animation, styles.button)}>Create Your Design For FREE</Button>
+        </Link>
       </div>
     </Box>
   )

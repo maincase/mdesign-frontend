@@ -89,6 +89,17 @@ export default function RenderCard({
       }}
     >
       {!!render?.image && (
+        // <Image
+        //   ref={imgRef}
+        //   onLoad={onImageLoad}
+        //   src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
+        //   fill
+        //   placeholder="blur"
+        //   /* alt={image.description} */ className="flex max-h-full object-contain"
+        //   alt=""
+        //   sizes="100vw"
+        // />
+
         // eslint-disable-next-line @next/next/no-img-element
         <img
           ref={imgRef}

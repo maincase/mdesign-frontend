@@ -1,10 +1,10 @@
 import * as R from 'remeda'
 import { InteriorManagerProps, useInteriorState } from './InteriorManager'
 
-type InteriorItemsRet = [InteriorManagerProps['items'], (inter: InteriorManagerProps['items']) => void]
+type InteriorItemsRet = Pick<InteriorManagerProps, 'items' | 'setItems' | 'push' | 'unshift'>
 
-function interiorItemsSelector(state: InteriorManagerProps): InteriorItemsRet {
-  return [state.items, state.setItems]
+function interiorItemsSelector({ items, setItems, push, unshift }: InteriorManagerProps): InteriorItemsRet {
+  return { items, setItems, push, unshift }
 }
 
 export function useInteriorItems() {

@@ -14,12 +14,13 @@ const nextConfig = {
   webpack: (config) => {
     config.experiments = {
       topLevelAwait: true,
+      layers: true,
     }
 
     return config
   },
   images: {
-    domains: ['moderndesign.ai', 'mdesign.ai'],
+    domains: ['cdn.moderndesign.ai', 'cdn.mdesign.ai'],
   },
   /* distDir: 'build', */
 

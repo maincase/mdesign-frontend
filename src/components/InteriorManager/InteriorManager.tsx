@@ -13,13 +13,17 @@ export type InteriorType = {
   progress?: number
   room: string
   style: string
-  renders: Render[]
+  renders?: Render[]
 }
 
 export type InteriorManagerProps = {
   items: InteriorType[]
 
   setItems: (items: InteriorType[]) => void
+
+  push: (item: InteriorType) => void
+
+  unshift: (item: InteriorType) => void
 
   setObjectColor: (interInd: number, renderInd: number, objectInd: number, color: string) => void
 }
@@ -38,6 +42,30 @@ export const useInteriorState = create<InteriorManagerProps>()(
      * @returns
      */
     setItems: (items) => set({ items }),
+
+    /**
+     *
+     * @param item
+     * @returns
+     */
+    push: (item: InteriorType) =>
+      set((state) => {
+        state.items.push(item)
+
+        return state
+      }),
+
+    /**
+     *
+     * @param item
+     * @returns
+     */
+    unshift: (item: InteriorType) =>
+      set((state) => {
+        state.items.unshift(item)
+
+        return state
+      }),
 
     /**
      * Set color of object in interior render.

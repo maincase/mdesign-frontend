@@ -1,0 +1,130 @@
+<svg data-v-70b83f88="" version="1.0" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+  viewBox="0 0 340.000000 250.000000" preserveAspectRatio="xMidYMid meet"
+  color-interpolation-filters="sRGB" style="margin: auto;">
+  <rect data-v-70b83f88="" x="0" y="0" width="100%" height="100%" fill="#feffff" fill-opacity="1"
+    class="background"></rect>
+  <rect data-v-70b83f88="" x="0" y="0" width="100%" height="100%" fill="url(#watermark)"
+    fill-opacity="1" class="watermarklayer"></rect>
+  <g data-v-70b83f88="" fill="#333" class="iconlinesvg-g iconlinesvg"
+    transform="translate(72.86327195167542,115.76966381072998)">
+    <g class="tp-name">
+      <g transform="translate(0, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M13.08-14.79L10.31-10.31C9.23-8.56 9.07-8.18 9.04-8.18L9.02-8.18C9.00-8.18 8.83-8.56 7.76-10.31L4.99-14.79L1.65-14.79L1.65 0L5.14 0L5.14-3.61C5.14-7.12 5.01-8.85 5.03-8.85L5.05-8.85C5.07-8.85 6.25-6.83 6.38-6.61L8.11-3.66L9.95-3.66L11.69-6.61C11.81-6.83 13.00-8.85 13.02-8.85L13.04-8.85C13.06-8.85 12.93-7.12 12.93-3.61L12.93 0L16.42 0L16.42-14.79Z"
+            transform="translate(-1.6482742427799952, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(18, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M0.74-7.40C0.74-2.94 4.16 0.30 8.41 0.30C12.66 0.30 16.10-2.94 16.10-7.40C16.10-11.85 12.66-15.09 8.41-15.09C4.16-15.09 0.74-11.85 0.74-7.40ZM4.44-7.40C4.44-9.89 6.02-11.58 8.41-11.58C10.82-11.58 12.40-9.89 12.40-7.40C12.40-4.92 10.82-3.21 8.41-3.21C6.02-3.21 4.44-4.92 4.44-7.40Z"
+            transform="translate(-0.7396102371448695, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(37, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M1.65-14.79L1.65 0L8.11 0C12.34 0 15.76-2.90 15.76-7.33C15.76-11.77 12.34-14.79 8.11-14.79ZM5.20-3.32L5.20-11.47L8.11-11.47C10.23-11.47 12.07-9.87 12.07-7.33C12.07-4.80 10.23-3.32 8.11-3.32Z"
+            transform="translate(-1.6482742427799955, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(55, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M5.20-3.32L5.20-5.94L10.84-5.94L10.84-9.04L5.20-9.04L5.20-11.47L12.40-11.47L12.40-14.79L1.65-14.79L1.65 0L12.53 0L12.53-3.32Z"
+            transform="translate(-1.6482742427799952, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(69, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M13.74 0L10.46-5.45C12.17-6.25 13.12-7.73 13.12-9.72C13.12-12.76 10.88-14.79 7.16-14.79L1.65-14.79L1.65 0L5.20 0L5.20-4.82L7.02-4.82L9.76 0ZM5.20-11.47L7.65-11.47C8.92-11.47 9.42-10.52 9.42-9.72C9.42-8.92 8.92-7.97 7.65-7.97L5.20-7.97Z"
+            transform="translate(-1.6482742427799952, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(85, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M11.37-14.79L11.37-11.41C11.37-8.73 11.41-6.11 11.39-6.11L11.37-6.11C11.35-6.11 9.09-9.30 8.14-10.57L4.99-14.79L1.65-14.79L1.65 0L5.20 0L5.20-3.28C5.20-6.51 5.16-8.79 5.18-8.79L5.20-8.79C5.22-8.79 7.21-5.98 8.56-4.12L11.58 0L14.92 0L14.92-14.79Z"
+            transform="translate(-1.6482742427799955, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(102, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M1.65-14.79L1.65 0L8.11 0C12.34 0 15.76-2.90 15.76-7.33C15.76-11.77 12.34-14.79 8.11-14.79ZM5.20-3.32L5.20-11.47L8.11-11.47C10.23-11.47 12.07-9.87 12.07-7.33C12.07-4.80 10.23-3.32 8.11-3.32Z"
+            transform="translate(-1.6482742427799955, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(120, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M5.20-3.32L5.20-5.94L10.84-5.94L10.84-9.04L5.20-9.04L5.20-11.47L12.40-11.47L12.40-14.79L1.65-14.79L1.65 0L12.53 0L12.53-3.32Z"
+            transform="translate(-1.6482742427799952, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(134, 0)">
+        <g>
+          <g class="imagesvg">
+            <g>
+              <rect fill="#333" fill-opacity="0" stroke-width="2" x="0" y="0"
+                width="18.460671519135943" height="18.460671519135943" class="image-rect"></rect>
+              <svg filter="url(#colors7959147169)" x="0" y="0" width="18.460671519135943"
+                height="18.460671519135943" filtersec="colorsf3878021678"
+                class="image-svg-svg primary" style="overflow: visible;">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 409.6000061035156 409.6000061035156">
+                  <path
+                    d="M221.865 136.535V307.2H0v102.4h409.6V136.535H221.865zm153.6 238.93H34.135v-34.13H256v-170.67h119.465v204.8z"
+                    fill="#000000"></path>
+                  <path
+                    d="M0 0v273.065h187.735V102.4H409.6V0H0zm375.465 68.265H153.6v170.67H34.135v-204.8h341.33v34.13z"
+                    fill="#000000"></path>
+                </svg>
+              </svg>
+              <defs>
+                <filter id="colors7959147169">
+                  <feColorMatrix type="matrix"
+                    values="0 0 0 0 0.19921875  0 0 0 0 0.19921875  0 0 0 0 0.19921875  0 0 0 1 0"
+                    class="icon-fecolormatrix"></feColorMatrix>
+                </filter>
+                <filter id="colorsf3878021678">
+                  <feColorMatrix type="matrix"
+                    values="0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 1 0"
+                    class="icon-fecolormatrix"></feColorMatrix>
+                </filter>
+                <filter id="colorsb3199362723">
+                  <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+                    class="icon-fecolormatrix"></feColorMatrix>
+                </filter>
+              </defs>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(156, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path d="M5.20 0L5.20-14.79L1.65-14.79L1.65 0Z"
+            transform="translate(-1.6482742427799952, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(163, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M12.45-1.20C12.45-1.18 12.43-0.97 12.43 0L15.47 0L15.47-8.37L8.56-8.37L8.56-5.52L12.45-5.52L12.45-5.49C12.02-4.40 10.99-3.17 8.62-3.17C6.19-3.17 4.44-4.80 4.44-7.40C4.44-9.83 5.96-11.58 8.41-11.58C9.57-11.58 10.82-11.05 11.52-10.21L15.13-11.16C13.80-13.57 11.28-15.09 8.41-15.09C4.16-15.09 0.74-11.85 0.74-7.40C0.74-2.94 4.16 0.30 8.41 0.30C9.87 0.30 11.56-0.27 12.43-1.20Z"
+            transform="translate(-0.7396102371448697, 15.088048837755343)"></path>
+        </g>
+      </g>
+      <g transform="translate(181, 1.538389293261326)">
+        <g data-gra="path-name" fill="#333" transform="scale(1)">
+          <path
+            d="M11.37-14.79L11.37-11.41C11.37-8.73 11.41-6.11 11.39-6.11L11.37-6.11C11.35-6.11 9.09-9.30 8.14-10.57L4.99-14.79L1.65-14.79L1.65 0L5.20 0L5.20-3.28C5.20-6.51 5.16-8.79 5.18-8.79L5.20-8.79C5.22-8.79 7.21-5.98 8.56-4.12L11.58 0L14.92 0L14.92-14.79Z"
+            transform="translate(-1.6482742427799955, 15.088048837755343)"></path>
+        </g>
+      </g>
+    </g> <!---->
+  </g>
+  <defs v-gra="od"></defs>
+</svg>
