@@ -1,8 +1,8 @@
 'use client'
 
 import { useQueryInterior } from '@/api/query-hooks/Interior'
-import Fade from '@/components/Fade/Fade'
 import { Render } from '@/components/InteriorManager/InteriorManager'
+import ReactSpring from '@/components/ReactSpring/ReactSpring'
 import Referrals from '@/components/Referrals/Referrals'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { RenderObjectType } from '@/components/RenderObject/RenderObject'
@@ -46,7 +46,8 @@ export default function Page({ params }: { params: { interiorId: string; renderI
         />
       </div>
 
-      <Fade
+      <ReactSpring.FadeIn
+        active={true}
         className="overflow-auto max-h-full ml-2"
         style={{
           maxWidth: '50%',
@@ -57,7 +58,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
           objects={render?.objects?.filter((obj) => !predictionObject || obj === predictionObject)}
           onObjectHover={onObjectHover}
         />
-      </Fade>
+      </ReactSpring.FadeIn>
     </>
     // </Fade>
   )
