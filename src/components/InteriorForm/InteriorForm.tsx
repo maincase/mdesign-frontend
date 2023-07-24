@@ -1,9 +1,7 @@
 import { useMutateInterior } from '@/api/query-hooks/Interior'
-import ColorButton from '@/components/NewRender/ColorButton'
-import UploadButton from '@/components/NewRender/UploadButton'
-import roomList from '@/components/NewRender/roomList'
-import styleList from '@/components/NewRender/styleList'
+import ColorButton from '@/components/ColorButton/ColorButton'
 import Select from '@/components/Select/Select'
+import UploadButton from '@/components/UploadButton/UploadButton'
 import { css } from '@emotion/css'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UploadIcon from '@mui/icons-material/Upload'
@@ -12,6 +10,8 @@ import { forwardRef } from 'react'
 import Dropzone from 'react-dropzone'
 import { useForm } from 'react-hook-form'
 import { mixed, object, string } from 'yup'
+import roomList from './roomList'
+import styleList from './styleList'
 
 const styles = {
   // new_render_container: css`

@@ -2,8 +2,8 @@
 
 import { Box, DialogTitle, Fade } from '@mui/material'
 import { useState } from 'react'
-import InteriorForm from './InteriorForm'
-import InteriorProgress from './InteriorProgress'
+import InteriorForm from '../../../components/InteriorForm/InteriorForm'
+import InteriorProgress from '../../../components/InteriorProgress/InteriorProgress'
 
 export default function Page() {
   const [newInteriorId, setNewInteriorId] = useState<string | undefined>(
