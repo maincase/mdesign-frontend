@@ -1,4 +1,4 @@
-import { useMutateInterior } from '@/api/query-hooks/Interior'
+import { useMutateInterior } from '@/api/query-hooks/interior'
 import ColorButton from '@/components/ColorButton/ColorButton'
 import Select from '@/components/Select/Select'
 import UploadButton from '@/components/UploadButton/UploadButton'

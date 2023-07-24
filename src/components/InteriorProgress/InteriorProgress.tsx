@@ -1,4 +1,4 @@
-import { useQueryInterior, useQueryInteriors } from '@/api/query-hooks/Interior'
+import { useQueryInterior, useQueryInteriors } from '@/api/query-hooks/interior'
 import { useAppState } from '@/state/app/AppState'
 import { useInteriorItems } from '@/state/interior/useInteriorItems'
 import { Box, CircularProgress, DialogContent, FadeProps, Typography } from '@mui/material'

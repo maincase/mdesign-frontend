@@ -1,6 +1,6 @@
 'use client'
 
-import { useQueryInteriors } from '@/api/query-hooks/Interior'
+import { useQueryInteriors } from '@/api/query-hooks/interior'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { useInteriorItems } from '@/state/interior/useInteriorItems'
 import variables from '@/styles/variables.module.scss'

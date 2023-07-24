@@ -7,7 +7,7 @@ import {
   useMutation,
   useQuery,
 } from '@tanstack/react-query'
-import InteriorService from '../services/Interior'
+import InteriorService from '../services/interior'
 
 /**
  *

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
   output: 'standalone',
 
   ...(!!process.env.COMMIT_SHA || !!process.env.TAG_NAME

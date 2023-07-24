@@ -1,6 +1,6 @@
 'use client'
 
-import { useQueryInterior } from '@/api/query-hooks/Interior'
+import { useQueryInterior } from '@/api/query-hooks/interior'
 import Referrals from '@/components/Referrals/Referrals'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { RenderObjectType } from '@/components/RenderObject/RenderObject'

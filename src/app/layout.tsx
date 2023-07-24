@@ -1,4 +1,4 @@
-import { queryInteriors } from '@/api/query-hooks/Interior'
+import { queryInteriors } from '@/api/query-hooks/interior'
 import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
 import getQueryClient from '@/utils/getQueryClient'

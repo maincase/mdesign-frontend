@@ -1,6 +1,6 @@
 'use client'
 
-import { useQueryInterior } from '@/api/query-hooks/Interior'
+import { useQueryInterior } from '@/api/query-hooks/interior'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { Grid } from '@mui/material'
 import Link from 'next/link'

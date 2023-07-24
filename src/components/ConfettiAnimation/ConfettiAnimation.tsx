@@ -21,34 +21,37 @@ export default function ConfettiAnimation({
   className,
   ...props
 }: ConfettiAnimationProps) {
-  const [run, setRun] = useState(false)
-  const [recycle, setRecycle] = useState(false)
-  const [animationTime, setAnimationTime] = useState(0)
-  const [stopConfettiActualTime, setStopConfettiActualTime] = useState(0)
+  const [run, setRun] = useState<boolean>(false)
+  const [recycle, setRecycle] = useState<boolean>(!!recycleController)
+  const [animationTime, setAnimationTime] = useState<number>(0)
+  const [stopConfettiActualTime, setStopConfettiActualTime] = useState<number>(0)
 
   const animationTimeRef = useRef<NodeJS.Timeout | null>(null)
 
   const clearTiming = () => {
     setRun(false)
-    if (onFinish) {
-      onFinish()
-    }
-    if (animationTimeRef.current) {
+
+    onFinish?.()
+
+    if (!!animationTimeRef.current) {
       clearInterval(animationTimeRef.current)
     }
   }
 
-  useEffect(() => {
-    return () => {
+  // On unmount
+  useEffect(
+    () => () => {
       setRun(false)
       clearTiming()
-    }
-  }, [])
+    },
+    []
+  )
 
   useEffect(() => {
     if (typeof recycleController !== 'undefined') {
-      setRecycle(recycleController)
-      if (recycleController) {
+      setRecycle(!!recycleController)
+
+      if (!!recycleController) {
         setStopConfettiActualTime(0)
         setAnimationTime(0)
         setRun(true)
