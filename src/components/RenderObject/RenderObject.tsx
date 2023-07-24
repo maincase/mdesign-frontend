@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useElementSize } from 'usehooks-ts'
-import { useSetObjectColor } from '../InteriorManager/useSetObjectColor'
+import { useSetObjectColor } from '../../state/interior/useSetObjectColor'
 
 export type RenderObjectType = {
   isReferral?: boolean

@@ -1,4 +1,4 @@
-import { InteriorType } from '@/components/InteriorManager/InteriorManager'
+import { InteriorType } from '@/state/interior/InteriorState'
 import {
   MutationOptions,
   QueryFunction,

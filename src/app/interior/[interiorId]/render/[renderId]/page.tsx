@@ -1,10 +1,10 @@
 'use client'
 
 import { useQueryInterior } from '@/api/query-hooks/Interior'
-import { Render } from '@/components/InteriorManager/InteriorManager'
 import Referrals from '@/components/Referrals/Referrals'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { RenderObjectType } from '@/components/RenderObject/RenderObject'
+import { Render } from '@/state/interior/InteriorState'
 import { useCallback, useState } from 'react'
 
 export default function Page({ params }: { params: { interiorId: string; renderId: string } }) {

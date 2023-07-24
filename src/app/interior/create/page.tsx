@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, DialogTitle, Fade } from '@mui/material'
+import { Box, Fade } from '@mui/material'
 import { useState } from 'react'
 import InteriorForm from '../../../components/InteriorForm/InteriorForm'
 import InteriorProgress from '../../../components/InteriorProgress/InteriorProgress'
@@ -22,7 +22,6 @@ export default function Page() {
       onClose={() => router.push('/')}
       TransitionComponent={Zoom}
     > */}
-      <DialogTitle sx={{ textAlign: 'center' }}>Your current interior</DialogTitle>
 
       {/* <ReactSpring.FadeIn className="flex flex-grow items-center justify-center" active={!!newInteriorId}> */}
       <Fade in={!!newInteriorId} unmountOnExit>

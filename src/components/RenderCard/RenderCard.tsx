@@ -3,7 +3,7 @@ import { Card } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { ComponentPropsWithoutRef, useRef, useState } from 'react'
-import { Render } from '../InteriorManager/InteriorManager'
+import { Render } from '../../state/interior/InteriorState'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {

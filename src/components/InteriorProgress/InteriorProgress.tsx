@@ -1,19 +1,13 @@
 import { useQueryInterior, useQueryInteriors } from '@/api/query-hooks/Interior'
-import { useInteriorItems } from '@/components/InteriorManager/useInteriorItems'
+import { useAppState } from '@/state/app/AppState'
+import { useInteriorItems } from '@/state/interior/useInteriorItems'
 import { Box, CircularProgress, DialogContent, FadeProps, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { forwardRef, startTransition, useEffect } from 'react'
-import Confetti from 'react-confetti'
-import { useWindowSize } from 'usehooks-ts'
 
 type Props = { newInteriorId?: string; setNewInteriorId: (id?: string) => void } & Omit<FadeProps, 'children'>
 
-export default forwardRef<HTMLElement, Props>(function InteriorProgress(
-  { newInteriorId, setNewInteriorId, ...props },
-  ref
-) {
-  const { width, height } = useWindowSize()
-
+function InteriorProgress({ newInteriorId, setNewInteriorId, ...props }: Props, ref: React.Ref<HTMLElement>) {
   const router = useRouter()
 
   const { fetchNextPage } = useQueryInteriors()
@@ -22,9 +16,14 @@ export default forwardRef<HTMLElement, Props>(function InteriorProgress(
 
   const { data: newInterior } = useQueryInterior(newInteriorId, 1000, !newInteriorId)
 
+  const { setRunConfetti } = useAppState()
+
   useEffect(() => {
     // Update UI after rendering finished
     if (newInterior?.progress === 100 && !!newInterior.renders && newInterior.renders.length > 0) {
+      // Run success confetti animation on finish
+      setRunConfetti(true)
+
       // Clear new interior id to stop polling
       startTransition(() => setNewInteriorId(undefined))
 
@@ -35,6 +34,11 @@ export default forwardRef<HTMLElement, Props>(function InteriorProgress(
 
       fetchNextPage()
 
+      // After successful render we push to view the new interior
+      /**
+       * NOTE: Pathname change also triggers the confetti animation, this might not be the best approach,
+       *        but should be good for now.
+       */
       router.push(`/interior/${newInterior.id}`)
     }
   }, [newInterior])
@@ -69,8 +73,8 @@ export default forwardRef<HTMLElement, Props>(function InteriorProgress(
           )}%`}</Typography>
         </Box>
       </Box>
-
-      <Confetti width={width} height={height} />
     </DialogContent>
   )
-})
+}
+
+export default forwardRef<HTMLElement, Props>(InteriorProgress)

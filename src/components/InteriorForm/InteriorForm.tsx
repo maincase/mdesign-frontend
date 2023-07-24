@@ -84,6 +84,8 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
         />
         <ColorButton sx={{ textTransform: 'none' }}>Confirm your email to use Interior AI</ColorButton> */}
 
+          <h3>Your current interior</h3>
+
           <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={(files) => setValue('image', files[0])}>
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()}>

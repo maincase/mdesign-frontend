@@ -1,8 +1,8 @@
 'use client'
 
 import { useQueryInteriors } from '@/api/query-hooks/Interior'
-import { useInteriorItems } from '@/components/InteriorManager/useInteriorItems'
 import RenderCard from '@/components/RenderCard/RenderCard'
+import { useInteriorItems } from '@/state/interior/useInteriorItems'
 import variables from '@/styles/variables.module.scss'
 import { css } from '@emotion/css'
 import { Grid, Link, Paper, Stack } from '@mui/material'

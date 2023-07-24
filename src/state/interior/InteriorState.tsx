@@ -16,7 +16,7 @@ export type InteriorType = {
   renders?: Render[]
 }
 
-export type InteriorManagerProps = {
+export type InteriorStateProps = {
   items: InteriorType[]
 
   setItems: (items: InteriorType[]) => void
@@ -28,7 +28,7 @@ export type InteriorManagerProps = {
   setObjectColor: (interInd: number, renderInd: number, objectInd: number, color: string) => void
 }
 
-export const useInteriorState = create<InteriorManagerProps>()(
+export const useInteriorState = create<InteriorStateProps>()(
   immer((set) => ({
     /**
      * Interior items.
