@@ -27,7 +27,7 @@ export default function Header() {
           Upgrade to Pro
         </Button> */}
 
-        <Link href="/create">
+        <Link href="/interior/create">
           <Button className={clsx(styles.button_animation, styles.button)}>Create Your Design For FREE</Button>
         </Link>
       </div>

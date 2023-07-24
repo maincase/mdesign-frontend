@@ -2,7 +2,6 @@
 
 import { useQueryInterior } from '@/api/query-hooks/Interior'
 import { Render } from '@/components/InteriorManager/InteriorManager'
-import ReactSpring from '@/components/ReactSpring/ReactSpring'
 import Referrals from '@/components/Referrals/Referrals'
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { RenderObjectType } from '@/components/RenderObject/RenderObject'
@@ -46,19 +45,19 @@ export default function Page({ params }: { params: { interiorId: string; renderI
         />
       </div>
 
-      <ReactSpring.FadeIn
+      {/* <ReactSpring.FadeIn
         active={true}
         className="overflow-auto max-h-full ml-2"
         style={{
           maxWidth: '50%',
           minWidth: '30vw',
         }}
-      >
-        <Referrals
-          objects={render?.objects?.filter((obj) => !predictionObject || obj === predictionObject)}
-          onObjectHover={onObjectHover}
-        />
-      </ReactSpring.FadeIn>
+      > */}
+      <Referrals
+        objects={render?.objects?.filter((obj) => !predictionObject || obj === predictionObject)}
+        onObjectHover={onObjectHover}
+      />
+      {/* </ReactSpring.FadeIn> */}
     </>
     // </Fade>
   )

@@ -1,6 +1,5 @@
 import { MenuItem, Select as MuiSelect } from '@mui/material'
-import { ComponentPropsWithRef } from '@react-spring/web'
-import { useState } from 'react'
+import { ComponentPropsWithRef, useState } from 'react'
 
 type SelectProps = ComponentPropsWithRef<typeof MuiSelect> & {
   selectList: string[]

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
  * @param {array} size - The image size [width, height]
  */
 
-export default function useImageSize(url: string) {
+export default function useImageSize(url?: string) {
   const [size, setSize] = useState([0, 0])
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function useImageSize(url: string) {
     const img = document.createElement('img')
     img.addEventListener('load', (e: any) => {
       const { naturalHeight, naturalWidth } = e.target
-      setSize([naturalWidth, naturalHeight])
+      setSize([naturalWidth ?? 0, naturalHeight ?? 0])
     })
     img.src = url
   }, [url])

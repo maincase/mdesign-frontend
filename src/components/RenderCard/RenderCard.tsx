@@ -1,6 +1,8 @@
+import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
+import { ComponentPropsWithoutRef, useRef, useState } from 'react'
 import { Render } from '../InteriorManager/InteriorManager'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
@@ -25,8 +27,6 @@ export default function RenderCard({
   renderInd,
   onObjectHover,
 }: Props) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
   const imgRef = useRef<HTMLImageElement>(null)
 
   const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
@@ -39,12 +39,14 @@ export default function RenderCard({
 
   const [ratio, setRatio] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
-  const onImageLoad = (e: any) => {
-    const { naturalHeight: imgHeight, naturalWidth: imgWidth } = e.target
+  const [imgWidth, imgHeight] = useImageSize(
+    !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}` : undefined
+  )
 
-    if (cardRef.current) {
-      const width = cardRef.current.offsetWidth
-      const height = cardRef.current.offsetHeight
+  if (!ratio.x && !ratio.y) {
+    if (imgWidth > 0 && imgHeight > 0 && !!imgRef.current?.complete) {
+      const width = imgRef.current.clientWidth
+      const height = imgRef.current.clientHeight
 
       setRatio({
         x: width / imgWidth,
@@ -52,12 +54,6 @@ export default function RenderCard({
       })
     }
   }
-
-  useEffect(() => {
-    if (imgRef.current?.complete) {
-      onImageLoad({ target: imgRef.current })
-    }
-  }, [])
 
   return (
     <Card
@@ -77,7 +73,6 @@ export default function RenderCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      ref={cardRef}
       className={clsx('relative flex', {
         'cursor-pointer': showCursor,
       })}
@@ -88,25 +83,18 @@ export default function RenderCard({
         backgroundSize: 'contain',
       }}
     >
+      {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
       {!!render?.image && (
-        // <Image
-        //   ref={imgRef}
-        //   onLoad={onImageLoad}
-        //   src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
-        //   fill
-        //   placeholder="blur"
-        //   /* alt={image.description} */ className="flex max-h-full object-contain"
-        //   alt=""
-        //   sizes="100vw"
-        // />
-
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           ref={imgRef}
-          onLoad={onImageLoad}
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
-          /* alt={image.description} */ className="flex max-h-full object-contain"
+          width={2000}
+          height={1000}
+          // fill
+          // placeholder="blur"
+          /* alt={image.description} */ /* className="flex max-h-full object-contain" */
           alt=""
+          // sizes="100vw"
         />
       )}
       <div
@@ -143,6 +131,7 @@ export default function RenderCard({
             )
         )}
       </div>
+      {/* </CardContent> */}
     </Card>
   )
 }
