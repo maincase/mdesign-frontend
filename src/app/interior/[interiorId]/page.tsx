@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { interiorId: string } }) {
         />
       </Grid>
 
-      {interior?.renders?.map((r, ind) => (
+      {interior?.renders?.map((r) => (
         <Grid
           display="flex"
           justifyContent="center"
@@ -39,7 +39,7 @@ export default function Page({ params }: { params: { interiorId: string } }) {
           key={r.id}
         >
           <Link className="flex justify-center" href={`/interior/${params.interiorId}/render/${r.id}`}>
-            <RenderCard render={r} objects={r?.objects} raised={false} showCursor />
+            <RenderCard render={r} objects={r?.objects} raised={false} objectsShown showCursor />
           </Link>
         </Grid>
       ))}

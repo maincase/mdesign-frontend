@@ -119,8 +119,13 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
           {/* </div> */}
         </DialogContent>
 
-        <DialogActions>
-          <div className={`${styles.new_render_button}`}>
+        <DialogActions
+          sx={{
+            paddingX: '24px',
+            paddingY: '20px',
+          }}
+        >
+          <div className={styles.new_render_button}>
             <ColorButton type="submit" sx={{ textTransform: 'none' }} style={{ margin: 0 }}>
               Render new designs
             </ColorButton>

@@ -30,9 +30,9 @@ export default function Page({ params }: { params: { interiorId: string; renderI
     // <Fade in={true} className="flex max-h-full overflow-hidden justify-between">
     <>
       <div
-        className="flex flex-grow justify-center items-start"
+        className="flex justify-center items-start"
         style={{
-          minWidth: '50vw',
+          maxWidth: '50vw',
         }}
       >
         <RenderCard

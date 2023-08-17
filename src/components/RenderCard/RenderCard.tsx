@@ -2,7 +2,7 @@ import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { ComponentPropsWithoutRef, useRef, useState } from 'react'
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { Render } from '../../state/interior/InteriorState'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
 
@@ -43,17 +43,19 @@ export default function RenderCard({
     !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}` : undefined
   )
 
-  if (!ratio.x && !ratio.y) {
-    if (imgWidth > 0 && imgHeight > 0 && !!imgRef.current?.complete) {
-      const width = imgRef.current.clientWidth
-      const height = imgRef.current.clientHeight
+  useEffect(() => {
+    if (!ratio.x && !ratio.y) {
+      if (imgWidth > 0 && imgHeight > 0 && !!imgRef.current?.complete) {
+        const width = imgRef.current.clientWidth
+        const height = imgRef.current.clientHeight
 
-      setRatio({
-        x: width / imgWidth,
-        y: height / imgHeight,
-      })
+        setRatio({
+          x: width / imgWidth,
+          y: height / imgHeight,
+        })
+      }
     }
-  }
+  }, [imgWidth, imgHeight, !!imgRef.current?.complete])
 
   return (
     <Card

@@ -1,9 +1,9 @@
 'use client'
 
+import InteriorProgress from '@/components/InteriorProgress/InteriorProgress'
 import { Box, Fade } from '@mui/material'
 import { useState } from 'react'
 import InteriorForm from '../../../components/InteriorForm/InteriorForm'
-import InteriorProgress from '../../../components/InteriorProgress/InteriorProgress'
 
 export default function Page() {
   const [newInteriorId, setNewInteriorId] = useState<string | undefined>(
@@ -11,18 +11,18 @@ export default function Page() {
   )
 
   return (
-    <Box width={600} height={700} display="flex" flexGrow={1} flexDirection="column">
-      {/* <Dialog
-      PaperProps={{
-        sx: { minHeight: '60vh' },
+    <Box
+      sx={{
+        height: 700,
+        // width: 600,
+        overflow: 'hidden',
+        display: 'flex',
+        // flexGrow: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
-      /* sx={{ minHeight: '300' }} *\/ fullWidth
-      maxWidth="sm"
-      open
-      onClose={() => router.push('/')}
-      TransitionComponent={Zoom}
-    > */}
-
+    >
       {/* <ReactSpring.FadeIn className="flex flex-grow items-center justify-center" active={!!newInteriorId}> */}
       <Fade in={!!newInteriorId} unmountOnExit>
         <InteriorProgress newInteriorId={newInteriorId} setNewInteriorId={setNewInteriorId} />
@@ -34,8 +34,6 @@ export default function Page() {
         <InteriorForm setNewInteriorId={setNewInteriorId} />
       </Fade>
       {/* </ReactSpring.FadeIn> */}
-
-      {/* </Dialog> */}
     </Box>
   )
 }

@@ -1,9 +1,10 @@
 import { useQueryInterior, useQueryInteriors } from '@/api/query-hooks/interior'
 import { useAppState } from '@/state/app/AppState'
 import { useInteriorItems } from '@/state/interior/useInteriorItems'
-import { Box, CircularProgress, DialogContent, FadeProps, Typography } from '@mui/material'
+import { DialogContent, FadeProps } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { forwardRef, startTransition, useEffect } from 'react'
+import CircleProgress from '../CircleProgress/CircleProgress'
 
 type Props = { newInteriorId?: string; setNewInteriorId: (id?: string) => void } & Omit<FadeProps, 'children'>
 
@@ -39,42 +40,37 @@ function InteriorProgress({ newInteriorId, setNewInteriorId, ...props }: Props, 
        * NOTE: Pathname change also triggers the confetti animation, this might not be the best approach,
        *        but should be good for now.
        */
-      router.push(`/interior/${newInterior.id}`)
+      router.push(`/interior/${newInterior.id}?new=1`)
     }
   }, [newInterior])
 
   return (
     <DialogContent
-      sx={{ display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}
+      sx={{
+        display: 'flex',
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        width: 600,
+      }}
       {...props}
       ref={ref}
     >
-      <Box width="50%" height="50%" position="relative">
-        <CircularProgress
-          size="100%"
-          variant="determinate"
-          value={newInterior?.progress ?? 0} /* style={{ width: '100%' }} */
-        />
-
-        <Box
-          sx={{
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            position: 'absolute',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography variant="caption" component="div" color="text.secondary">{`${Math.round(
-            newInterior?.progress ?? 0
-          )}%`}</Typography>
-        </Box>
-      </Box>
+      <CircleProgress value={newInterior?.progress ?? 0} />
     </DialogContent>
   )
+
+  {
+    /* <DialogActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography className="flex mt-4">Your new interior is being rendered...</Typography>
+      </DialogActions> */
+  }
 }
 
 export default forwardRef<HTMLElement, Props>(InteriorProgress)
