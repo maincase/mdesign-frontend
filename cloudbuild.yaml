@@ -11,6 +11,7 @@ steps:
     script: |
       #!/usr/bin/env bash
       ls -la
+      chown -R nextjs:nodejs ./.next
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['meta', 'list-files-for-upload']
