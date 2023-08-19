@@ -10,7 +10,10 @@ steps:
   - name: 'bash'
     script: |
       #!/usr/bin/env bash
-      ls -l
+      ls -la
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['meta', 'list-files-for-upload']
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']
