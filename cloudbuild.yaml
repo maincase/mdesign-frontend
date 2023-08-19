@@ -7,6 +7,11 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
+  - name: 'bash'
+    script: |
+      #!/usr/bin/env bash
+      ls -l
+
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']
 
