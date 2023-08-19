@@ -20,7 +20,7 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ['cdn.moderndesign.ai', 'cdn.mdesign.ai'],
+    domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
   },
   /* distDir: 'build', */
 
