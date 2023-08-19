@@ -4,7 +4,7 @@
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: false,
-  // output: 'standalone',
+  output: 'standalone',
 
   ...(!!process.env.COMMIT_SHA || !!process.env.TAG_NAME
     ? {
@@ -23,7 +23,7 @@ const nextConfig = {
   },
   images: {
     domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
-    // unoptimized: true,
+    unoptimized: true,
     // remotePatterns: [
     //   {
     //     protocol: 'https',
