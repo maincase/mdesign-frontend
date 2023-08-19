@@ -7,14 +7,6 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-  - name: 'bash'
-    script: |
-      #!/usr/bin/env bash
-      ls -lRa .next
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['meta', 'list-files-for-upload']
-
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']
 
