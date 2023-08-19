@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-const dns = require('dns')
-dns.setDefaultResultOrder('ipv4first')
+// const dns = require('dns')
+// dns.setDefaultResultOrder('ipv4first')
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: false,
@@ -22,7 +22,17 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
+    // domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.moderndesign.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.mdesign.ai',
+      },
+    ],
   },
   /* distDir: 'build', */
 
