@@ -4,7 +4,7 @@
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: false,
-  output: 'standalone',
+  // output: 'standalone',
 
   ...(!!process.env.COMMIT_SHA || !!process.env.TAG_NAME
     ? {
@@ -22,17 +22,18 @@ const nextConfig = {
     return config
   },
   images: {
-    // domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**.moderndesign.ai',
-      },
-      {
-        protocol: 'https',
-        hostname: '**.mdesign.ai',
-      },
-    ],
+    domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
+    // unoptimized: true,
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: '**.moderndesign.ai',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: '**.mdesign.ai',
+    //   },
+    // ],
   },
   /* distDir: 'build', */
 
