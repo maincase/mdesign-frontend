@@ -88,6 +88,7 @@ export default function RenderCard({
       {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
       {!!render?.image && (
         <Image
+          priority
           ref={imgRef}
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
           width={2000}

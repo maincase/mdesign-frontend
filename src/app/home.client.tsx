@@ -32,7 +32,7 @@ export default function Home() {
     if (serverInteriors) {
       setInteriorItems(serverInteriors.pages.flat())
     }
-  }, [])
+  }, [serverInteriors])
 
   return (
     <Stack className={clsx('overflow-y-auto', styles.content_stack)} spacing={2} padding={2}>

@@ -1,12 +1,8 @@
-import { queryInteriors } from '@/api/query-hooks/interior'
 import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
-import getQueryClient from '@/utils/getQueryClient'
-import { dehydrate } from '@tanstack/query-core'
 import { Metadata } from 'next'
 import Script from 'next/script'
 import Home from './home.client'
-import Hydrate from './hydrate.client'
 import QueryProvider from './provider.client'
 
 export const metadata: Metadata = {
@@ -29,12 +25,12 @@ export const metadata: Metadata = {
 // const emotionCache = createEmotionCache()
 // const emotionTheme = createTheme()
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
-  const queryClient = getQueryClient()
-  await queryClient.prefetchInfiniteQuery(queryInteriors)
-  const dehydratedState = dehydrate(queryClient, {
-    shouldDehydrateQuery: () => true,
-  })
+export default function Layout({ children }: { children: React.ReactNode }) {
+  // const queryClient = getQueryClient()
+  // await queryClient.prefetchInfiniteQuery(queryInteriors)
+  // const dehydratedState = dehydrate(queryClient, {
+  //   shouldDehydrateQuery: () => true,
+  // })
 
   return (
     <html lang="en">
@@ -46,9 +42,10 @@ export default async function Layout({ children }: { children: React.ReactNode }
         <Header />
 
         <QueryProvider>
-          <Hydrate state={dehydratedState}>
-            <Home />
-          </Hydrate>
+          {/* <Hydrate state={dehydratedState}> */}
+          <Home />
+          {/* </Hydrate> */}
+
           {children}
         </QueryProvider>
         {/* <StyleGallery /> */}

@@ -1,5 +1,6 @@
-import { create } from 'zustand'
+import * as R from 'remeda'
 import { immer } from 'zustand/middleware/immer'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 export type Render = {
   id: string
@@ -28,7 +29,7 @@ export type InteriorStateProps = {
   setObjectColor: (interInd: number, renderInd: number, objectInd: number, color: string) => void
 }
 
-export const useInteriorState = create<InteriorStateProps>()(
+export const useInteriorState = createWithEqualityFn<InteriorStateProps>()(
   immer((set) => ({
     /**
      * Interior items.
@@ -89,5 +90,6 @@ export const useInteriorState = create<InteriorStateProps>()(
           }
         }
       }),
-  }))
+  })),
+  R.equals
 )
