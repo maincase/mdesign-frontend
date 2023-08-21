@@ -29,7 +29,8 @@ export default function Home() {
   const { items: interiorItems, setItems: setInteriorItems } = useInteriorItems()
 
   useEffect(() => {
-    if (serverInteriors) {
+    // Populate global state from server data on initial page load
+    if (serverInteriors && interiorItems.length === 0) {
       setInteriorItems(serverInteriors.pages.flat())
     }
   }, [serverInteriors])
