@@ -56,8 +56,8 @@ export default function Home() {
             interior?.progress === 100 && (
               <Paper
                 key={interior.id}
-                sx={{ /* flexGrow: 1, */ height: '33vh', backgroundColor: '#ebebeb' }}
-                className="flex rounded-md border hover:shadow-xl px-3"
+                sx={{ /* flexGrow: 1, */ /* minHight: '33vh', */ backgroundColor: '#ebebeb' }}
+                className="flex rounded-md border hover:shadow-xl p-3"
               >
                 {/* <Grid key={interior.id} item xs={12}> */}
                 <Grid
