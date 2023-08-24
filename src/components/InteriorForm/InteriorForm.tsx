@@ -6,12 +6,14 @@ import { css } from '@emotion/css'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UploadIcon from '@mui/icons-material/Upload'
 import { Box, DialogActions, DialogContent, FadeProps } from '@mui/material'
-import { forwardRef } from 'react'
+import { forwardRef, useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { useForm } from 'react-hook-form'
 import { mixed, object, string } from 'yup'
 import roomList from './roomList'
 import styleList from './styleList'
+import UploadPreview from '../UploadPreview/UploadPreview'
+import createBase64 from '@/utils/createBase64'
 
 const styles = {
   // new_render_container: css`
@@ -65,6 +67,16 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
     },
   })
 
+  const [base64Image, setBase64Image] = useState<string | undefined>()
+
+  const handleFileSelection = (files: File[]) => {
+    const file = files[0]
+
+    setValue('image', file)
+
+    createBase64(file).then(setBase64Image)
+  }
+
   return (
     <Box {...props} sx={{ display: 'flex', flexGrow: 1 }} ref={ref}>
       <form onSubmit={handleSubmit((data: any) => mutation.mutate(data))} className="flex justify-between flex-col">
@@ -86,12 +98,18 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
 
           <h3>Your current interior</h3>
 
-          <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={(files) => setValue('image', files[0])}>
+          <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={handleFileSelection}>
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()}>
-                <UploadButton sx={{ textTransform: 'none', border: '1px dashed grey' }} startIcon={<UploadIcon />}>
-                  Drop an image, tap to select, take a photo, or ⌘ + V
-                </UploadButton>
+                {base64Image && (
+                  <UploadPreview image={base64Image} label="Drop an image, tap to select, take a photo, or ⌘ + V" />
+                )}
+
+                {!base64Image && (
+                  <UploadButton sx={{ textTransform: 'none', border: '1px dashed grey' }} startIcon={<UploadIcon />}>
+                    Drop an image, tap to select, take a photo, or ⌘ + V
+                  </UploadButton>
+                )}
                 <input type="file" name="image" {...getInputProps()} />
               </div>
             )}

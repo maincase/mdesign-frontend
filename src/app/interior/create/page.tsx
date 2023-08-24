@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <Box
       sx={{
-        height: 700,
+        minHeight: 700,
         // width: 600,
         overflow: 'hidden',
         display: 'flex',
