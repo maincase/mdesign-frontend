@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { css } from '@emotion/css'
+import Image from 'next/image'
 
 type Props = {
   image: string
@@ -45,9 +45,9 @@ const styles = {
 export default function UploadPreview({ image, label }: Props) {
   return (
     image && (
-      <div className={`${styles.wrapper}`}>
-        <Image src={image} alt="preview" width={0} height={0} className={`${styles.image}`} />
-        <span className={`${styles.label}`}>{label}</span>
+      <div className={styles.wrapper}>
+        <Image src={image} alt="preview" width={0} height={0} className={styles.image} />
+        <span className={styles.label}>{label}</span>
       </div>
     )
   )

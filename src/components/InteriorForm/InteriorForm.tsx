@@ -2,6 +2,7 @@ import { useMutateInterior } from '@/api/query-hooks/interior'
 import ColorButton from '@/components/ColorButton/ColorButton'
 import Select from '@/components/Select/Select'
 import UploadButton from '@/components/UploadButton/UploadButton'
+import createBase64 from '@/utils/createBase64'
 import { css } from '@emotion/css'
 import { yupResolver } from '@hookform/resolvers/yup'
 import UploadIcon from '@mui/icons-material/Upload'
@@ -10,10 +11,9 @@ import { forwardRef, useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { useForm } from 'react-hook-form'
 import { mixed, object, string } from 'yup'
+import UploadPreview from '../UploadPreview/UploadPreview'
 import roomList from './roomList'
 import styleList from './styleList'
-import UploadPreview from '../UploadPreview/UploadPreview'
-import createBase64 from '@/utils/createBase64'
 
 const styles = {
   // new_render_container: css`
@@ -101,11 +101,9 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
           <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={handleFileSelection}>
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()}>
-                {base64Image && (
+                {!!base64Image ? (
                   <UploadPreview image={base64Image} label="Drop an image, tap to select, take a photo, or ⌘ + V" />
-                )}
-
-                {!base64Image && (
+                ) : (
                   <UploadButton sx={{ textTransform: 'none', border: '1px dashed grey' }} startIcon={<UploadIcon />}>
                     Drop an image, tap to select, take a photo, or ⌘ + V
                   </UploadButton>
