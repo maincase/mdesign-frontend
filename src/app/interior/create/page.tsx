@@ -1,9 +1,9 @@
 'use client'
 
+import InteriorForm from '@/components/InteriorForm/InteriorForm'
 import InteriorProgress from '@/components/InteriorProgress/InteriorProgress'
 import { Box, Fade } from '@mui/material'
 import { useState } from 'react'
-import InteriorForm from '../../../components/InteriorForm/InteriorForm'
 
 export default function Page() {
   const [newInteriorId, setNewInteriorId] = useState<string | undefined>(
@@ -14,7 +14,7 @@ export default function Page() {
     <Box
       sx={{
         minHeight: 700,
-        // width: 600,
+        minWidth: 600,
         overflow: 'hidden',
         display: 'flex',
         // flexGrow: 1,
@@ -23,15 +23,15 @@ export default function Page() {
         justifyContent: 'center',
       }}
     >
-      {/* <ReactSpring.FadeIn className="flex flex-grow items-center justify-center" active={!!newInteriorId}> */}
-      <Fade in={!!newInteriorId} unmountOnExit>
-        <InteriorProgress newInteriorId={newInteriorId} setNewInteriorId={setNewInteriorId} />
+      {/* <ReactSpring.FadeIn active={!newInteriorId}> */}
+      <Fade in={!newInteriorId} unmountOnExit /* className="absolute" */>
+        <InteriorForm setNewInteriorId={setNewInteriorId} />
       </Fade>
       {/* </ReactSpring.FadeIn> */}
 
-      {/* <ReactSpring.FadeIn active={!newInteriorId}> */}
-      <Fade in={!newInteriorId} unmountOnExit>
-        <InteriorForm setNewInteriorId={setNewInteriorId} />
+      {/* <ReactSpring.FadeIn className="flex flex-grow items-center justify-center" active={!!newInteriorId}> */}
+      <Fade in={!!newInteriorId} unmountOnExit className="absolute">
+        <InteriorProgress newInteriorId={newInteriorId} setNewInteriorId={setNewInteriorId} />
       </Fade>
       {/* </ReactSpring.FadeIn> */}
     </Box>
