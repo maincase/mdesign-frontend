@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function Referrals({ objects, onObjectHover }: Props) {
-  const [referralRef, { width: referralWidth, height: referralHeight }] = useElementSize()
+  const [referralRef, { /* width: referralWidth, */ height: referralHeight }] = useElementSize()
 
   return (
     // <ReactSpring.FadeIn active={true} className="inline-flex flex-grow overflow-hidden">
@@ -26,7 +26,7 @@ export default function Referrals({ objects, onObjectHover }: Props) {
       spacing={2}
       ref={referralRef}
       style={{
-        minWidth: referralWidth,
+        // minWidth: referralWidth,
         minHeight: referralHeight,
       }}
     >
