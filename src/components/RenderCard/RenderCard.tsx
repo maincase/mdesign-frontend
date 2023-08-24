@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { Render } from '../../state/interior/InteriorState'
 import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
+import { css } from '@emotion/css'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
   render: Render
@@ -13,6 +14,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   showCursor?: boolean
   interiorInd?: number
   renderInd?: number
+  hasOverlay?: boolean
   onObjectHover?: (object: RenderObjectType) => void
 }
 
@@ -25,6 +27,7 @@ export default function RenderCard({
   showCursor,
   interiorInd,
   renderInd,
+  hasOverlay,
   onObjectHover,
 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null)
@@ -75,8 +78,10 @@ export default function RenderCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      className={clsx('relative flex', {
+      className={clsx('relative flex group', {
         'cursor-pointer': showCursor,
+        'before:transition-opacity before:duration-300 before:content-[""] before:block before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-black before:opacity-0 hover:before:opacity-30 before:z-20':
+          hasOverlay,
       })}
       sx={{
         // width: '100%',
@@ -85,56 +90,59 @@ export default function RenderCard({
         backgroundSize: 'contain',
       }}
     >
-      {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
-      {!!render?.image && (
-        <Image
-          priority
-          ref={imgRef}
-          src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
-          width={2000}
-          height={1000}
-          // fill
-          // placeholder="blur"
-          /* alt={image.description} */ /* className="flex max-h-full object-contain" */
-          alt=""
-          // sizes="100vw"
-        />
-      )}
-      <div
-        className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}
-        {...(objectsShown
-          ? {
-              onMouseMove: (e) => {
-                const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
-                const x = e.pageX - rect.x
-                const y = e.pageY - rect.top
-                setMouseCoords({ x, y })
-              },
-            }
-          : {})}
-      >
-        {objects?.map(
-          (obj, ind) =>
-            ((obj?.[1] as number) ?? 0) > 0.8 && (
-              <RenderObject
-                key={`${(obj?.[0] as string).replace(' ', '')}+${ind}`}
-                interiorInd={interiorInd}
-                renderInd={renderInd}
-                objectInd={ind}
-                object={obj}
-                isSingleObject={objects?.length === 1}
-                mouse={{
-                  x: mouseCoords.x ?? 0,
-                  y: mouseCoords.y ?? 0,
-                }}
-                ratio={ratio}
-                onObjectHover={onObjectHover}
-                objectHoverTimeoutRef={objectHoverTimeoutRef}
-              />
-            )
+      <div className="ease-in-out group-hover:scale-105 scale-100 transition-scale duration-300">
+        {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
+        {!!render?.image && (
+          <Image
+            priority
+            ref={imgRef}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
+            width={2000}
+            height={1000}
+            // fill
+            // placeholder="blur"
+            /* alt={image.description} */ /* className="flex max-h-full object-contain" */
+            alt=""
+            // sizes="100vw"
+            className="block"
+          />
         )}
+        <div
+          className={clsx('absolute top-0 left-0 w-full h-full', showObjects ? 'visible' : 'hidden')}
+          {...(objectsShown
+            ? {
+                onMouseMove: (e) => {
+                  const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
+                  const x = e.pageX - rect.x
+                  const y = e.pageY - rect.top
+                  setMouseCoords({ x, y })
+                },
+              }
+            : {})}
+        >
+          {objects?.map(
+            (obj, ind) =>
+              ((obj?.[1] as number) ?? 0) > 0.8 && (
+                <RenderObject
+                  key={`${(obj?.[0] as string).replace(' ', '')}+${ind}`}
+                  interiorInd={interiorInd}
+                  renderInd={renderInd}
+                  objectInd={ind}
+                  object={obj}
+                  isSingleObject={objects?.length === 1}
+                  mouse={{
+                    x: mouseCoords.x ?? 0,
+                    y: mouseCoords.y ?? 0,
+                  }}
+                  ratio={ratio}
+                  onObjectHover={onObjectHover}
+                  objectHoverTimeoutRef={objectHoverTimeoutRef}
+                />
+              )
+          )}
+        </div>
+        {/* </CardContent> */}
       </div>
-      {/* </CardContent> */}
     </Card>
   )
 }

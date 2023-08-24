@@ -6,48 +6,20 @@ type Props = {
   label: string
 }
 
-const styles = {
-  wrapper: css`
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    margin: 10px 0;
-    &:hover img {
-      transform: scale(1.1);
-    }
-  `,
-  image: css`
-    width: 100%;
-    height: auto;
-    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-  `,
-  label: css`
-    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    color: white;
-    &:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-  `,
-}
-
 export default function UploadPreview({ image, label }: Props) {
   return (
     image && (
-      <div className={styles.wrapper}>
-        <Image src={image} alt="preview" width={0} height={0} className={styles.image} />
-        <span className={styles.label}>{label}</span>
+      <div className="group relative overflow-hidden rounded-xl">
+        <Image
+          src={image}
+          alt="preview"
+          width={0}
+          height={0}
+          className="group-hover:scale-105 transition-scale duration-300 w-full block"
+        />
+        <span className="text-white transition-background duration-300 absolute w-full h-full flex items-center justify-center top-0 left-0 z-10 cursor-pointer bg-black bg-opacity-50 group-hover:bg-opacity-70">
+          {label}
+        </span>
       </div>
     )
   )
