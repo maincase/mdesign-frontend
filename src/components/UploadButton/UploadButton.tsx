@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 const UploadButton = styled(Button)(() => ({
   // color: '#8c8c8c',
   color: '#fff',
-  height: '206px',
+  height: 300,
   width: '100%',
   // backgroundColor: '#161616',
   backgroundColor: '#202036 !important',

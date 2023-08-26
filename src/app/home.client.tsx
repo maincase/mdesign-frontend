@@ -88,6 +88,7 @@ export default function Home() {
                         interiorInd={ind}
                         // renderInd={0}
                         // objects={render?.objects}
+                        hasZoom
                         showCursor
                       />
                     </Link>
@@ -112,6 +113,7 @@ export default function Home() {
                           interiorInd={ind}
                           renderInd={renderInd}
                           objects={render?.objects}
+                          hasZoom
                           showCursor
                         />
                       </Link>

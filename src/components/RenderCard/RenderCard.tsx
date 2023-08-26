@@ -14,6 +14,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   interiorInd?: number
   renderInd?: number
   hasOverlay?: boolean
+  hasZoom?: boolean
   onObjectHover?: (object: RenderObjectType) => void
 }
 
@@ -27,6 +28,7 @@ export default function RenderCard({
   interiorInd,
   renderInd,
   hasOverlay,
+  hasZoom,
   onObjectHover,
 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null)
@@ -89,7 +91,11 @@ export default function RenderCard({
         backgroundSize: 'contain',
       }}
     >
-      <div className="ease-in-out group-hover:scale-105 scale-100 transition-scale duration-300">
+      <div
+        className={clsx({
+          'ease-in-out group-hover:scale-105 scale-100 transition-scale duration-300': hasZoom,
+        })}
+      >
         {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
         {!!render?.image && (
           <Image

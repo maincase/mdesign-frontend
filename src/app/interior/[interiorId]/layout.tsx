@@ -22,7 +22,7 @@ export default forwardRef(function Layout({ children }: { children: React.ReactN
         <DialogTitle classes={{ root: 'flex' }}>
           <Link href={!!interiorId ? `/interior/${interiorId}` : '/'} className="flex flex-row items-center">
             <ArrowBackIosIcon className="!text-base" />
-            <Typography variant="subtitle1" className="flex mt-4 h-6 !leading-normal align-top">
+            <Typography variant="subtitle1" className="flex h-6 !leading-normal align-top">
               Back to options
             </Typography>
           </Link>
