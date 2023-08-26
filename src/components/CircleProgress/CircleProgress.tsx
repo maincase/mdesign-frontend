@@ -1,4 +1,5 @@
 import { Box, CircularProgress, CircularProgressProps, Typography } from '@mui/material'
+import { useMemo } from 'react'
 
 // const useStyles = makeStyles({
 //   '@keyframes ': {
@@ -20,7 +21,21 @@ import { Box, CircularProgress, CircularProgressProps, Typography } from '@mui/m
 
 type Props = CircularProgressProps
 
-export default function CircleProgress({ value }: Props) {
+export default function CircleProgress({ value = 0 }: Props) {
+  const progressTitle = useMemo(() => {
+    if (value <= 2) {
+      return 'Kickstarting Design Rendering'
+    } else if (value > 2 && value <= 25) {
+      return 'Crafting First AI-Driven Design'
+    } else if (value > 25 && value <= 50) {
+      return 'Assembling Second AI-Driven Design'
+    } else if (value > 50 && value <= 70) {
+      return 'Building Third AI-Driven Design'
+    } else if (value > 70 && value <= 100) {
+      return 'Finalizing and Incorporating Partner Store Recommendations'
+    }
+  }, [value])
+
   return (
     <Box
       width="100%"
@@ -98,7 +113,9 @@ export default function CircleProgress({ value }: Props) {
         <Typography variant="caption" component="div" color="text.secondary" fontSize="5rem">{`${Math.round(
           value ?? 0
         )}%`}</Typography>
-        <Typography className="flex mt-4">Your new interior is being rendered</Typography>
+        <Typography fontSize="0.8rem" className="flex mt-4">
+          {progressTitle}
+        </Typography>
       </Box>
     </Box>
   )
