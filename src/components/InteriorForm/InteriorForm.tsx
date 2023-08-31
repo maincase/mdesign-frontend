@@ -61,7 +61,7 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
 
   const mutation = useMutateInterior({
     onSuccess: (interior) => {
-      localStorage.setItem('renderInteriorId', interior.id)
+      sessionStorage.setItem('renderInteriorId', interior.id)
 
       setNewInteriorId(interior.id)
     },
