@@ -15,7 +15,7 @@ export default function Header() {
       )}
     >
       <Link className={clsx('flex justify-center')} href="/">
-        <Image src="/logo.png" width={250} height={45} alt="Logo" className="w-[150px] md:w-[250px]" />
+        <Image src="/logo.svg" width={250} height={45} alt="Logo" className="w-[160px] md:w-[250px]" />
       </Link>
       {/* <h2>INTERIOR DESIGN MOCKUPS AND VIRTUAL STAGING BY AI</h2> */}
       {/* <span>Design Your Space, Empower Your Life</span> */}
@@ -34,7 +34,7 @@ export default function Header() {
         </Button> */}
 
         <Link href="/interior/create" className="block">
-          <Button className="!text-white !font-[Montserrat] !border-2 !font-semibold  !border-white !border-solid !rounded-none hover:!text-black overflow-hidden before:content-[''] before:absolute before:w-full before:h-full before:bg-white relative before:transform before:translate-y-full hover:before:translate-y-0 before:transition-all before:duration-800">
+          <Button className="!text-white !font-[Montserrat] !font-semibold !rounded-none !bg-black">
             <span className="relative z-10">
               Create <span className="hidden md:inline-block">Your Design For FREE</span>
               <span className="md:hidden">Design</span>

@@ -3,7 +3,6 @@ import RenderCard from '../RenderCard/RenderCard'
 import { InteriorType } from '@/state/interior/InteriorState'
 
 type Props = {
-  className?: string
   innerActiveIndex: number
   interior: InteriorType
   interiorInd: number
@@ -11,20 +10,13 @@ type Props = {
   onMouseEnter?: (index: number) => void
 }
 
-export default function SlideContent({
-  className,
-  innerActiveIndex,
-  interior,
-  interiorInd,
-  isActive,
-  onMouseEnter,
-}: Props) {
+export default function SlideContent({ innerActiveIndex, interior, interiorInd, isActive, onMouseEnter }: Props) {
   return (
     <>
       {innerActiveIndex === 0 && (
         <RenderCard
           className="!rounded-none"
-          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full"
+          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full brightness-90"
           render={interior}
           interiorInd={interiorInd}
           fill
@@ -34,7 +26,7 @@ export default function SlideContent({
       {!!innerActiveIndex && interior.renders?.[innerActiveIndex - 1] && (
         <RenderCard
           className="!rounded-none"
-          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full"
+          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full brightness-90"
           key={interior.id}
           render={interior.renders?.[innerActiveIndex - 1]}
           interiorInd={innerActiveIndex}
@@ -56,6 +48,7 @@ export default function SlideContent({
             )}
             render={interior}
             interiorInd={interiorInd}
+            imageClassName="brightness-90"
           />
         </div>
         {interior.renders?.map((render, index) => (
@@ -70,6 +63,7 @@ export default function SlideContent({
               )}
               render={render}
               interiorInd={index}
+              imageClassName="brightness-90"
             />
           </div>
         ))}
@@ -85,7 +79,7 @@ export default function SlideContent({
             }
           )}
         >
-          Made to give you all the room
+          {interior.style}
         </h2>
         <h6
           className={clsx('text-white font-medium font-[Alegreya] transform transition-all duration-700 delay-300', {
@@ -93,7 +87,7 @@ export default function SlideContent({
             'opacity-0 translate-x-[50px]': !isActive,
           })}
         >
-          Living room
+          {interior.room}
         </h6>
       </div>
     </>

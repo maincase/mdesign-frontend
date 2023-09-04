@@ -20,6 +20,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
+  const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
   return (
     <div className={clsx('relative', className)}>
@@ -50,22 +51,19 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
             },
           }}
         >
-          {interiorItems.map(
-            (interior, ind) =>
-              !!interior.renders?.length && (
-                <SwiperSlide key={interior.id} className="!h-[100vh] relative">
-                  {({ isActive }) => (
-                    <SlideContent
-                      interior={interior}
-                      isActive={isActive}
-                      interiorInd={ind}
-                      innerActiveIndex={innerActiveIndex}
-                      onMouseEnter={handleMouseEnter}
-                    />
-                  )}
-                </SwiperSlide>
-              )
-          )}
+          {interiors.map((interior, ind) => (
+            <SwiperSlide key={interior.id} className="!h-[100vh] relative">
+              {({ isActive }) => (
+                <SlideContent
+                  interior={interior}
+                  isActive={isActive}
+                  interiorInd={ind}
+                  innerActiveIndex={innerActiveIndex}
+                  onMouseEnter={handleMouseEnter}
+                />
+              )}
+            </SwiperSlide>
+          ))}
         </Swiper>
       )}
 
@@ -92,23 +90,20 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
             },
           }}
         >
-          {interiorItems.map(
-            (interior, ind) =>
-              !!interior.renders?.length && (
-                <SwiperSlide
-                  key={interior.id}
-                  className={clsx(
-                    'cursor-pointer relative before:content-[""] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500',
-                    {
-                      'before:bg-opacity-0': ind === activeIndex,
-                      'before:bg-opacity-50': ind !== activeIndex,
-                    }
-                  )}
-                >
-                  <RenderCard className="!rounded-none" render={interior} interiorInd={ind} showCursor />
-                </SwiperSlide>
-              )
-          )}
+          {interiors.map((interior, ind) => (
+            <SwiperSlide
+              key={interior.id}
+              className={clsx(
+                'cursor-pointer relative before:content-[""] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500',
+                {
+                  'before:bg-opacity-0': ind === activeIndex,
+                  'before:bg-opacity-50': ind !== activeIndex,
+                }
+              )}
+            >
+              <RenderCard className="!rounded-none" render={interior} interiorInd={ind} showCursor />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
