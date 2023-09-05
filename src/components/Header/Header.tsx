@@ -2,9 +2,9 @@
 
 import { Box, Button } from '@mui/material'
 import clsx from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.scss'
-import Image from 'next/image'
 
 export default function Header() {
   return (

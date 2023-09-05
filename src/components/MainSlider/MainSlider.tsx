@@ -1,12 +1,12 @@
+import RenderCard from '@/components/RenderCard/RenderCard'
+import { InteriorType } from '@/state/interior/InteriorState'
 import clsx from 'clsx'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useRef, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/thumbs'
 import { Autoplay, EffectFade, Navigation, Thumbs } from 'swiper/modules'
-import { useRef, useState } from 'react'
-import RenderCard from '@/components/RenderCard/RenderCard'
-import { InteriorType } from '@/state/interior/InteriorState'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import SlideContent from './SlideContent'
 
 type Props = {

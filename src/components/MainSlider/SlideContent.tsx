@@ -1,6 +1,6 @@
+import { InteriorType } from '@/state/interior/InteriorState'
 import clsx from 'clsx'
 import RenderCard from '../RenderCard/RenderCard'
-import { InteriorType } from '@/state/interior/InteriorState'
 
 type Props = {
   innerActiveIndex: number
