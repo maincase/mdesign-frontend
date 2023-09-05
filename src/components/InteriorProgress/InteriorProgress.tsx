@@ -29,7 +29,7 @@ function InteriorProgress({ newInteriorId, setNewInteriorId, ...props }: Props, 
       startTransition(() => setNewInteriorId(undefined))
 
       // Remove interior from persistent storage
-      localStorage.removeItem('renderInteriorId')
+      sessionStorage.removeItem('renderInteriorId')
 
       unshiftInteriors(newInterior)
 

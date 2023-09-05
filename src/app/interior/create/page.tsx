@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 export default function Page() {
   const [newInteriorId, setNewInteriorId] = useState<string | undefined>(
-    typeof window !== 'undefined' ? localStorage?.getItem('renderInteriorId') ?? undefined : undefined
+    typeof window !== 'undefined' ? sessionStorage?.getItem('renderInteriorId') ?? undefined : undefined
   )
 
   return (

@@ -31,8 +31,8 @@ export default function Referrals({ objects, onObjectHover }: Props) {
       }}
     >
       {objects?.map((el, ind) =>
-        Array.isArray(el[4]) ? (
-          el[4].map((ref) => (
+        Array.isArray(el[3]) ? (
+          el[3].map((ref) => (
             <a
               key={`${ref}+${ind}`}
               className="h-14 group inline-flex hover:text-black my-1"
