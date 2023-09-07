@@ -14,7 +14,7 @@ export default function Header() {
         styles.header
       )}
     >
-      <Link className={clsx('flex justify-center')} href="/">
+      <Link className="flex justify-center" href="/">
         <Image src="/logo.svg" width={250} height={45} alt="Logo" className="w-[160px] md:w-[250px]" />
       </Link>
       {/* <h2>INTERIOR DESIGN MOCKUPS AND VIRTUAL STAGING BY AI</h2> */}
