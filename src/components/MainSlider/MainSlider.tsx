@@ -16,10 +16,13 @@ type Props = {
 
 export default function MainSlider({ className, interiorItems = [] }: Props) {
   const mainSliderRef = useRef<any>(null)
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
+
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
+
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
   return (
