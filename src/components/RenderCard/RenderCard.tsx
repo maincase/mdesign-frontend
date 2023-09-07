@@ -15,6 +15,9 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   renderInd?: number
   hasOverlay?: boolean
   hasZoom?: boolean
+  className?: string
+  fill?: boolean
+  imageClassName?: string
   onObjectHover?: (object: RenderObjectType) => void
 }
 
@@ -29,6 +32,9 @@ export default function RenderCard({
   renderInd,
   hasOverlay,
   hasZoom,
+  fill,
+  className,
+  imageClassName,
   onObjectHover,
 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null)
@@ -79,14 +85,16 @@ export default function RenderCard({
       }}
       onClick={onClick}
       raised={isRaised}
-      className={clsx('relative flex group', {
-        'cursor-pointer': showCursor,
-        'before:transition-opacity before:duration-300 before:content-[""] before:block before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-black before:opacity-0 hover:before:opacity-30 before:z-20':
-          hasOverlay,
-      })}
+      className={clsx(
+        'relative flex group h-full',
+        {
+          'cursor-pointer': showCursor,
+          'before:transition-opacity before:duration-300 before:content-[""] before:block before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-black before:opacity-0 hover:before:opacity-30 before:z-20':
+            hasOverlay,
+        },
+        className
+      )}
       sx={{
-        // width: '100%',
-        // height: '100%',
         backgroundPosition: 'left top',
         backgroundSize: 'contain',
       }}
@@ -94,22 +102,22 @@ export default function RenderCard({
       <div
         className={clsx({
           'ease-in-out group-hover:scale-105 scale-100 transition-scale duration-300': hasZoom,
+          'relative w-full h-full': fill,
         })}
       >
-        {/* <CardContent sx={{ position: 'relative', display: 'flex', flexGrow: 1 }}> */}
         {!!render?.image && (
           <Image
             priority
             ref={imgRef}
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
-            width={2000}
-            height={1000}
-            // fill
+            width={fill ? undefined : 2000}
+            height={fill ? undefined : 1000}
             // placeholder="blur"
             /* alt={image.description} */ /* className="flex max-h-full object-contain" */
             alt=""
             // sizes="100vw"
-            className="block"
+            className={clsx('block', imageClassName)}
+            fill={fill}
           />
         )}
         <div
@@ -146,7 +154,6 @@ export default function RenderCard({
               )
           )}
         </div>
-        {/* </CardContent> */}
       </div>
     </Card>
   )
