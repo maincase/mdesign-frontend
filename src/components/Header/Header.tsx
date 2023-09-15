@@ -27,7 +27,7 @@ export default function Header() {
         </Button> */}
 
         <Link href="/interior/create" className="block">
-          <Button className="!text-white !font-[Montserrat] !font-semibold !rounded-none !bg-black">
+          <Button className="!text-white !font-[Montserrat] !font-semibold  !bg-black rounded-sm hover:!bg-[#211c1c]">
             <span className="relative z-10">
               Create <span className="hidden md:inline-block">Your Design For FREE</span>
               <span className="md:hidden">Design</span>

@@ -70,10 +70,10 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
         </Swiper>
       )}
 
-      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-5">
+      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-3">
         <Swiper
           onSwiper={setThumbsSwiper}
-          spaceBetween={20}
+          spaceBetween={12}
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
           breakpoints={{
@@ -89,7 +89,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
               slidesPerView: 8,
             },
             1024: {
-              slidesPerView: 13,
+              slidesPerView: 15,
             },
           }}
         >

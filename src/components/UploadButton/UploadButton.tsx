@@ -6,12 +6,10 @@ const UploadButton = styled(Button)(() => ({
   color: '#fff',
   height: 300,
   width: '100%',
-  // backgroundColor: '#161616',
-  backgroundColor: '#202036 !important',
-  borderRadius: 12,
+  backgroundColor: '#000000 !important',
+  borderRadius: 8,
   '&:hover': {
-    backgroundColor: '#161616',
-    opacity: 0.75,
+    backgroundColor: '#211c1c!important',
   },
 }))
 
