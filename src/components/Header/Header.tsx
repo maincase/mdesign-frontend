@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <Box className="flex flex-grow p-6 items-center justify-between absolute z-20 top-0 left-0 w-full bg-black bg-opacity-80">
+    <Box className="flex flex-grow p-3 md:p-6 items-center justify-between absolute z-20 top-0 left-0 w-full bg-black bg-opacity-80">
       <Link className="flex justify-center" href="/">
         <Image src="/logo.svg" width={250} height={45} alt="Logo" className="w-[160px] md:w-[250px]" />
       </Link>
@@ -27,7 +27,7 @@ export default function Header() {
         </Button> */}
 
         <Link href="/interior/create" className="block">
-          <Button className="!text-white !font-[Montserrat] !font-semibold  !bg-black rounded-sm hover:!bg-[#211c1c]">
+          <Button className="!text-white !font-[Montserrat] !font-semibold  !bg-black rounded-sm hover:!bg-[#211c1c] px-3">
             <span className="relative z-10">
               Create <span className="hidden md:inline-block">Your Design For FREE</span>
               <span className="md:hidden">Design</span>
