@@ -36,7 +36,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
         />
       )}
 
-      <div className="absolute bottom-[150px] md:bottom-[110px] right-0 flex gap-3 bg-black bg-opacity-80 p-3">
+      <div className="absolute bottom-[110px] md:bottom-[110px] right-0 flex gap-3 bg-black bg-opacity-80 p-3">
         <div onMouseEnter={() => onMouseEnter?.(0)}>
           <RenderCard
             className={clsx(
