@@ -8,6 +8,7 @@ import 'swiper/css/thumbs'
 import { Autoplay, EffectFade, Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SlideContent from './SlideContent'
+import { css } from '@emotion/css'
 
 type Props = {
   className?: string
@@ -22,11 +23,16 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
+  const styles = {
+    container: css``,
+  }
+
   return (
-    <div className={clsx('relative', className)}>
+    <div className={clsx('flex flex-col md:!h-[calc(100vh-88px)] !h-[calc(100vh-61px)]', className)}>
       {thumbsSwiper && (
         <Swiper
           ref={mainSliderRef}
+          className="h-full w-full"
           speed={800}
           spaceBetween={0}
           effect="fade"
@@ -48,7 +54,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           }}
         >
           {interiors.map((interior, ind) => (
-            <SwiperSlide key={interior.id} className="!h-[100vh] relative">
+            <SwiperSlide key={interior.id} className={clsx('w-full relative h-full')}>
               {({ isActive }) => (
                 <SlideContent
                   interior={interior}
@@ -63,7 +69,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
         </Swiper>
       )}
 
-      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-3">
+      <div className="w-full bg-black p-3">
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={12}

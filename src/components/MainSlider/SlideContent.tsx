@@ -16,7 +16,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
       {innerActiveIndex === 0 && (
         <RenderCard
           className="!rounded-none"
-          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full brightness-90"
+          imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
           render={interior}
           interiorInd={interiorInd}
           fill
@@ -26,7 +26,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
       {!!innerActiveIndex && interior.renders?.[innerActiveIndex - 1] && (
         <RenderCard
           className="!rounded-none"
-          imageClassName="!max-w-min !w-auto md:!w-full md:!max-w-full brightness-90"
+          imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
           key={interior.id}
           render={interior.renders?.[innerActiveIndex - 1]}
           interiorInd={innerActiveIndex}
@@ -36,7 +36,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
         />
       )}
 
-      <div className="absolute bottom-[110px] md:bottom-[110px] right-0 flex gap-3 bg-black bg-opacity-80 p-3">
+      <div className="absolute bottom-[10px] md:bottom-[10px] right-0 flex gap-3 bg-black bg-opacity-80 p-3">
         <div onMouseEnter={() => onMouseEnter?.(0)}>
           <RenderCard
             className={clsx(
@@ -69,7 +69,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
         ))}
       </div>
 
-      <div className="absolute bottom-[250px] md:bottom-[130px] left-0 px-5 md-px-0 md:left-10">
+      <div className="absolute bottom-[120px] md:bottom-[50px] left-0 px-5 md-px-0 md:left-10">
         <h2
           className={clsx(
             'text-white md:text-4xl text-2xl font-[Montserrat] mb-3 md:mb-4 transition-all duration-700 uppercase',

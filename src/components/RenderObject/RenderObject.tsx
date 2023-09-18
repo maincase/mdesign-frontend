@@ -1,6 +1,7 @@
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useElementSize } from 'usehooks-ts'
 import { useSetObjectColor } from '../../state/interior/useSetObjectColor'
+import calculateCenterPosition from '@/utils/getCenterPositioin'
 
 export type RenderObjectType = {
   isReferral?: boolean
@@ -99,31 +100,28 @@ export default function RenderObject({
   const ratioWidth = objectWidth * ratio.x
   const ratioHeight = objectHeight * ratio.y
 
+  const { x, y } = calculateCenterPosition(ratioWidth, ratioHeight, ratioX ?? 0, ratioY ?? 0)
+
+  console.log({ x, y })
+
   return (
-    <>
-      {!!objectNameVisible ? (
-        <div
-          className="absolute capitalize font-bold text-sm"
-          style={{
-            left: !!ratioX ? ratioX + (ratioWidth ?? 0) / 2 - (objectNameWidth ?? 0) / 2 : 0,
-            top: !!ratioX ? ratioY - (objectNameHeight ?? 0) : 0,
-            color: `#${object?.[3] ?? objectColor.current}`,
-          }}
-          ref={objectNameRef}
-        >
-          {objectName}
+    <div
+      className="absolute items-center justify-center group/popover hidden lg:flex"
+      style={{
+        left: x ?? 0,
+        top: y ?? 0,
+      }}
+      ref={objectNameRef}
+    >
+      <div className="relative">
+        <div className="pl-1 pb-1 transition-all opacity-0 group-hover/popover:opacity-100 absolute bottom-4 -translate-x-1/2 ml-1">
+          <div className="bg-white px-3 py-1 shadow-xl whitespace-nowrap pointer-events-none uppercase">
+            {objectName}
+          </div>
+          <div className="h-0 w-0 border-x-4 border-x-transparent border-t-[5px] border-t-white shadow-xl mx-auto" />
         </div>
-      ) : null}
-      <div
-        className="absolute border-2"
-        style={{
-          left: ratioX ?? 0,
-          top: ratioY ?? 0,
-          width: ratioWidth,
-          height: ratioHeight,
-          borderColor: `#${object?.[3] ?? objectColor.current}`,
-        }}
-      ></div>
-    </>
+        <button className="w-[15px] h-[15px] bg-white block rounded-full shadow-lg group-hover/popover:scale-125 transition-all" />
+      </div>
+    </div>
   )
 }

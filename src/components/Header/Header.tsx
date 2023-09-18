@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <Box className="flex flex-grow p-3 md:p-6 items-center justify-between absolute z-20 top-0 left-0 w-full bg-black bg-opacity-80">
+    <Box className="flex flex-grow p-3 md:p-6 items-center justify-between w-full bg-black">
       <Link className="flex justify-center" href="/">
         <Image src="/logo.svg" width={250} height={45} alt="Logo" className="w-[160px] md:w-[250px]" />
       </Link>
