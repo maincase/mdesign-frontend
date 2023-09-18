@@ -16,7 +16,7 @@ export const queryInteriors: Pick<QueryOptions, 'queryKey' | 'queryFn'> & {
   queryFn: QueryFunction<InteriorType[]>
 } = {
   queryKey: ['interiors'],
-  queryFn: ({ pageParam = { skip: 0, limit: 10 } }) => InteriorService.getInteriors(pageParam.skip, pageParam.limit),
+  queryFn: ({ pageParam = { skip: 0, limit: 20 } }) => InteriorService.getInteriors(pageParam.skip, pageParam.limit),
 }
 
 /**
@@ -27,7 +27,7 @@ export const queryInteriors: Pick<QueryOptions, 'queryKey' | 'queryFn'> & {
  * @param initialData
  * @returns
  */
-export function useQueryInteriors(initialData: InteriorType[] = [], skip = 0, limit = 10) {
+export function useQueryInteriors(initialData: InteriorType[] = [], skip = 0, limit = 20) {
   return useInfiniteQuery<InteriorType[]>({
     ...queryInteriors,
     getNextPageParam: (lastPage, pages) => ({

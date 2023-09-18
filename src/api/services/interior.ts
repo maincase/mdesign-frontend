@@ -8,9 +8,9 @@ class InteriorService {
    * @param limit
    * @returns
    */
-  static async getInteriors(skip = 0, limit = 10) {
-    if (Number.isNaN(limit) || limit > 10) {
-      limit = 10
+  static async getInteriors(skip = 0, limit = 20) {
+    if (Number.isNaN(limit) || limit > 20) {
+      limit = 20
     }
 
     if (Number.isNaN(skip) || skip < 0) {
