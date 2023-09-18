@@ -19,10 +19,10 @@ export default function Select({ selectList, title, inputProps }: SelectProps) {
         style={{
           color: '#fff',
           // backgroundColor: '#161616',
-          backgroundColor: '#202036',
+          backgroundColor: '#000000',
           border: '1px solid #ffffff33',
           width: '100%',
-          borderRadius: 12,
+          borderRadius: 8,
         }}
       >
         {selectList.map((el: string) => (

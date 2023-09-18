@@ -16,13 +16,10 @@ type Props = {
 
 export default function MainSlider({ className, interiorItems = [] }: Props) {
   const mainSliderRef = useRef<any>(null)
-
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
-
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
-
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
   return (
@@ -46,12 +43,8 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
             setInnerActiveIndex(0)
           }}
           breakpoints={{
-            0: {
-              thumbs: { autoScrollOffset: 0 },
-            },
-            640: {
-              thumbs: { autoScrollOffset: 1 },
-            },
+            0: {},
+            640: {},
           }}
         >
           {interiors.map((interior, ind) => (
@@ -70,26 +63,24 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
         </Swiper>
       )}
 
-      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-5">
+      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-3">
         <Swiper
           onSwiper={setThumbsSwiper}
-          spaceBetween={20}
+          spaceBetween={12}
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
           breakpoints={{
             0: {
               slidesPerView: 3,
-              thumbs: { autoScrollOffset: 0 },
             },
             640: {
               slidesPerView: 5,
-              thumbs: { autoScrollOffset: 1 },
             },
             768: {
               slidesPerView: 8,
             },
             1024: {
-              slidesPerView: 13,
+              slidesPerView: 15,
             },
           }}
         >

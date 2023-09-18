@@ -104,7 +104,11 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
                 {!!base64Image ? (
                   <UploadPreview image={base64Image} label="Drop an image, tap to select, take a photo, or ⌘ + V" />
                 ) : (
-                  <UploadButton sx={{ textTransform: 'none', border: '1px dashed grey' }} startIcon={<UploadIcon />}>
+                  <UploadButton
+                    className="transition-all"
+                    sx={{ textTransform: 'none', border: '1px dashed grey' }}
+                    startIcon={<UploadIcon />}
+                  >
                     Drop an image, tap to select, take a photo, or ⌘ + V
                   </UploadButton>
                 )}

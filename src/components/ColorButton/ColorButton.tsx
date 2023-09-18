@@ -29,40 +29,22 @@ import { Button } from '@mui/material'
 // }
 
 const ColorButton = styled(Button)(() => ({
-  '@keyframes animatedgradient': {
-    '0%': {
-      backgroundPosition: '0% 50%',
-    },
-    '50%': {
-      backgroundPosition: '100% 50%',
-    },
-    '100%': {
-      backgroundPosition: '0% 50%',
-    },
-  },
-  // background: '-webkit-linear-gradient(45deg, #680aca, #202036)',
-  background: 'linear-gradient(60deg, #c0c0c0, #5073b8, #1098ad, #148676) !important',
-  WebkitAnimation: 'animatedgradient 6s ease infinite alternate',
-  animation: 'animatedgradient 6s ease infinite alternate',
-  backgroundSize: '300% 300%',
-  // border: '1px solid #000000',
+  background: '#000000!important',
   color: '#fff',
-  // '&:hover': {
-  //   // border: '1px solid #fff',
-  //   background: 'none',
-
-  //   border: '1px solid #202036',
-  //   color: '#202036',
-  // },
   display: 'inline-block',
+  padding: '7px 15px!important',
   margin: 7,
   fontWeight: 'bold',
-  borderRadius: 12,
+  borderRadius: 8,
   textDecoration: 'none',
   fontSize: 16,
   textAlign: 'center',
   '&:last-of-type': {
     marginRight: 0,
+  },
+
+  '&:hover': {
+    background: '#211c1c!important',
   },
 }))
 
