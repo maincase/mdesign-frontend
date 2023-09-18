@@ -115,7 +115,7 @@ export default function RenderObject({
     >
       <div className="relative">
         <div className="pl-1 pb-1 transition-all opacity-0 group-hover/popover:opacity-100 absolute bottom-4 -translate-x-1/2 ml-1">
-          <div className="bg-white px-3 py-1 shadow-xl whitespace-nowrap pointer-events-none uppercase">
+          <div className="bg-white px-3 py-1 shadow-xl whitespace-nowrap pointer-events-none capitalize">
             {objectName}
           </div>
           <div className="h-0 w-0 border-x-4 border-x-transparent border-t-[5px] border-t-white shadow-xl mx-auto" />
