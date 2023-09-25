@@ -69,7 +69,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
         ))}
       </div>
 
-      <div className="absolute bottom-[120px] md:bottom-[50px] left-0 px-5 md-px-0 md:left-10">
+      <div className="absolute bottom-[120px] md:bottom-[50px] z-30 left-0 px-5 md-px-0 md:left-10">
         <h2
           className={clsx(
             'text-white md:text-4xl text-2xl font-[Montserrat] mb-3 md:mb-4 transition-all duration-700 uppercase',
