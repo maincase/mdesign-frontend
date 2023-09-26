@@ -38,6 +38,8 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           navigation={true}
+          preventClicks={false}
+          preventClicksPropagation={false}
           autoplay={{
             delay: 7000,
             disableOnInteraction: true,

@@ -11,7 +11,10 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        full: '0px 0px 0px 5000px rgba(0, 0, 0, 0.4)',
+        full: '0px 0px 0px 10000px rgba(0, 0, 0, 0.4)',
+      },
+      transitionProperty: {
+        'position-size': 'top,left,width,height',
       },
     },
   },
