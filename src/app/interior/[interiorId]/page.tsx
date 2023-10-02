@@ -41,7 +41,7 @@ export default function Page({ params }: { params: { interiorId: string } }) {
           key={r.id}
         >
           <Link className="flex justify-center" href={`/interior/${params.interiorId}/render/${r.id}`}>
-            <RenderCard hasOverlay hasZoom render={r} objects={r?.objects} raised={false} objectsShown showCursor />
+            <RenderCard hasOverlay hasZoom render={r} objects={r?.objects} raised={false} showCursor />
           </Link>
         </Grid>
       ))}

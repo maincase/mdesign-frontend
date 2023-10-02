@@ -1,4 +1,4 @@
-import * as R from 'remeda'
+import isEqual from 'lodash.isequal'
 import { immer } from 'zustand/middleware/immer'
 import { createWithEqualityFn } from 'zustand/traditional'
 
@@ -91,5 +91,5 @@ export const useInteriorState = createWithEqualityFn<InteriorStateProps>()(
         }
       }),
   })),
-  R.equals
+  isEqual
 )

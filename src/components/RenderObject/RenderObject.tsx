@@ -1,6 +1,6 @@
-import { MutableRefObject, useRef, useState } from 'react'
 import calculateCenterPosition from '@/utils/getCenterPositioin'
 import clsx from 'clsx'
+import { MutableRefObject, useRef, useState } from 'react'
 import { useUpdateEffect } from 'usehooks-ts'
 
 export type RenderObjectType = {
