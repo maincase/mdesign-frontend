@@ -16,6 +16,10 @@ module.exports = {
       transitionProperty: {
         'position-size': 'top,left,width,height',
       },
+      lineHeight: {
+        'extra-loose': '2.5',
+        5.5: '1.45rem',
+      },
     },
   },
   plugins: [],

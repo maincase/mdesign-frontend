@@ -70,13 +70,13 @@ function ColorButton({ children, className, style, ...props }: ButtonProps) {
   return (
     <Button
       sx={{
-        background: '#000000',
+        background: '#000000!important',
         color: '#fff',
         display: 'inline-block',
         padding: '7px 15px',
         // margin: 7,
         // fontWeight: '600!important',
-        // textTransform: 'uppercase',
+        textTransform: 'none',
         // borderRadius: 8,
         textDecoration: 'none',
         fontSize: '0.875rem',
@@ -86,12 +86,12 @@ function ColorButton({ children, className, style, ...props }: ButtonProps) {
         //   marginRight: 0,
         // },
 
-        // '&:hover': {
-        //   background: '#211c1c!important',
-        // },
+        '&:hover': {
+          background: '#211c1c!important',
+        },
         ...style,
       }}
-      className={clsx('hover:!bg-[#211c1c] !rounded-lg', className)}
+      className={clsx('!rounded-lg', className)}
       {...props}
     >
       {children}

@@ -5,6 +5,8 @@ import UploadButton from '@/components/UploadButton/UploadButton'
 import createBase64 from '@/utils/createBase64'
 import { css } from '@emotion/css'
 import { yupResolver } from '@hookform/resolvers/yup'
+import BedroomChildIcon from '@mui/icons-material/BedroomChild'
+import FormatPaintIcon from '@mui/icons-material/FormatPaint'
 import UploadIcon from '@mui/icons-material/Upload'
 import { Box, DialogActions, DialogContent, FadeProps } from '@mui/material'
 import { forwardRef, useState } from 'react'
@@ -104,14 +106,17 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()}>
                 {!!base64Image ? (
-                  <UploadPreview image={base64Image} label="Drop an image, tap to select, take a photo, or ⌘ + V" />
+                  <UploadPreview
+                    image={base64Image}
+                    label="Drop an image or tap to select" /* , take a photo, or ⌘ + V" */
+                  />
                 ) : (
                   <UploadButton
                     className="transition-all"
                     sx={{ textTransform: 'none', border: '1px dashed grey' }}
                     startIcon={<UploadIcon />}
                   >
-                    Drop an image, tap to select, take a photo, or ⌘ + V
+                    Drop an image or tap to select{/* , take a photo, or ⌘ + V */}
                   </UploadButton>
                 )}
                 <input type="file" name="image" {...getInputProps()} />
@@ -135,6 +140,14 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             sx={{
               height: 40,
             }}
+            icon={
+              <BedroomChildIcon
+                style={{
+                  fill: '#000',
+                  width: 16,
+                }}
+              />
+            }
             inputProps={register('room')}
           />
 
@@ -153,6 +166,14 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             sx={{
               height: 40,
             }}
+            icon={
+              <FormatPaintIcon
+                style={{
+                  fill: '#000',
+                  width: 16,
+                }}
+              />
+            }
             inputProps={register('style')}
           />
 
@@ -169,8 +190,8 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
           }}
         >
           <div className={styles.new_render_button}>
-            <ColorButton type="submit" className="font-bold" style={{ margin: 0 }}>
-              Render designs
+            <ColorButton type="submit" className="font-semibold" style={{ margin: 0 }}>
+              Render your designs
               <span role="img" aria-label="Les go!" style={{ fontSize: 16, marginLeft: 5 }}>
                 🚀
               </span>

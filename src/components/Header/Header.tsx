@@ -25,12 +25,12 @@ export default function Header() {
         </Button> */}
 
         <Link href="/interior/create" className="block">
-          <ColorButton className="font-semibold">
+          <ColorButton className="!font-semibold">
             <span className="relative z-10">
               Create <span className="hidden md:inline-block">Your Design For FREE</span>
               <span className="md:hidden">Design</span>
             </span>
-            <span role="img" aria-label="Let's go!" style={{ fontSize: 18, marginLeft: 5 }}>
+            <span role="img" aria-label="Let's go!" style={{ fontSize: 16, marginLeft: 5 }}>
               ✨
             </span>
           </ColorButton>
