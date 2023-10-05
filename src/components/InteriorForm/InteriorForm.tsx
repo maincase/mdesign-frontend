@@ -26,8 +26,10 @@ const styles = {
   // `,
   sub_info: css`
     display: block;
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 500;
     margin-top: 7px;
+    opacity: 0.6;
   `,
   new_render_button: css`
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -96,7 +98,7 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
         />
         <ColorButton sx={{ textTransform: 'none' }}>Confirm your email to use Interior AI</ColorButton> */}
 
-          <h3>Your current interior</h3>
+          <h5>Your current interior:</h5>
 
           <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={handleFileSelection}>
             {({ getRootProps, getInputProps }) => (
@@ -116,23 +118,44 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
               </div>
             )}
           </Dropzone>
-          <p className={`${styles.sub_info}`}>
+
+          <p className={styles.sub_info}>
             Take a photo of your current room. For best results make sure it shows the entire room in a 90° straight
-            angle facing a wall or window horizontally (click for example). Not from a corner or angled, and not a wide
-            angle photo as it&apos;s trained on regular photos. The AI isn&apos;t great at angled pics (yet)!
+            angle facing a wall or window horizontally {/* (click for example) */}. Not from a corner or angled, and not
+            a wide angle photo as it&apos;s trained on regular photos. The AI isn&apos;t great at angled pics (yet)!
             {/* Uploads + renders
           are shown on site but auto deleted after 15 mins. To make 100% private HQ renders without deletion and
           watermark upgrade to Pro and you get your own private workspace. */}
           </p>
-          <Select selectList={roomList} title="ROOM" inputProps={register('room')} />
+
+          <Select
+            selectList={roomList}
+            title="Room"
+            className="mt-4"
+            sx={{
+              height: 40,
+            }}
+            inputProps={register('room')}
+          />
+
           {/* <SelectElement selectList={modeList} title={'MODE'} /> */}
-          <p className={`${styles.sub_info}`}>
+          <p className={styles.sub_info}>
             You get widely different results with each mode. Virtual Staging mode will auto detect the construction
             (like walls, ceiling, beams) and tries to avoid changing it, while Interior Design mode doesn&apos;t but
             gives you more creative ideas. A good idea is to use Interior Design mode and then Mix w/ Original to get
             the original auto masked background back.
           </p>
-          <Select selectList={styleList} title="STYLE" inputProps={register('style')} />
+
+          <Select
+            selectList={styleList}
+            title="Style"
+            className="mt-4"
+            sx={{
+              height: 40,
+            }}
+            inputProps={register('style')}
+          />
+
           {/* <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} /> */}
           {/* <SelectElement selectList={resolutionsList} title={'RESOLUTION'} /> */}
           {/* <SelectElement selectList={privacyList} title={'PRIVACY'} /> */}
@@ -142,12 +165,15 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
         <DialogActions
           sx={{
             paddingX: '24px',
-            paddingY: '20px',
+            paddingY: '10px',
           }}
         >
           <div className={styles.new_render_button}>
-            <ColorButton type="submit" sx={{ textTransform: 'none' }} style={{ margin: 0 }}>
-              Render new designs
+            <ColorButton type="submit" className="font-bold" style={{ margin: 0 }}>
+              Render designs
+              <span role="img" aria-label="Les go!" style={{ fontSize: 16, marginLeft: 5 }}>
+                🚀
+              </span>
             </ColorButton>
           </div>
         </DialogActions>

@@ -39,15 +39,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <ThemeProvider theme={emotionTheme}>
         <CssBaseline /> */}
 
-        <Header />
+        <div className="flex w-screen h-screen flex-col">
+          <Header />
 
-        <QueryProvider>
-          {/* <Hydrate state={dehydratedState}> */}
-          <Home />
-          {/* </Hydrate> */}
+          <QueryProvider>
+            {/* <Hydrate state={dehydratedState}> */}
+            <Home />
+            {/* </Hydrate> */}
 
-          {children}
-        </QueryProvider>
+            {children}
+          </QueryProvider>
+        </div>
         {/* <StyleGallery /> */}
         {/* </ThemeProvider>
         </CacheProvider> */}

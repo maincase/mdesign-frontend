@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { Button } from '@mui/material'
+import { Button, ButtonProps } from '@mui/material'
+import clsx from 'clsx'
 
 // .button_animation {
 //   background: -webkit-linear-gradient(45deg, #680aca, #202036);
@@ -28,27 +28,27 @@ import { Button } from '@mui/material'
 //   }
 // }
 
-const ColorButton = styled(Button)(() => ({
-  background: '#000000!important',
-  color: '#fff',
-  display: 'inline-block',
-  padding: '7px 15px!important',
-  margin: 7,
-  fontWeight: '600!important',
-  textTransform: 'uppercase',
-  borderRadius: 0,
-  textDecoration: 'none',
-  fontSize: '0.875rem',
-  textAlign: 'center',
-  fontFamily: 'Montserrat !important',
-  '&:last-of-type': {
-    marginRight: 0,
-  },
+// const ColorButton = styled('button')(() => ({
+//   background: '#000000!important',
+//   color: '#fff',
+//   display: 'inline-block',
+//   padding: '7px 15px!important',
+//   // margin: 7,
+//   // fontWeight: '600!important',
+//   // textTransform: 'uppercase',
+//   borderRadius: 8,
+//   textDecoration: 'none',
+//   fontSize: '0.875rem',
+//   textAlign: 'center',
+//   fontFamily: 'Montserrat !important',
+//   '&:last-of-type': {
+//     marginRight: 0,
+//   },
 
-  '&:hover': {
-    background: '#211c1c!important',
-  },
-}))
+//   '&:hover': {
+//     background: '#211c1c!important',
+//   },
+// }))
 
 // const ColorButton = styled(Button)(() => ({
 //   // color: '#000',
@@ -65,5 +65,38 @@ const ColorButton = styled(Button)(() => ({
 //     borderColor: 'transparent',
 //   },
 // }))
+
+function ColorButton({ children, className, style, ...props }: ButtonProps) {
+  return (
+    <Button
+      sx={{
+        background: '#000000',
+        color: '#fff',
+        display: 'inline-block',
+        padding: '7px 15px',
+        // margin: 7,
+        // fontWeight: '600!important',
+        // textTransform: 'uppercase',
+        // borderRadius: 8,
+        textDecoration: 'none',
+        fontSize: '0.875rem',
+        textAlign: 'center',
+        fontFamily: 'Montserrat !important',
+        // '&:last-of-type': {
+        //   marginRight: 0,
+        // },
+
+        // '&:hover': {
+        //   background: '#211c1c!important',
+        // },
+        ...style,
+      }}
+      className={clsx('hover:!bg-[#211c1c] !rounded-lg', className)}
+      {...props}
+    >
+      {children}
+    </Button>
+  )
+}
 
 export default ColorButton

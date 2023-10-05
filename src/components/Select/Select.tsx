@@ -5,13 +5,13 @@ type SelectProps = ComponentPropsWithRef<typeof MuiSelect> & {
   selectList: string[]
 }
 
-export default function Select({ selectList, title, inputProps }: SelectProps) {
+export default function Select({ selectList, title, inputProps, className, ...props }: SelectProps) {
   const [selectedElement, setSelectedElement] = useState(selectList[0])
   const elementChange = (event: any) => setSelectedElement(event.target.value)
 
   return (
-    <>
-      <h5 style={{ marginBottom: 5 }}>{title}</h5>
+    <div className={className}>
+      <h5>{title}:</h5>
       <MuiSelect
         value={selectedElement}
         onChange={elementChange}
@@ -24,6 +24,7 @@ export default function Select({ selectList, title, inputProps }: SelectProps) {
           width: '100%',
           borderRadius: 8,
         }}
+        {...props}
       >
         {selectList.map((el: string) => (
           <MenuItem value={el} key={el}>
@@ -31,6 +32,6 @@ export default function Select({ selectList, title, inputProps }: SelectProps) {
           </MenuItem>
         ))}
       </MuiSelect>
-    </>
+    </div>
   )
 }

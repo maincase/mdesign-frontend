@@ -1,6 +1,5 @@
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { InteriorType } from '@/state/interior/InteriorState'
-import { css } from '@emotion/css'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 import 'swiper/css'
@@ -17,18 +16,17 @@ type Props = {
 
 export default function MainSlider({ className, interiorItems = [] }: Props) {
   const mainSliderRef = useRef<any>(null)
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
+
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
+
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
-  const styles = {
-    container: css``,
-  }
-
   return (
-    <div className={clsx('flex flex-col md:!h-[calc(100vh-88px)] !h-[calc(100vh-61px)]', className)}>
+    <div className={clsx('flex flex-grow flex-col md:!h-[calc(100vh-88px)] !h-[calc(100vh-61px)]', className)}>
       {thumbsSwiper && (
         <Swiper
           ref={mainSliderRef}
@@ -56,7 +54,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           }}
         >
           {interiors.map((interior, ind) => (
-            <SwiperSlide key={interior.id} className={clsx('w-full relative h-full')}>
+            <SwiperSlide key={interior.id} className="w-full relative h-full">
               {({ isActive }) => (
                 <SlideContent
                   interior={interior}

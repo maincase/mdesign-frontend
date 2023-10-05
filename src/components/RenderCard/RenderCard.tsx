@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
 import { Render } from '../../state/interior/InteriorState'
-import RenderObject, { RenderObjectType } from '../RenderObject/RenderObject'
+import RenderObject from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
   render: Render
@@ -130,7 +130,7 @@ export default function RenderCard({
         {showObjects && (
           <div
             onClick={() => setActiveObject(undefined)}
-            className={clsx('absolute top-0 left-0 w-full h-full')}
+            className="absolute top-0 left-0 w-full h-full"
             {...(objectsShown
               ? {
                   onMouseMove: (e) => {
