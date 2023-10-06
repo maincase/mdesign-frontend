@@ -16,22 +16,28 @@ type Props = {
 
 export default function MainSlider({ className, interiorItems = [] }: Props) {
   const mainSliderRef = useRef<any>(null)
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
+
   const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
+
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
   return (
-    <div className={clsx('relative', className)}>
+    <div className={clsx('flex flex-grow flex-col md:!h-[calc(100vh-74px)] !h-[calc(100vh-58px)]', className)}>
       {thumbsSwiper && (
         <Swiper
           ref={mainSliderRef}
+          className="h-full w-full"
           speed={800}
           spaceBetween={0}
           effect="fade"
           fadeEffect={{ crossFade: true }}
           navigation={true}
+          preventClicks={false}
+          preventClicksPropagation={false}
           autoplay={{
             delay: 7000,
             disableOnInteraction: true,
@@ -48,12 +54,12 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           }}
         >
           {interiors.map((interior, ind) => (
-            <SwiperSlide key={interior.id} className="!h-[100vh] relative">
+            <SwiperSlide key={interior.id} className="w-full relative h-full">
               {({ isActive }) => (
                 <SlideContent
                   interior={interior}
                   isActive={isActive}
-                  interiorInd={ind}
+                  // interiorInd={ind}
                   innerActiveIndex={innerActiveIndex}
                   onMouseEnter={handleMouseEnter}
                 />
@@ -63,12 +69,13 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
         </Swiper>
       )}
 
-      <div className="absolute w-full bottom-0 left-0 bg-black bg-opacity-80 z-10 p-3">
+      <div className="flex w-full bg-black p-3 h-[100px]">
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={12}
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
+          className="flex flex-grow"
           breakpoints={{
             0: {
               slidesPerView: 3,
@@ -95,7 +102,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                 }
               )}
             >
-              <RenderCard className="!rounded-none" render={interior} interiorInd={ind} showCursor />
+              <RenderCard className="!rounded-none" render={interior} /* interiorInd={ind} */ fill showCursor />
             </SwiperSlide>
           ))}
         </Swiper>

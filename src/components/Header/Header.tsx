@@ -1,12 +1,10 @@
-'use client'
-
-import { Box, Button } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
+import ColorButton from '../ColorButton/ColorButton'
 
 export default function Header() {
   return (
-    <Box className="flex flex-grow p-3 md:p-6 items-center justify-between absolute z-20 top-0 left-0 w-full bg-black bg-opacity-80">
+    <div className="flex p-2 md:p-4 items-center justify-between w-full bg-black">
       <Link className="flex justify-center" href="/">
         <Image src="/logo.svg" width={250} height={45} alt="Logo" className="w-[160px] md:w-[250px]" />
       </Link>
@@ -27,14 +25,17 @@ export default function Header() {
         </Button> */}
 
         <Link href="/interior/create" className="block">
-          <Button className="!text-white !font-[Montserrat] !font-semibold !bg-black rounded-sm hover:!bg-[#211c1c] px-3">
+          <ColorButton className="!font-semibold">
             <span className="relative z-10">
               Create <span className="hidden md:inline-block">Your Design For FREE</span>
               <span className="md:hidden">Design</span>
             </span>
-          </Button>
+            <span role="img" aria-label="Let's go!" style={{ fontSize: 16, marginLeft: 5 }}>
+              ✨
+            </span>
+          </ColorButton>
         </Link>
       </div>
-    </Box>
+    </div>
   )
 }

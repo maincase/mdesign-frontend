@@ -4,7 +4,7 @@ const styleList = [
   'Minimalist',
   'Contemporary',
   'Scandinavian',
-  'Interior AI',
+  // 'Interior AI',
   'Zen',
   'Midcentury modern',
   'Tropical',
