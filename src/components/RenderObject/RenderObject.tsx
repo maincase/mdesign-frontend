@@ -83,9 +83,9 @@ export default function RenderObject({ object, /* objectInd, */ ratio, isActive,
           }
         }}
         className={clsx('absolute block overflow-visible', {
-          'bg-white shadow-lg group-hover/popover:scale-125 rounded-full z-20 before:content-[""] before:absolute before:w-full before:h-full':
+          'bg-white shadow-lg group-hover/popover:scale-125 -translate-x-2/4 -translate-y-2/4 rounded-full z-20 before:content-[""] before:absolute before:inset-0 before:w-full before:h-full before:rounded-full before:shadow-3d':
             !isActive,
-          'border-2 rounded-lg shadow-full z-10 transition-position-size duration-200 ease-[cubic-bezier(.84,1.34,1,1)] duration-500':
+          'border-2 rounded-lg shadow-full z-10 transition-position-size duration-200 ease-[cubic-bezier(.84,1.34,1,1)]':
             isActive,
         })}
         style={{
