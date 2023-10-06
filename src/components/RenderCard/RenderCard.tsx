@@ -123,7 +123,6 @@ export default function RenderCard({
             alt=""
             className={clsx('block', imageClassName)}
             fill={fill}
-            style={{}}
           />
         )}
 
