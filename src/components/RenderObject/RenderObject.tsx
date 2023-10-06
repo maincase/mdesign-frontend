@@ -1,7 +1,7 @@
-import calculateCenterPosition from '@/utils/getCenterPositioin'
+import getCenterPosition from '@/utils/getCenterPositioin'
 import clsx from 'clsx'
-import { MutableRefObject, useRef, useState } from 'react'
-import { useUpdateEffect } from 'usehooks-ts'
+import { useRef } from 'react'
+import { useElementSize, useUpdateEffect } from 'usehooks-ts'
 
 export type RenderObjectType = {
   isReferral?: boolean
@@ -10,34 +10,39 @@ export type RenderObjectType = {
 
 type Props = {
   object: Array<number[] | number | string | Array<string>>
-  isSingleObject: boolean
-  mouse?: {
-    x: number
-    y: number
-  }
+  // isSingleObject: boolean
+  // mouse?: {
+  //   x: number
+  //   y: number
+  // }
   ratio: {
     x?: number
     y?: number
   }
-  interiorInd?: number
-  renderInd?: number
-  objectInd: number
+  // interiorInd?: number
+  // renderInd?: number
+  // objectInd: number
 
-  objectHoverTimeoutRef: MutableRefObject<NodeJS.Timeout | undefined>
+  // objectHoverTimeoutRef: MutableRefObject<NodeJS.Timeout | undefined>
   onObjectHover?: (object: any) => void
   onClick?: () => void
   isActive?: boolean
 }
 
-export default function RenderObject({ object, objectInd, ratio, isActive, onObjectHover, onClick }: Props) {
+export default function RenderObject({ object, /* objectInd, */ ratio, isActive, onObjectHover, onClick }: Props) {
+  // Object params
+  const objectName = object[0] ?? ''
   const objectShape = object[2] as number[]
+
+  const [objectNameRef, { width: objectNameWidth, height: objectNameHeight }] = useElementSize()
+
   // Actual object rect.
   const objectX = objectShape[0] ?? 0
   const objectY = objectShape[1] ?? 0
   const objectWidth = (objectShape[2] ?? 0) - (objectShape[0] ?? 0)
   const objectHeight = (objectShape[3] ?? 0) - (objectShape[1] ?? 0)
   const canActivate = useRef<boolean>(true)
-  const [applyBg, setApplyBg] = useState(true)
+  // const [applyBg, setApplyBg] = useState(true)
 
   useUpdateEffect(() => {
     if (!isActive) {
@@ -59,7 +64,7 @@ export default function RenderObject({ object, objectInd, ratio, isActive, onObj
   const ratioWidth = objectWidth * ratio.x
   const ratioHeight = objectHeight * ratio.y
 
-  const { x, y } = calculateCenterPosition(ratioWidth, ratioHeight, ratioX ?? 0, ratioY ?? 0)
+  const { x, y } = getCenterPosition(ratioWidth, ratioHeight, ratioX ?? 0, ratioY ?? 0)
 
   const handleClick = (e: any) => {
     e.stopPropagation()
@@ -69,23 +74,40 @@ export default function RenderObject({ object, objectInd, ratio, isActive, onObj
   }
 
   return (
-    <button
-      onClick={handleClick}
-      onMouseEnter={() => {
-        if (canActivate.current) {
-          onObjectHover?.(object)
-        }
-      }}
-      className={clsx('absolute block', {
-        'bg-white shadow-lg group-hover/popover:scale-125 rounded-full z-20': !isActive,
-        'border-2 rounded-lg shadow-full z-10 transition-position-size duration-500': isActive,
-      })}
-      style={{
-        top: isActive ? ratioY : y,
-        left: isActive ? ratioX : x,
-        width: isActive ? ratioWidth : 15,
-        height: isActive ? ratioHeight : 15,
-      }}
-    />
+    <>
+      <button
+        onClick={handleClick}
+        onMouseEnter={() => {
+          if (canActivate.current) {
+            onObjectHover?.(object)
+          }
+        }}
+        className={clsx('absolute block overflow-visible', {
+          'bg-white shadow-lg group-hover/popover:scale-125 rounded-full z-20 before:content-[""] before:absolute before:w-full before:h-full':
+            !isActive,
+          'border-2 rounded-lg shadow-full z-10 transition-position-size duration-200 ease-[cubic-bezier(.84,1.34,1,1)] duration-500':
+            isActive,
+        })}
+        style={{
+          top: isActive ? ratioY : y,
+          left: isActive ? ratioX : x,
+          width: isActive ? ratioWidth : 15,
+          height: isActive ? ratioHeight : 15,
+        }}
+      >
+        {!!isActive && (
+          <p
+            className="absolute block capitalize break-all whitespace-nowrap font-bold text-md text-white font-['montserrat']"
+            style={{
+              left: (ratioWidth ?? 0) / 2 - (objectNameWidth ?? 0) / 2 - 5,
+              top: -(objectNameHeight ?? 0) - 10,
+            }}
+            ref={objectNameRef}
+          >
+            {objectName}
+          </p>
+        )}
+      </button>
+    </>
   )
 }

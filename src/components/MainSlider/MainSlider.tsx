@@ -69,12 +69,13 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
         </Swiper>
       )}
 
-      <div className="w-full bg-black p-3">
+      <div className="flex w-full bg-black p-3 h-[100px]">
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={12}
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
+          className="flex flex-grow"
           breakpoints={{
             0: {
               slidesPerView: 3,
@@ -101,7 +102,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                 }
               )}
             >
-              <RenderCard className="!rounded-none" render={interior} interiorInd={ind} showCursor />
+              <RenderCard className="!rounded-none" render={interior} interiorInd={ind} fill showCursor />
             </SwiperSlide>
           ))}
         </Swiper>

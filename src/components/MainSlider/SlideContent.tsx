@@ -49,6 +49,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
             render={interior}
             interiorInd={interiorInd}
             imageClassName="brightness-90"
+            fill
           />
         </div>
         {interior.renders?.map((render, index) => (

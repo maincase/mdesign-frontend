@@ -39,17 +39,17 @@ export default function RenderCard({
 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null)
 
-  const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
+  // const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
 
   const [showObjects, setShowObjects] = useState<boolean>(objectsShown)
 
   const [isRaised, setIsRaised] = useState<boolean>(raised)
 
-  const [mouseCoords, setMouseCoords] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
+  // const [mouseCoords, setMouseCoords] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
   const [ratio, setRatio] = useState<{ x?: number; y?: number }>({ x: undefined, y: undefined })
 
-  const [activeObject, setActiveObject] = useState<number>()
+  const [activeObjectInd, setActiveObjectInd] = useState<number>()
 
   const [imgWidth, imgHeight] = useImageSize(
     !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}` : undefined
@@ -70,7 +70,7 @@ export default function RenderCard({
   }, [imgWidth, imgHeight, !!imgRef.current?.complete])
 
   const handleObjectHover = (object: any, index: number) => {
-    setActiveObject(index)
+    setActiveObjectInd(index)
 
     onObjectHover?.(object)
   }
@@ -129,37 +129,37 @@ export default function RenderCard({
 
         {showObjects && (
           <div
-            onClick={() => setActiveObject(undefined)}
+            onClick={() => setActiveObjectInd(undefined)}
             className="absolute top-0 left-0 w-full h-full"
-            {...(objectsShown
-              ? {
-                  onMouseMove: (e) => {
-                    const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
-                    const x = e.pageX - rect.x
-                    const y = e.pageY - rect.top
-                    setMouseCoords({ x, y })
-                  },
-                }
-              : {})}
+            // {...(objectsShown
+            //   ? {
+            //       onMouseMove: (e) => {
+            //         const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect()
+            //         const x = e.pageX - rect.x
+            //         const y = e.pageY - rect.top
+            //         setMouseCoords({ x, y })
+            //       },
+            //     }
+            //   : {})}
           >
             {objects?.map(
               (obj, ind) =>
                 ((obj?.[1] as number) ?? 0) > 0.8 && (
                   <RenderObject
                     key={`${(obj?.[0] as string).replace(' ', '')}+${ind}`}
-                    interiorInd={interiorInd}
-                    renderInd={renderInd}
-                    objectInd={ind}
+                    // interiorInd={interiorInd}
+                    // renderInd={renderInd}
+                    // objectInd={ind}
                     object={obj}
-                    isSingleObject={objects?.length === 1}
-                    mouse={{
-                      x: mouseCoords.x ?? 0,
-                      y: mouseCoords.y ?? 0,
-                    }}
+                    // isSingleObject={objects?.length === 1}
+                    // mouse={{
+                    //   x: mouseCoords.x ?? 0,
+                    //   y: mouseCoords.y ?? 0,
+                    // }}
                     ratio={ratio}
                     onObjectHover={(object) => handleObjectHover(object, ind)}
-                    objectHoverTimeoutRef={objectHoverTimeoutRef}
-                    isActive={activeObject === ind}
+                    // objectHoverTimeoutRef={objectHoverTimeoutRef}
+                    isActive={activeObjectInd === ind}
                     onClick={() => {
                       if (Array.isArray(obj?.[3]) && obj[3][0]) {
                         window.open(obj?.[3][0] as string, '_blank')

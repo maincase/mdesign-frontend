@@ -1,4 +1,4 @@
-const calculateCenterPosition = (width: number, height: number, left: number, top: number) => {
+const getCenterPosition = (width: number, height: number, left: number, top: number) => {
   var center_x = left + width / 2
   var center_y = top + height / 2
 
@@ -8,4 +8,4 @@ const calculateCenterPosition = (width: number, height: number, left: number, to
   }
 }
 
-export default calculateCenterPosition
+export default getCenterPosition
