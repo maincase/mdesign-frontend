@@ -11,8 +11,8 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   objects?: Array<Array<number[] | number | string | Array<string>>>
   objectsShown?: boolean
   showCursor?: boolean
-  interiorInd?: number
-  renderInd?: number
+  // interiorInd?: number
+  // renderInd?: number
   hasOverlay?: boolean
   hasZoom?: boolean
   className?: string
@@ -28,8 +28,8 @@ export default function RenderCard({
   onClick,
   objectsShown = false,
   showCursor,
-  interiorInd,
-  renderInd,
+  // interiorInd,
+  // renderInd,
   hasOverlay,
   hasZoom,
   fill,

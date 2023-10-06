@@ -59,7 +59,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                 <SlideContent
                   interior={interior}
                   isActive={isActive}
-                  interiorInd={ind}
+                  // interiorInd={ind}
                   innerActiveIndex={innerActiveIndex}
                   onMouseEnter={handleMouseEnter}
                 />
@@ -102,7 +102,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                 }
               )}
             >
-              <RenderCard className="!rounded-none" render={interior} interiorInd={ind} fill showCursor />
+              <RenderCard className="!rounded-none" render={interior} /* interiorInd={ind} */ fill showCursor />
             </SwiperSlide>
           ))}
         </Swiper>

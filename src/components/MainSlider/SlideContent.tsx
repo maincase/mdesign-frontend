@@ -5,12 +5,12 @@ import RenderCard from '../RenderCard/RenderCard'
 type Props = {
   innerActiveIndex: number
   interior: InteriorType
-  interiorInd: number
+  // interiorInd: number
   isActive: boolean
   onMouseEnter?: (index: number) => void
 }
 
-export default function SlideContent({ innerActiveIndex, interior, interiorInd, isActive, onMouseEnter }: Props) {
+export default function SlideContent({ innerActiveIndex, interior, /* interiorInd, */ isActive, onMouseEnter }: Props) {
   return (
     <>
       {innerActiveIndex === 0 && (
@@ -18,7 +18,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
           className="!rounded-none"
           imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
           render={interior}
-          interiorInd={interiorInd}
+          // interiorInd={interiorInd}
           fill
         />
       )}
@@ -29,7 +29,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
           imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
           key={interior.id}
           render={interior.renders?.[innerActiveIndex - 1]}
-          interiorInd={innerActiveIndex}
+          // interiorInd={innerActiveIndex}
           objects={interior.renders?.[innerActiveIndex - 1].objects}
           objectsShown
           fill
@@ -47,7 +47,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
               }
             )}
             render={interior}
-            interiorInd={interiorInd}
+            // interiorInd={interiorInd}
             imageClassName="brightness-90"
             fill
           />
@@ -63,7 +63,7 @@ export default function SlideContent({ innerActiveIndex, interior, interiorInd, 
                 }
               )}
               render={render}
-              interiorInd={index}
+              // interiorInd={index}
               imageClassName="brightness-90"
             />
           </div>
