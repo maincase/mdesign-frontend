@@ -26,7 +26,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
   return (
-    <div className={clsx('flex flex-grow flex-col md:!h-[calc(100vh-88px)] !h-[calc(100vh-61px)]', className)}>
+    <div className={clsx('flex flex-grow flex-col md:!h-[calc(100vh-74px)] !h-[calc(100vh-58px)]', className)}>
       {thumbsSwiper && (
         <Swiper
           ref={mainSliderRef}
