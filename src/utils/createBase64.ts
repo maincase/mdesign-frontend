@@ -3,10 +3,8 @@ const createBase64 = (file: File): Promise<string> =>
     const reader = new FileReader()
 
     reader.onload = () => {
-      const encoded = reader.result?.toString()?.split(',')[1]
-
-      if (encoded) {
-        resolve(`data:${file.type};base64,${encoded}`)
+      if (!!reader.result) {
+        resolve(reader.result.toString())
       } else {
         reject('Error encoding image')
       }

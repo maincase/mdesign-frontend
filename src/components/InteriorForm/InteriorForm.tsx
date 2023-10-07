@@ -2,6 +2,7 @@ import { useMutateInterior } from '@/api/query-hooks/interior'
 import ColorButton from '@/components/ColorButton/ColorButton'
 import Select from '@/components/Select/Select'
 import UploadButton from '@/components/UploadButton/UploadButton'
+import clampImage from '@/utils/clampImage'
 import createBase64 from '@/utils/createBase64'
 import { css } from '@emotion/css'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -81,9 +82,19 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
     createBase64(file).then(setBase64Image)
   }
 
+  const submitHandler = async (data: any) => {
+    const clampImg = await clampImage(data.image)
+
+    if (!!clampImg) {
+      data.image = clampImg
+
+      mutation.mutate(data)
+    }
+  }
+
   return (
     <Box {...props} sx={{ display: 'flex', flexGrow: 1 }} ref={ref}>
-      <form onSubmit={handleSubmit((data: any) => mutation.mutate(data))} className="flex justify-between flex-col">
+      <form onSubmit={handleSubmit(submitHandler)} className="flex justify-between flex-col">
         <DialogContent>
           {/* <div /* className={styles.new_render_container} *\/> */}
           {/* <div className={styles.new_render_content}> */}
