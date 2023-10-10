@@ -13,7 +13,6 @@ export default function Page({ params }: { params: { interiorId: string } }) {
     <Grid container spacing={2}>
       <Grid
         display="flex"
-        justifyContent="center"
         // className="first-of-type:pl-0 float-left"
         height="50%"
         xs={6}
@@ -40,8 +39,8 @@ export default function Page({ params }: { params: { interiorId: string } }) {
           item
           key={r.id}
         >
-          <Link className="flex justify-center" href={`/interior/${params.interiorId}/render/${r.id}`}>
-            <RenderCard hasOverlay hasZoom render={r} objects={r?.objects} raised={false} showCursor />
+          <Link className="flex flex-grow justify-center" href={`/interior/${params.interiorId}/render/${r.id}`}>
+            <RenderCard hasOverlay hasZoom render={r} objects={r?.objects} raised={false} fill showCursor />
           </Link>
         </Grid>
       ))}

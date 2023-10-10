@@ -1,12 +1,12 @@
 import RenderCard from '@/components/RenderCard/RenderCard'
 import { InteriorType } from '@/state/interior/InteriorState'
 import clsx from 'clsx'
-import { useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/thumbs'
 import { Autoplay, EffectFade, Navigation, Thumbs } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import SlideContent from './SlideContent'
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 }
 
 export default function MainSlider({ className, interiorItems = [] }: Props) {
-  const mainSliderRef = useRef<any>(null)
+  const [mainSliderRef, setMainSliderRef] = useState<SwiperClass>()
 
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState<any>(0)
   const [innerActiveIndex, setInnerActiveIndex] = useState<any>(0)
 
-  const handleMouseEnter = (index: number) => setInnerActiveIndex(index)
+  const handleMouseEnter = useCallback((index: number) => setInnerActiveIndex(index), [])
 
   const interiors = interiorItems.filter((interior) => !!interior.renders?.length)
 
@@ -29,8 +29,9 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
     <div className={clsx('flex flex-grow flex-col md:!h-[calc(100vh-74px)] !h-[calc(100vh-58px)]', className)}>
       {thumbsSwiper && (
         <Swiper
-          ref={mainSliderRef}
+          onSwiper={setMainSliderRef}
           className="h-full w-full"
+          // centeredSlides={true}
           speed={800}
           spaceBetween={0}
           effect="fade"
@@ -42,6 +43,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
             delay: 7000,
             disableOnInteraction: true,
           }}
+          slidesPerView={1}
           modules={[EffectFade, Thumbs, Autoplay]}
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChange={({ activeIndex }) => {
@@ -53,7 +55,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
             640: {},
           }}
         >
-          {interiors.map((interior, ind) => (
+          {interiors.map((interior) => (
             <SwiperSlide key={interior.id} className="w-full relative h-full">
               {({ isActive }) => (
                 <SlideContent
@@ -62,6 +64,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                   // interiorInd={ind}
                   innerActiveIndex={innerActiveIndex}
                   onMouseEnter={handleMouseEnter}
+                  slideRef={mainSliderRef}
                 />
               )}
             </SwiperSlide>
@@ -76,6 +79,10 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
           className="flex flex-grow"
+          // allowTouchMove={false}
+          // pagination={{
+          //   clickable: true,
+          // }}
           breakpoints={{
             0: {
               slidesPerView: 3,

@@ -1,5 +1,7 @@
 import { InteriorType } from '@/state/interior/InteriorState'
 import clsx from 'clsx'
+import { useCallback } from 'react'
+import { SwiperClass } from 'swiper/react'
 import RenderCard from '../RenderCard/RenderCard'
 
 type Props = {
@@ -7,37 +9,49 @@ type Props = {
   interior: InteriorType
   // interiorInd: number
   isActive: boolean
+  slideRef?: SwiperClass
   onMouseEnter?: (index: number) => void
 }
 
-export default function SlideContent({ innerActiveIndex, interior, /* interiorInd, */ isActive, onMouseEnter }: Props) {
+export default function SlideContent({
+  innerActiveIndex,
+  interior,
+  /* interiorInd, */ slideRef,
+  isActive,
+  onMouseEnter,
+}: Props) {
+  const itemMouseEnter = useCallback((ind: number) => () => onMouseEnter?.(ind), [onMouseEnter])
+
   return (
     <>
-      {innerActiveIndex === 0 && (
-        <RenderCard
-          className="!rounded-none"
-          imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
-          render={interior}
-          // interiorInd={interiorInd}
-          fill
-        />
-      )}
+      <RenderCard
+        className={clsx('!rounded-none', { hidden: innerActiveIndex !== 0 })}
+        imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
+        render={interior}
+        // interiorInd={interiorInd}
+        fill
+      />
 
-      {!!innerActiveIndex && interior.renders?.[innerActiveIndex - 1] && (
+      {!!interior?.renders && interior?.renders?.length > 0 && (
         <RenderCard
-          className="!rounded-none"
+          className={clsx('!rounded-none', {
+            hidden: innerActiveIndex === 0 || !interior.renders?.[innerActiveIndex - 1],
+          })}
           imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
-          key={interior.id}
           render={interior.renders?.[innerActiveIndex - 1]}
           // interiorInd={innerActiveIndex}
-          objects={interior.renders?.[innerActiveIndex - 1].objects}
+          objects={interior.renders?.[innerActiveIndex - 1]?.objects}
           objectsShown
           fill
         />
       )}
 
-      <div className="absolute bottom-[10px] md:bottom-[10px] right-0 flex gap-3 bg-black bg-opacity-80 p-3">
-        <div onMouseEnter={() => onMouseEnter?.(0)}>
+      <div
+        onMouseMove={() => slideRef?.autoplay?.pause()}
+        onMouseLeave={() => slideRef?.autoplay?.resume()}
+        className="absolute bottom-[10px] md:bottom-[10px] right-0 flex gap-3 bg-black bg-opacity-80 p-3"
+      >
+        <div onMouseEnter={itemMouseEnter(0)}>
           <RenderCard
             className={clsx(
               "!rounded-none w-full md:w-[100px] transition-all shadow-lg cursor-pointer relative before:content-[''] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500",
@@ -53,7 +67,7 @@ export default function SlideContent({ innerActiveIndex, interior, /* interiorIn
           />
         </div>
         {interior.renders?.map((render, index) => (
-          <div key={render.id} onMouseEnter={() => onMouseEnter?.(index + 1)}>
+          <div key={render.id} onMouseEnter={itemMouseEnter(index + 1)}>
             <RenderCard
               className={clsx(
                 "!rounded-none w-full md:w-[100px] transition-all shadow-lg cursor-pointer relative before:content-[''] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500",
@@ -69,7 +83,6 @@ export default function SlideContent({ innerActiveIndex, interior, /* interiorIn
           </div>
         ))}
       </div>
-
       <div className="absolute bottom-[120px] md:bottom-[50px] z-30 left-0 px-5 md-px-0 md:left-10">
         <h2
           className={clsx(

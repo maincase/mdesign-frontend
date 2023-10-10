@@ -59,6 +59,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
           objectsShown={true}
           onObjectHover={onObjectHover}
           raised={false}
+          fill
           showCursor
         />
       </div>

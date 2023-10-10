@@ -114,7 +114,7 @@ export default function RenderCard({
       onClick={onClick}
       raised={isRaised}
       className={clsx(
-        'relative flex group h-full',
+        'relative flex flex-grow group h-full',
         {
           'cursor-pointer': showCursor,
           'before:transition-opacity before:duration-300 before:content-[""] before:block before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-black before:opacity-0 hover:before:opacity-30 before:z-20':
@@ -140,12 +140,10 @@ export default function RenderCard({
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
             width={fill ? undefined : 2000}
             height={fill ? undefined : 1000}
-            style={{
-              width: fill ? '100%' : undefined,
-              height: fill ? '100%' : undefined,
-            }}
+            quality={100}
+            loading="eager"
             alt=""
-            className={clsx('block', imageClassName)}
+            className={clsx('block !relative', imageClassName)}
             fill={fill}
           />
         )}
