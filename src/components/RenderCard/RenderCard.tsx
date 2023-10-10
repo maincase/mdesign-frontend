@@ -140,6 +140,10 @@ export default function RenderCard({
             src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
             width={fill ? undefined : 2000}
             height={fill ? undefined : 1000}
+            style={{
+              width: fill ? '100%' : undefined,
+              height: fill ? '100%' : undefined,
+            }}
             alt=""
             className={clsx('block', imageClassName)}
             fill={fill}
