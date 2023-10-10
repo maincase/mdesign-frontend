@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import { useRef } from 'react'
 import { useElementSize, useUpdateEffect } from 'usehooks-ts'
 
+export const ignoreObjects = Object.freeze(['book', 'bottle'])
+
 export type RenderObjectType = {
   isReferral?: boolean
   object?: Array<number[] | number | string | Array<string>>
@@ -73,15 +75,20 @@ export default function RenderObject({ object, /* objectInd, */ ratio, isActive,
     onClick?.()
   }
 
+  const mouseEnter = (e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (canActivate.current) {
+      onObjectHover?.(object)
+    }
+  }
+
   return (
     <>
       <button
         onClick={handleClick}
-        onMouseEnter={() => {
-          if (canActivate.current) {
-            onObjectHover?.(object)
-          }
-        }}
+        onMouseEnter={mouseEnter}
         className={clsx('absolute block overflow-visible', {
           'bg-white shadow-lg group-hover/popover:scale-125 -translate-x-2/4 -translate-y-2/4 rounded-full z-20 before:content-[""] before:absolute before:inset-0 before:w-full before:h-full before:rounded-full before:shadow-3d':
             !isActive,

@@ -62,10 +62,10 @@ export default function CircleProgress({ value = 0 }: Props) {
             x2="109.15%"
             y2="15.85%"
           >
-            <stop stop-color="#c0c0c0" />
-            <stop offset=".333" stop-color="#000000" />
-            <stop offset=".667" stop-color="#5073b8" />
-            <stop offset="1" stop-color="#ffffff" />
+            <stop stopColor="#c0c0c0" />
+            <stop offset=".333" stopColor="#000000" />
+            <stop offset=".667" stopColor="#5073b8" />
+            <stop offset="1" stopColor="#ffffff" />
           </linearGradient>
         </defs>
       </svg>

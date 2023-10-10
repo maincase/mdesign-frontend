@@ -2,9 +2,9 @@ import useImageSize from '@/hooks/useImageSize'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react'
+import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Render } from '../../state/interior/InteriorState'
-import RenderObject from '../RenderObject/RenderObject'
+import RenderObject, { ignoreObjects } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
   render: Render
@@ -69,11 +69,31 @@ export default function RenderCard({
     }
   }, [imgWidth, imgHeight, !!imgRef.current?.complete])
 
-  const handleObjectHover = (object: any, index: number) => {
-    setActiveObjectInd(index)
+  const handleObjectHover = useCallback(
+    (index: number) => (object: any) => {
+      setActiveObjectInd(index)
 
-    onObjectHover?.(object)
-  }
+      onObjectHover?.(object)
+    },
+    [onObjectHover]
+  )
+
+  const handleObjectClick = useCallback(
+    (obj: any) => () => {
+      if (Array.isArray(obj?.[3]) && obj[3][0]) {
+        window.open(obj?.[3][0] as string, '_blank')
+      }
+    },
+    []
+  )
+
+  const renderObjects = useMemo(
+    () =>
+      objects?.filter(
+        (obj) => ((obj?.[1] as number) ?? 0) > 0.8 && !!obj?.[0] && !ignoreObjects.includes(obj?.[0] as string)
+      ),
+    [objects]
+  )
 
   return (
     <Card
@@ -141,32 +161,25 @@ export default function RenderCard({
             //     }
             //   : {})}
           >
-            {objects?.map(
-              (obj, ind) =>
-                ((obj?.[1] as number) ?? 0) > 0.8 && (
-                  <RenderObject
-                    key={`${(obj?.[0] as string).replace(' ', '')}+${ind}`}
-                    // interiorInd={interiorInd}
-                    // renderInd={renderInd}
-                    // objectInd={ind}
-                    object={obj}
-                    // isSingleObject={objects?.length === 1}
-                    // mouse={{
-                    //   x: mouseCoords.x ?? 0,
-                    //   y: mouseCoords.y ?? 0,
-                    // }}
-                    ratio={ratio}
-                    onObjectHover={(object) => handleObjectHover(object, ind)}
-                    // objectHoverTimeoutRef={objectHoverTimeoutRef}
-                    isActive={activeObjectInd === ind}
-                    onClick={() => {
-                      if (Array.isArray(obj?.[3]) && obj[3][0]) {
-                        window.open(obj?.[3][0] as string, '_blank')
-                      }
-                    }}
-                  />
-                )
-            )}
+            {renderObjects?.map((obj, ind) => (
+              <RenderObject
+                key={ind}
+                // interiorInd={interiorInd}
+                // renderInd={renderInd}
+                // objectInd={ind}
+                object={obj}
+                // isSingleObject={objects?.length === 1}
+                // mouse={{
+                //   x: mouseCoords.x ?? 0,
+                //   y: mouseCoords.y ?? 0,
+                // }}
+                ratio={ratio}
+                onObjectHover={handleObjectHover(ind)}
+                // objectHoverTimeoutRef={objectHoverTimeoutRef}
+                isActive={activeObjectInd === ind}
+                onClick={handleObjectClick(obj)}
+              />
+            ))}
           </div>
         )}
       </div>

@@ -3,9 +3,9 @@
 import { useQueryInterior } from '@/api/query-hooks/interior'
 import Referrals from '@/components/Referrals/Referrals'
 import RenderCard from '@/components/RenderCard/RenderCard'
-import { RenderObjectType } from '@/components/RenderObject/RenderObject'
+import { RenderObjectType, ignoreObjects } from '@/components/RenderObject/RenderObject'
 import { Render } from '@/state/interior/InteriorState'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 export default function Page({ params }: { params: { interiorId: string; renderId: string } }) {
   const { data: interior } = useQueryInterior(params.interiorId)
@@ -26,6 +26,24 @@ export default function Page({ params }: { params: { interiorId: string; renderI
 
   const render = interior?.renders?.find((r) => r.id === params.renderId) as Render
 
+  const objects = useMemo(
+    () =>
+      render?.objects?.filter(
+        (obj) => ((obj?.[1] as number) ?? 0) > 0.8 && !!obj?.[0] && !ignoreObjects.includes(obj?.[0] as string)
+      ),
+    [render?.objects]
+  )
+
+  const renderObjects = useMemo(
+    () => objects?.filter((obj) => !referralObject || obj === referralObject),
+    [objects, referralObject]
+  )
+
+  const referrals = useMemo(
+    () => objects?.filter((obj) => !predictionObject || obj === predictionObject),
+    [objects, predictionObject]
+  )
+
   return (
     // <Fade in={true} className="flex max-h-full overflow-hidden justify-between">
     <>
@@ -37,7 +55,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
       >
         <RenderCard
           render={render}
-          objects={render?.objects?.filter((obj) => !referralObject || obj === referralObject)}
+          objects={renderObjects}
           objectsShown={true}
           onObjectHover={onObjectHover}
           raised={false}
@@ -53,10 +71,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
           minWidth: '30vw',
         }}
       > */}
-      <Referrals
-        objects={render?.objects?.filter((obj) => !predictionObject || obj === predictionObject)}
-        onObjectHover={onObjectHover}
-      />
+      <Referrals objects={referrals} onObjectHover={onObjectHover} />
       {/* </ReactSpring.FadeIn> */}
     </>
     // </Fade>
