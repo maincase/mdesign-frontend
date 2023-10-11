@@ -1,6 +1,7 @@
 import { InteriorType } from '@/state/interior/InteriorState'
 import clsx from 'clsx'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import { fromEvent } from 'rxjs'
 import { SwiperClass } from 'swiper/react'
 import RenderCard from '../RenderCard/RenderCard'
 
@@ -9,18 +10,37 @@ type Props = {
   interior: InteriorType
   // interiorInd: number
   isActive: boolean
-  slideRef?: SwiperClass
+  sliderRef?: SwiperClass
   onMouseEnter?: (index: number) => void
 }
 
 export default function SlideContent({
   innerActiveIndex,
   interior,
-  /* interiorInd, */ slideRef,
+  /* interiorInd, */ sliderRef,
   isActive,
   onMouseEnter,
 }: Props) {
+  const sliderThumbRef = useRef<HTMLDivElement>(null)
+
   const itemMouseEnter = useCallback((ind: number) => () => onMouseEnter?.(ind), [onMouseEnter])
+
+  useEffect(() => {
+    if (!!sliderThumbRef.current) {
+      const mouseMoveSub = fromEvent(sliderThumbRef.current, 'mousemove').subscribe(() => {
+        sliderRef?.autoplay?.stop()
+      })
+
+      const mouseLeaveSub = fromEvent(sliderThumbRef.current, 'mouseleave').subscribe(() => {
+        sliderRef?.autoplay.start()
+      })
+
+      return () => {
+        mouseMoveSub.unsubscribe()
+        mouseLeaveSub.unsubscribe()
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -41,14 +61,14 @@ export default function SlideContent({
           render={interior.renders?.[innerActiveIndex - 1]}
           // interiorInd={innerActiveIndex}
           objects={interior.renders?.[innerActiveIndex - 1]?.objects}
+          sliderRef={sliderRef}
           objectsShown
           fill
         />
       )}
 
       <div
-        onMouseMove={() => slideRef?.autoplay?.pause()}
-        onMouseLeave={() => slideRef?.autoplay?.resume()}
+        ref={sliderThumbRef}
         className="absolute bottom-[10px] md:bottom-[10px] right-0 flex gap-3 bg-black bg-opacity-80 p-3"
       >
         <div onMouseEnter={itemMouseEnter(0)}>

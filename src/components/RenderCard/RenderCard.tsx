@@ -1,8 +1,11 @@
 import useImageSize from '@/hooks/useImageSize'
+import { preventDefault } from '@/utils/rxPreventDefault'
 import { Card } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { fromEvent, tap } from 'rxjs'
+import { SwiperClass } from 'swiper/react'
 import { Render } from '../../state/interior/InteriorState'
 import RenderObject, { ignoreObjects } from '../RenderObject/RenderObject'
 
@@ -19,6 +22,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
   fill?: boolean
   imageClassName?: string
   onObjectHover?: (object: any) => void
+  sliderRef?: SwiperClass
 }
 
 export default function RenderCard({
@@ -36,8 +40,12 @@ export default function RenderCard({
   className,
   imageClassName,
   onObjectHover,
+  sliderRef,
 }: Props) {
+  const cardRef = useRef(null)
   const imgRef = useRef<HTMLImageElement>(null)
+
+  const objContainerRef = useRef(null)
 
   // const objectHoverTimeoutRef = useRef<NodeJS.Timeout>()
 
@@ -55,6 +63,55 @@ export default function RenderCard({
     !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}` : undefined
   )
 
+  // Setup card events
+  useEffect(() => {
+    if (!!cardRef.current) {
+      const mouseEnterSub = fromEvent<Event>(cardRef.current, 'mouseenter')
+        .pipe(preventDefault())
+        .subscribe(() => {
+          setIsRaised(raised ?? true)
+
+          if (!objectsShown) {
+            setShowObjects(true)
+          }
+        })
+
+      const mouseLeaveSub = fromEvent<Event>(cardRef.current, 'mouseleave')
+        .pipe(preventDefault())
+        .subscribe(() => {
+          setIsRaised(raised ?? false)
+
+          if (!objectsShown) {
+            setShowObjects(false)
+          }
+        })
+
+      const mouseClickSub = fromEvent<React.MouseEvent<HTMLDivElement>>(cardRef.current, 'click')
+        .pipe(tap(onClick))
+        .subscribe()
+
+      return () => {
+        mouseEnterSub.unsubscribe()
+        mouseLeaveSub.unsubscribe()
+        mouseClickSub.unsubscribe()
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!!objContainerRef.current) {
+      const containerClickSub = fromEvent<React.MouseEvent<HTMLDivElement>>(objContainerRef.current, 'click').subscribe(
+        () => {
+          setActiveObjectInd(undefined)
+        }
+      )
+
+      return () => {
+        containerClickSub.unsubscribe()
+      }
+    }
+  }, [])
+
   useEffect(() => {
     if (!ratio.x && !ratio.y) {
       if (imgWidth > 0 && imgHeight > 0 && !!imgRef.current?.complete) {
@@ -71,11 +128,24 @@ export default function RenderCard({
 
   const handleObjectHover = useCallback(
     (index: number) => (object: any) => {
+      sliderRef?.autoplay.stop()
+
       setActiveObjectInd(index)
 
       onObjectHover?.(object)
     },
-    [onObjectHover]
+    [onObjectHover, sliderRef?.autoplay]
+  )
+
+  const deactivate = useCallback(
+    (ind: number) => () => {
+      if (activeObjectInd === ind) {
+        setActiveObjectInd(undefined)
+      }
+
+      sliderRef?.autoplay.start()
+    },
+    [activeObjectInd, sliderRef?.autoplay]
   )
 
   const handleObjectClick = useCallback(
@@ -97,21 +167,7 @@ export default function RenderCard({
 
   return (
     <Card
-      onMouseEnter={() => {
-        setIsRaised(raised ?? true)
-
-        if (!objectsShown) {
-          setShowObjects(true)
-        }
-      }}
-      onMouseLeave={() => {
-        setIsRaised(raised ?? false)
-
-        if (!objectsShown) {
-          setShowObjects(false)
-        }
-      }}
-      onClick={onClick}
+      ref={cardRef}
       raised={isRaised}
       className={clsx(
         'relative flex flex-grow group h-full',
@@ -150,7 +206,7 @@ export default function RenderCard({
 
         {showObjects && (
           <div
-            onClick={() => setActiveObjectInd(undefined)}
+            ref={objContainerRef}
             className="absolute top-0 left-0 w-full h-full"
             // {...(objectsShown
             //   ? {
@@ -177,6 +233,9 @@ export default function RenderCard({
                 // }}
                 ratio={ratio}
                 onObjectHover={handleObjectHover(ind)}
+                deactivate={deactivate(ind)}
+                index={ind}
+                activeIndex={activeObjectInd}
                 // objectHoverTimeoutRef={objectHoverTimeoutRef}
                 isActive={activeObjectInd === ind}
                 onClick={handleObjectClick(obj)}

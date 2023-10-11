@@ -40,7 +40,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
           preventClicks={false}
           preventClicksPropagation={false}
           autoplay={{
-            delay: 7000,
+            delay: 10000,
             disableOnInteraction: true,
           }}
           slidesPerView={1}
@@ -64,7 +64,7 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                   // interiorInd={ind}
                   innerActiveIndex={innerActiveIndex}
                   onMouseEnter={handleMouseEnter}
-                  slideRef={mainSliderRef}
+                  sliderRef={mainSliderRef}
                 />
               )}
             </SwiperSlide>
