@@ -19,14 +19,7 @@ export default function Page({ params }: { params: { interiorId: string } }) {
         item
         key={interior?.id}
       >
-        <RenderCard
-          render={interior!}
-          // objects={r?.objects}
-          raised={false}
-          showCursor={false}
-          hasOverlay
-          hasZoom
-        />
+        <RenderCard render={interior!} raised={false} showCursor={false} hasOverlay hasZoom fill />
       </Grid>
 
       {interior?.renders?.map((r) => (
