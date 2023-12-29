@@ -1,9 +1,10 @@
-import getCenterPosition from '@/utils/getCenterPositioin'
+import getCenterPosition from '@/utils/getCenterPosition'
 import { preventDefault } from '@/utils/rxPreventDefault'
 import clsx from 'clsx'
 import { useEffect, useRef } from 'react'
 import { BehaviorSubject, debounceTime, filter, fromEvent, switchMap, tap, withLatestFrom } from 'rxjs'
-import { useElementSize, useUpdateEffect } from 'usehooks-ts'
+import { useUpdateEffect } from 'usehooks-ts'
+import { ReferralItem } from '../Referrals/Referrals'
 
 export const ignoreObjects = Object.freeze(['book', 'bottle'])
 
@@ -52,8 +53,7 @@ export default function RenderObject({
   // Object params
   const objectName = object[0] ?? ''
   const objectShape = object[2] as number[]
-
-  const [objectNameRef, { width: objectNameWidth, height: objectNameHeight }] = useElementSize()
+  const objectReferrals = object?.[3] as string[]
 
   // Actual object rect.
   const objectX = objectShape[0] ?? 0
@@ -143,16 +143,23 @@ export default function RenderObject({
       }}
     >
       {!!isActive && (
-        <p
-          className="absolute block capitalize break-all whitespace-nowrap font-bold text-md text-white font-['montserrat']"
-          style={{
-            left: (ratioWidth ?? 0) / 2 - (objectNameWidth ?? 0) / 2 - 5,
-            top: -(objectNameHeight ?? 0) - 10,
-          }}
-          ref={objectNameRef}
-        >
-          {objectName}
-        </p>
+        <>
+          <p
+            className="absolute block capitalize break-all whitespace-nowrap font-bold text-md text-white font-['montserrat'] -top-[70px]"
+            // style={{
+            //   // left: (ratioWidth ?? 0) / 2 - (objectNameWidth ?? 0) / 2 - 5,
+            //   top: -(objectNameHeight ?? 0) - 10,
+            // }}
+          >
+            {objectName}
+          </p>
+
+          {objectReferrals?.[0] && (
+            <ReferralItem className="absolute -top-[40px] max-w-[300px] truncate group-hover:text-black !p-1">
+              {objectReferrals[0]}
+            </ReferralItem>
+          )}
+        </>
       )}
     </button>
   )

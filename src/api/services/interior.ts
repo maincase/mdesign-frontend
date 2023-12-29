@@ -17,7 +17,7 @@ class InteriorService {
       skip = 0
     }
 
-    const json = await client.get('interior/get', { searchParams: { skip, limit } }).json<{
+    const json = await client.get('interior/get', { searchParams: { skip, limit }, cache: 'no-cache' }).json<{
       code: string
       message: string
       data: InteriorType[]

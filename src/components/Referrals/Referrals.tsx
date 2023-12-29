@@ -8,7 +8,7 @@ type Props = {
   onObjectHover?: (object: RenderObjectType) => void
 }
 
-const Item = styled(Paper)(({ theme }) => ({
+export const ReferralItem = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -22,7 +22,7 @@ export default function Referrals({ objects, onObjectHover }: Props) {
   return (
     // <ReactSpring.FadeIn active={true} className="inline-flex flex-grow overflow-hidden">
     <Stack
-      className="flex-grow border overflow-hidden p-2"
+      className="border flex-grow overflow-auto p-2 w-1/3"
       spacing={2}
       ref={referralRef}
       style={{
@@ -52,14 +52,14 @@ export default function Referrals({ objects, onObjectHover }: Props) {
               >
                 <span className="flex self-center capitalize select-none text-lg">{el[0]}</span>
 
-                <Item
+                <ReferralItem
                   sx={{
                     maxWidth: '50%',
                   }}
                   className="truncate group-hover:text-black !p-1"
                 >
                   {ref}
-                </Item>
+                </ReferralItem>
               </div>
             </a>
           ))

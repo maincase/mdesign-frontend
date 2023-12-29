@@ -1,14 +1,13 @@
 import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import Home from './home.client'
 import QueryProvider from './provider.client'
 
 export const metadata: Metadata = {
   title: 'ModernDesign AI',
   description: 'AI Interior Designer Platform: Revolutionizing Interior Design!',
-  viewport: 'width=device-width, initial-scale=1',
+  // viewport: 'width=device-width, initial-scale=1',
 
   /* {interiorItems.map((interior, ind) =>
           interior.renders.map((render, index) => (
@@ -22,16 +21,15 @@ export const metadata: Metadata = {
         )} */
 }
 
+export const viewport: Viewport = {
+  width: 'device-width, initial-scale=1',
+  // height: 'device-height',
+}
+
 // const emotionCache = createEmotionCache()
 // const emotionTheme = createTheme()
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // const queryClient = getQueryClient()
-  // await queryClient.prefetchInfiniteQuery(queryInteriors)
-  // const dehydratedState = dehydrate(queryClient, {
-  //   shouldDehydrateQuery: () => true,
-  // })
-
   return (
     <html lang="en">
       <body>
@@ -42,13 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="flex w-screen h-screen flex-col">
           <Header />
 
-          <QueryProvider>
-            {/* <Hydrate state={dehydratedState}> */}
-            <Home />
-            {/* </Hydrate> */}
-
-            {children}
-          </QueryProvider>
+          <QueryProvider>{children}</QueryProvider>
         </div>
         {/* <StyleGallery /> */}
         {/* </ThemeProvider>

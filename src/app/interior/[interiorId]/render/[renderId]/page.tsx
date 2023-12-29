@@ -48,7 +48,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
     // <Fade in={true} className="flex max-h-full overflow-hidden justify-between">
     <>
       <div
-        className="flex justify-center items-start"
+        className="flex flex-grow justify-center items-start"
         style={{
           maxWidth: '50vw',
         }}

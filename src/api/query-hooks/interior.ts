@@ -1,23 +1,20 @@
 import { InteriorType } from '@/state/interior/InteriorState'
-import {
-  MutationOptions,
-  QueryFunction,
-  QueryOptions,
-  useInfiniteQuery,
-  useMutation,
-  useQuery,
-} from '@tanstack/react-query'
+import { MutationOptions, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import InteriorService from '../services/interior'
 
 /**
  *
  */
-export const queryInteriors: Pick<QueryOptions, 'queryKey' | 'queryFn'> & {
-  queryFn: QueryFunction<InteriorType[]>
-} = {
-  queryKey: ['interiors'],
-  queryFn: ({ pageParam = { skip: 0, limit: 20 } }) => InteriorService.getInteriors(pageParam.skip, pageParam.limit),
-}
+export const queryInteriors = (skip = 0, limit = 20) => ({
+  queryKey: ['interiors', skip / limit],
+  queryFn: ({ pageParam }: { pageParam: { skip: number; limit: number } }) =>
+    InteriorService.getInteriors(pageParam.skip, pageParam.limit),
+  initialPageParam: { skip, limit },
+  getNextPageParam: (lastPage: InteriorType[], pages: InteriorType[][]) => ({
+    skip: pages.length * (lastPage?.length ?? 0),
+    limit,
+  }),
+})
 
 /**
  * Query all interiors in the database with pagination
@@ -28,12 +25,8 @@ export const queryInteriors: Pick<QueryOptions, 'queryKey' | 'queryFn'> & {
  * @returns
  */
 export function useQueryInteriors(initialData: InteriorType[] = [], skip = 0, limit = 20) {
-  return useInfiniteQuery<InteriorType[]>({
-    ...queryInteriors,
-    getNextPageParam: (lastPage, pages) => ({
-      skip: pages.length * (lastPage?.length ?? 0),
-      limit,
-    }),
+  return useInfiniteQuery({
+    ...queryInteriors(skip, limit),
     ...(initialData.length > 0 ? { initialData: { pages: [initialData], pageParams: [{ skip, limit }] } } : {}),
   })
 }
@@ -43,9 +36,7 @@ export function useQueryInteriors(initialData: InteriorType[] = [], skip = 0, li
  * @param id
  * @returns
  */
-export const queryInterior: (id: string) => Pick<QueryOptions, 'queryKey' | 'queryFn'> & {
-  queryFn: QueryFunction<InteriorType>
-} = (id: string) => ({
+export const queryInterior = (id: string) => ({
   queryKey: ['interiors', id],
   queryFn: () => InteriorService.getInterior(id),
 })
@@ -59,8 +50,8 @@ export const queryInterior: (id: string) => Pick<QueryOptions, 'queryKey' | 'que
  */
 export function useQueryInterior(id?: string, interval?: number, skip = false) {
   return useQuery({
-    ...queryInterior(id!),
     enabled: !skip,
+    ...queryInterior(id!),
     ...(!!interval && { refetchInterval: interval }),
   })
 }
