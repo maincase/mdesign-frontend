@@ -2,6 +2,7 @@ import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
 import { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import HydrateHome from './hydrate-home'
 import QueryProvider from './provider.client'
 
 export const metadata: Metadata = {
@@ -40,7 +41,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="flex w-screen h-screen flex-col">
           <Header />
 
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <HydrateHome />
+
+            {children}
+          </QueryProvider>
         </div>
         {/* <StyleGallery /> */}
         {/* </ThemeProvider>
