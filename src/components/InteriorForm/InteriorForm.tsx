@@ -2,6 +2,7 @@ import { useMutateInterior } from '@/api/query-hooks/interior'
 import ColorButton from '@/components/ColorButton/ColorButton'
 import Select from '@/components/Select/Select'
 import UploadButton from '@/components/UploadButton/UploadButton'
+import useTurnstile, { turnstileDomID } from '@/hooks/useTurnstile'
 import clampImage from '@/utils/clampImage'
 import createBase64 from '@/utils/createBase64'
 import { css } from '@emotion/css'
@@ -10,6 +11,7 @@ import BedroomChildIcon from '@mui/icons-material/BedroomChild'
 import FormatPaintIcon from '@mui/icons-material/FormatPaint'
 import UploadIcon from '@mui/icons-material/Upload'
 import { Box, DialogActions, DialogContent, FadeProps } from '@mui/material'
+import clsx from 'clsx'
 import { forwardRef, useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { useForm } from 'react-hook-form'
@@ -50,6 +52,7 @@ const interiorFormSchema = object({
   image: mixed().required('Image is required'),
   style: string().required('Style is required'),
   room: string().required('Room is required'),
+  captchaToken: string(),
 }).required()
 
 type Props = { setNewInteriorId: (id: string) => void } & Omit<FadeProps, 'children'>
@@ -82,7 +85,20 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
     createBase64(file).then(setBase64Image)
   }
 
+  // Load cloudflare turnstile
+  const handleTurnstile = useTurnstile()
+
   const submitHandler = async (data: any) => {
+    ;(window as any).captchaToken = (window as any).captchaToken ?? (await handleTurnstile())
+
+    const captchaToken = (window as any).captchaToken
+
+    if (!captchaToken) {
+      return
+    }
+
+    setValue('captchaToken', captchaToken)
+
     const clampImg = await clampImage(data.image)
 
     if (!!clampImg) {
@@ -200,8 +216,14 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             paddingY: '10px',
           }}
         >
-          <div className={styles.new_render_button}>
-            <ColorButton type="submit" className="font-semibold" style={{ margin: 0 }}>
+          <div className={clsx('relative flex flex-col justify-end w-52', styles.new_render_button)}>
+            <div
+              id={turnstileDomID}
+              className="absolute flex hidden bottom-0 z-10 [&>*:first-child]:max-w-full [&>*:first-child]:max-h-full"
+            ></div>
+            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+            <ColorButton type="submit" className="flex font-semibold" style={{ margin: 0 }}>
               Render your designs
               <span role="img" aria-label="Les go!" style={{ fontSize: 16, marginLeft: 5 }}>
                 🚀

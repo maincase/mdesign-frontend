@@ -50,7 +50,7 @@ class InteriorService {
    * @param interior
    * @returns
    */
-  static async createInterior(interior: InteriorType) {
+  static async createInterior(interior: InteriorType & { captchaToken: string }) {
     if (!interior) {
       throw new Error('Interior is required')
     }
@@ -71,6 +71,7 @@ class InteriorService {
     formData.append('file', interior.image)
     formData.append('room', interior.room)
     formData.append('style', interior.style)
+    formData.append('captchaToken', interior.captchaToken)
 
     const json = await client.post('interior/create', { body: formData }).json<{
       code: string

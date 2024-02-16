@@ -64,5 +64,8 @@ export function useQueryInterior(id?: string, interval?: number, skip = false) {
 export function useMutateInterior({
   onSuccess,
 }: Pick<MutationOptions<InteriorType, unknown, InteriorType, unknown>, 'onSuccess'>) {
-  return useMutation({ mutationFn: (interior: InteriorType) => InteriorService.createInterior(interior), onSuccess })
+  return useMutation({
+    mutationFn: (interior: InteriorType & { captchaToken: string }) => InteriorService.createInterior(interior),
+    onSuccess,
+  })
 }
