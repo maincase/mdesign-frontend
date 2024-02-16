@@ -23,11 +23,10 @@ export default function useTurnstile() {
           sitekey: '0x4AAAAAAASDhSdIKQWnqQVh',
           // sitekey: '1x00000000000000000000AA',
           callback: (token: string) => {
-            resolve(token)
-
-            // setTimeout(() => {
-            //   turnstileVisible(false)
-            // }, 1000)
+            setTimeout(() => {
+              // turnstileVisible(false)
+              resolve(token)
+            }, 1000)
           },
         })
       })
