@@ -20,7 +20,7 @@ export default function Page({ params }: { params: { interiorId: string } }) {
         key={interior?.id}
       >
         <RenderCard
-          interiorId={interior!.id}
+          interiorId={params.interiorId}
           render={interior!}
           raised={false}
           showCursor={false}

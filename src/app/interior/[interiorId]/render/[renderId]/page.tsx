@@ -54,7 +54,7 @@ export default function Page({ params }: { params: { interiorId: string; renderI
         }}
       >
         <RenderCard
-          interiorId={interior!.id}
+          interiorId={params.interiorId}
           render={render}
           objects={renderObjects}
           objectsShown={true}
