@@ -1,5 +1,4 @@
 import { useAppState } from '@/state/app/AppState'
-import { useWindowSize } from 'usehooks-ts'
 import ConfettiAnimation from '../ConfettiAnimation/ConfettiAnimation'
 
 /**
@@ -8,14 +7,10 @@ import ConfettiAnimation from '../ConfettiAnimation/ConfettiAnimation'
  * @returns JSX.Element
  */
 export default function Confetti() {
-  const { width, height } = useWindowSize()
-
   const { runConfetti, setRunConfetti } = useAppState()
 
   return (
     <ConfettiAnimation
-      width={width}
-      height={height}
       run={runConfetti}
       // numberOfPieces={1000}
       tweenDuration={1000}

@@ -14,7 +14,7 @@ export default function Page() {
     <Box
       sx={{
         minHeight: 700,
-        minWidth: 600,
+        // minWidth: 600,
         overflow: 'hidden',
         display: 'flex',
         // flexGrow: 1,
@@ -30,7 +30,7 @@ export default function Page() {
       {/* </ReactSpring.FadeIn> */}
 
       {/* <ReactSpring.FadeIn className="flex flex-grow items-center justify-center" active={!!newInteriorId}> */}
-      <Fade in={!!newInteriorId} unmountOnExit className="absolute">
+      <Fade in={!!newInteriorId} unmountOnExit /* className="absolute" */>
         <InteriorProgress newInteriorId={newInteriorId} setNewInteriorId={setNewInteriorId} />
       </Fade>
       {/* </ReactSpring.FadeIn> */}
