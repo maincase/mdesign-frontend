@@ -45,6 +45,7 @@ export default function SlideContent({
   return (
     <>
       <RenderCard
+        interiorId={interior.id}
         className={clsx('!rounded-none', { hidden: innerActiveIndex !== 0 })}
         imageClassName="!max-w-min !w-auto lg:!w-full lg:!max-w-full brightness-90 object-cover lg:object-fill"
         render={interior}
@@ -54,6 +55,7 @@ export default function SlideContent({
 
       {!!interior?.renders && interior?.renders?.length > 0 && (
         <RenderCard
+          interiorId={interior.id}
           className={clsx('!rounded-none', {
             hidden: innerActiveIndex === 0 || !interior.renders?.[innerActiveIndex - 1],
           })}
@@ -73,6 +75,7 @@ export default function SlideContent({
       >
         <div onMouseEnter={itemMouseEnter(0)}>
           <RenderCard
+            interiorId={interior.id}
             className={clsx(
               "!rounded-none w-full md:w-[100px] transition-all shadow-lg cursor-pointer relative before:content-[''] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500",
               {
@@ -89,6 +92,7 @@ export default function SlideContent({
         {interior.renders?.map((render, index) => (
           <div key={render.id} onMouseEnter={itemMouseEnter(index + 1)}>
             <RenderCard
+              interiorId={interior.id}
               className={clsx(
                 "!rounded-none w-full md:w-[100px] transition-all shadow-lg cursor-pointer relative before:content-[''] before:absolute before:w-full before:h-full before:bg-black before:top-0 before-left-0 before:z-10 hover:before:bg-opacity-0 before:transition-all before:duration-500",
                 {

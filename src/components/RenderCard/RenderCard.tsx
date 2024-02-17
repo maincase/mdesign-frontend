@@ -10,6 +10,7 @@ import { Render } from '../../state/interior/InteriorState'
 import RenderObject, { ignoreObjects } from '../RenderObject/RenderObject'
 
 type Props = ComponentPropsWithoutRef<typeof Card> & {
+  interiorId: string
   render: Render
   objects?: Array<Array<number[] | number | string | Array<string>>>
   objectsShown?: boolean
@@ -26,6 +27,7 @@ type Props = ComponentPropsWithoutRef<typeof Card> & {
 }
 
 export default function RenderCard({
+  interiorId,
   render,
   objects,
   raised = false,
@@ -60,7 +62,7 @@ export default function RenderCard({
   const [activeObjectInd, setActiveObjectInd] = useState<number>()
 
   const [imgWidth, imgHeight] = useImageSize(
-    !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}` : undefined
+    !!render?.image ? `${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${interiorId}-${render.image}` : undefined
   )
 
   // Setup card events
@@ -193,7 +195,7 @@ export default function RenderCard({
           <Image
             priority
             ref={imgRef}
-            src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${render.image}`}
+            src={`${process.env.NEXT_PUBLIC_CDN_URL}/interiors/${interiorId}-${render.image}`}
             width={fill ? undefined : 2000}
             height={fill ? undefined : 1000}
             quality={100}

@@ -19,7 +19,15 @@ export default function Page({ params }: { params: { interiorId: string } }) {
         item
         key={interior?.id}
       >
-        <RenderCard render={interior!} raised={false} showCursor={false} hasOverlay hasZoom fill />
+        <RenderCard
+          interiorId={interior!.id}
+          render={interior!}
+          raised={false}
+          showCursor={false}
+          hasOverlay
+          hasZoom
+          fill
+        />
       </Grid>
 
       {interior?.renders?.map((r) => (
@@ -33,7 +41,16 @@ export default function Page({ params }: { params: { interiorId: string } }) {
           key={r.id}
         >
           <Link className="flex flex-grow justify-center" href={`/interior/${params.interiorId}/render/${r.id}`}>
-            <RenderCard hasOverlay hasZoom render={r} objects={r?.objects} raised={false} fill showCursor />
+            <RenderCard
+              interiorId={interior.id}
+              hasOverlay
+              hasZoom
+              render={r}
+              objects={r?.objects}
+              raised={false}
+              fill
+              showCursor
+            />
           </Link>
         </Grid>
       ))}

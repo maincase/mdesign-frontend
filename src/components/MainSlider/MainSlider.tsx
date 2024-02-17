@@ -109,7 +109,13 @@ export default function MainSlider({ className, interiorItems = [] }: Props) {
                 }
               )}
             >
-              <RenderCard className="!rounded-none" render={interior} /* interiorInd={ind} */ fill showCursor />
+              <RenderCard
+                interiorId={interior.id}
+                className="!rounded-none"
+                render={interior}
+                /* interiorInd={ind} */ fill
+                showCursor
+              />
             </SwiperSlide>
           ))}
         </Swiper>
