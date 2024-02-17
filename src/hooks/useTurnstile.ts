@@ -20,8 +20,8 @@ export default function useTurnstile() {
         const turnstile = (window as any)?.turnstile
 
         turnstile.render(`#${turnstileDomID}`, {
-          sitekey: '0x4AAAAAAASDhSdIKQWnqQVh',
-          // sitekey: '1x00000000000000000000AA',
+          // sitekey: '0x4AAAAAAASDhSdIKQWnqQVh',
+          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITEKEY,
           callback: (token: string) => {
             setTimeout(() => {
               // turnstileVisible(false)
