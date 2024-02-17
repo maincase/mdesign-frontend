@@ -129,7 +129,10 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
 
           <h5>Your current interior:</h5>
 
-          <Dropzone accept={{ 'image/*': ['.jpg', '.jpeg'] }} onDrop={handleFileSelection}>
+          <Dropzone
+            accept={{ 'image/png': ['.png'], 'image/jpg': ['.jpg'], 'image/jpeg': ['.jpeg'] }}
+            onDrop={handleFileSelection}
+          >
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()}>
                 {!!base64Image ? (
