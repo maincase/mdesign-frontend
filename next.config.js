@@ -22,31 +22,21 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ['moderndesign.ai', 'mdesign.ai', 'cdn.moderndesign.ai', 'cdn.mdesign.ai'],
-    unoptimized: true,
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: '**.moderndesign.ai',
-    //   },
-    //   {
-    //     protocol: 'https',
-    //     hostname: '**.mdesign.ai',
-    //   },
-    // ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.moderndesign.ai',
+        pathname: '/interiors/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.mdesign.ai',
+        pathname: '/interiors/**',
+      },
+    ],
+    // unoptimized: true,
   },
   /* distDir: 'build', */
-
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'actionaidrecycling.org.uk',
-  //       port: '',
-  //       pathname: '/wp-content/uploads/**/*',
-  //     },
-  //   ],
-  // },
 }
 
 module.exports = nextConfig

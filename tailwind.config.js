@@ -10,6 +10,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        alegreya: ['var(--font-alegreya)'],
+        montserrat: ['var(--font-montserrat)'],
+        noto_sans_georgian: ['var(--font-noto-sans-georgian)'],
+      },
       boxShadow: {
         full: '0px 0px 0px 10000px rgba(0, 0, 0, 0.4)',
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',

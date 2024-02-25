@@ -207,6 +207,22 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             inputProps={register('style')}
           />
 
+          {/* <FormControl className="mt-4">
+            <FormLabel
+              style={{
+                color: '#000',
+              }}
+            >
+              <ColorLensIcon
+                style={{
+                  fill: '#000',
+                  width: 16,
+                }}
+              />
+              Select Color Palette
+            </FormLabel>
+          </FormControl> */}
+
           {/* <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} /> */}
           {/* <SelectElement selectList={resolutionsList} title={'RESOLUTION'} /> */}
           {/* <SelectElement selectList={privacyList} title={'PRIVACY'} /> */}

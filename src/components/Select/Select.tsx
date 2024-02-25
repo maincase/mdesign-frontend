@@ -1,5 +1,6 @@
 import { MenuItem, Select as MuiSelect } from '@mui/material'
 import { ComponentPropsWithRef, useState } from 'react'
+import FormControl from '../FormControl/FormControl'
 
 type SelectProps = ComponentPropsWithRef<typeof MuiSelect<React.ReactNode>> & {
   selectList: string[]
@@ -12,12 +13,7 @@ export default function Select({ selectList, title, inputProps, className, icon,
   const elementChange = (event: any) => setSelectedElement(event.target.value)
 
   return (
-    <div className={className}>
-      <div className="flex items-center">
-        {icon}
-        <span className="flex leading-5.5">{title}:</span>
-      </div>
-
+    <FormControl title={title} className={className} icon={icon}>
       <MuiSelect
         value={selectedElement}
         onChange={elementChange}
@@ -38,6 +34,6 @@ export default function Select({ selectList, title, inputProps, className, icon,
           </MenuItem>
         ))}
       </MuiSelect>
-    </div>
+    </FormControl>
   )
 }

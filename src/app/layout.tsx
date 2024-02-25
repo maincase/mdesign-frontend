@@ -1,9 +1,28 @@
 import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
 import { Metadata, Viewport } from 'next'
+import { Alegreya, Montserrat, Noto_Sans_Georgian } from 'next/font/google'
 import Script from 'next/script'
 import HydrateHome from './hydrate-home'
 import QueryProvider from './provider.client'
+
+const alegreya = Alegreya({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-alegreya',
+})
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+})
+
+const noto_sans_georgian = Noto_Sans_Georgian({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-noto-sans-georgian',
+})
 
 export const metadata: Metadata = {
   title: 'ModernDesign AI',
@@ -32,7 +51,7 @@ export const viewport: Viewport = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${alegreya.variable} ${montserrat.variable} ${noto_sans_georgian.variable}`}>
       <body>
         {/* <CacheProvider value={emotionCache}>
           <ThemeProvider theme={emotionTheme}>
