@@ -1,5 +1,8 @@
 import Header from '@/components/Header/Header'
 import '@/styles/globals.scss'
+import theme from '@/theme'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 import { Metadata, Viewport } from 'next'
 import { Alegreya, Montserrat, Noto_Sans_Georgian } from 'next/font/google'
 import Script from 'next/script'
@@ -46,41 +49,54 @@ export const viewport: Viewport = {
   // height: 'device-height',
 }
 
-// const emotionCache = createEmotionCache()
-// const emotionTheme = createTheme()
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${alegreya.variable} ${montserrat.variable} ${noto_sans_georgian.variable}`}>
-      <body>
-        {/* <CacheProvider value={emotionCache}>
+      <StyledEngineProvider injectFirst>
+        <AppRouterCacheProvider
+          options={{
+            key: 'css',
+            // enableCssLayer: true,
+            prepend: true,
+          }}
+        >
+          <ThemeProvider theme={theme}>
+            <body>
+              {/* <CacheProvider value={emotionCache}>
           <ThemeProvider theme={emotionTheme}>
         <CssBaseline /> */}
 
-        <div className="flex w-screen h-screen flex-col">
-          <Header />
+              <div className="flex w-screen h-screen flex-col">
+                <Header />
 
-          <QueryProvider>
-            <HydrateHome />
+                <QueryProvider>
+                  <HydrateHome />
 
-            {children}
-          </QueryProvider>
-        </div>
-        {/* <StyleGallery /> */}
-        {/* </ThemeProvider>
+                  {children}
+                </QueryProvider>
+              </div>
+              {/* <StyleGallery /> */}
+              {/* </ThemeProvider>
         </CacheProvider> */}
 
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-B62T0MRV0M" strategy="afterInteractive" async />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
+              <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-B62T0MRV0M"
+                strategy="afterInteractive"
+                async
+              />
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-B62T0MRV0M');
         `}
-        </Script>
-      </body>
+              </Script>
+            </body>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </StyledEngineProvider>
     </html>
   )
 }

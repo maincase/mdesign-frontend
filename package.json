@@ -1,13 +1,13 @@
 {
   "name": "modern-design-frontend",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "packageManager": "pnpm@8.9.0-0+sha256.7d8b51132623911db3d52dc6e80a449cc9df8eb80de15d3eba7a99189b494da2",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
@@ -16,6 +16,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
     "@emotion/server": "^11.11.0",
@@ -23,11 +24,12 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
+    "@mui/material-nextjs": "^5.15.11",
     "@tanstack/query-core": "^5.24.1",
     "@tanstack/react-query": "^5.24.1",
     "clsx": "^2.1.0",
     "immer": "^10.0.3",
-    "ky": "^1.2.0",
+    "ky": "^1.2.1",
     "ky-universal": "^0.12.0",
     "lodash.isequal": "^4.5.0",
     "lodash.pick": "^4.4.0",

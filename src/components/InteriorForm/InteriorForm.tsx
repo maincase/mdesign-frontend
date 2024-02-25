@@ -242,7 +242,7 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             ></div>
             {/* eslint-disable-next-line @next/next/no-sync-scripts */}
             <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
-            <ColorButton type="submit" className="flex font-semibold" style={{ margin: 0 }}>
+            <ColorButton type="submit" className="flex !font-semibold" style={{ margin: 0 }}>
               Render your designs
               <span role="img" aria-label="Les go!" style={{ fontSize: 16, marginLeft: 5 }}>
                 🚀
