@@ -8,7 +8,10 @@ import CircleProgress from '../CircleProgress/CircleProgress'
 
 type Props = { newInteriorId?: string; setNewInteriorId: (id?: string) => void } & Omit<FadeProps, 'children'>
 
-function InteriorProgress({ newInteriorId, setNewInteriorId, ...props }: Props, ref: React.Ref<HTMLElement>) {
+export default forwardRef<HTMLElement, Props>(function InteriorProgress(
+  { newInteriorId, setNewInteriorId, ...props },
+  ref
+) {
   const router = useRouter()
 
   const { fetchNextPage } = useQueryInteriors()
@@ -71,6 +74,4 @@ function InteriorProgress({ newInteriorId, setNewInteriorId, ...props }: Props, 
         <Typography className="flex mt-4">Your new interior is being rendered...</Typography>
       </DialogActions> */
   }
-}
-
-export default forwardRef<HTMLElement, Props>(InteriorProgress)
+})

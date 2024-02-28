@@ -6,8 +6,9 @@ import useTurnstile, { turnstileDomID } from '@/hooks/useTurnstile'
 import clampImage from '@/utils/clampImage'
 import createBase64 from '@/utils/createBase64'
 import { css } from '@emotion/css'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import BedroomChildIcon from '@mui/icons-material/BedroomChild'
+import ColorLensIcon from '@mui/icons-material/ColorLens'
 import FormatPaintIcon from '@mui/icons-material/FormatPaint'
 import UploadIcon from '@mui/icons-material/Upload'
 import { Box, DialogActions, DialogContent, FadeProps } from '@mui/material'
@@ -15,7 +16,9 @@ import clsx from 'clsx'
 import { forwardRef, useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { useForm } from 'react-hook-form'
-import { mixed, object, string } from 'yup'
+import { z } from 'zod'
+import ColorPicker, { colorSchema } from '../ColorPicker/ColorPicker'
+import FormControl from '../FormControl/FormControl'
 import UploadPreview from '../UploadPreview/UploadPreview'
 import roomList from './roomList'
 import styleList from './styleList'
@@ -48,23 +51,44 @@ const styles = {
   `,
 }
 
-const interiorFormSchema = object({
-  image: mixed().required('Image is required'),
-  style: string().required('Style is required'),
-  room: string().required('Room is required'),
-  captchaToken: string(),
-}).required()
+const interiorFormSchema = z
+  .object({
+    image: z.any({
+      required_error: 'Image is required',
+    }),
+    style: z.string({
+      required_error: 'Style is required',
+    }),
+    room: z.string({
+      required_error: 'Room is required',
+    }),
+    color1: colorSchema('Color #1'),
+    color2: colorSchema('Color #2'),
+    color3: colorSchema('Color #3'),
+    captchaToken: z.string({
+      required_error: 'Captcha is required',
+    }),
+  })
+  .required()
 
 type Props = { setNewInteriorId: (id: string) => void } & Omit<FadeProps, 'children'>
 
-export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNewInteriorId, ...props }, ref) {
+export default forwardRef<HTMLElement, Props>(function InteriorForm({ setNewInteriorId, ...props }, ref) {
   const {
     register,
+    getValues,
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(interiorFormSchema),
+  } = useForm<z.infer<typeof interiorFormSchema>>({
+    resolver: zodResolver(interiorFormSchema),
+    defaultValues: {
+      room: roomList[0],
+      style: styleList[0],
+      color1: '#FF0000',
+      color2: '#00FF00',
+      color3: '#0000FF',
+    },
   })
 
   const mutation = useMutateInterior({
@@ -107,6 +131,8 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
       mutation.mutate(data)
     }
   }
+
+  console.log(getValues('color1'), 'this is the color1')
 
   return (
     <Box {...props} sx={{ display: 'flex', flexGrow: 1 }} ref={ref}>
@@ -207,21 +233,36 @@ export default forwardRef<HTMLFormElement, Props>(function InteriorForm({ setNew
             inputProps={register('style')}
           />
 
-          {/* <FormControl className="mt-4">
-            <FormLabel
-              style={{
-                color: '#000',
-              }}
-            >
+          <FormControl
+            title="Select Color Palette"
+            className="mt-10 p-2 border-2 border-black border-dashed rounded"
+            icon={
               <ColorLensIcon
                 style={{
                   fill: '#000',
                   width: 16,
                 }}
               />
-              Select Color Palette
-            </FormLabel>
-          </FormControl> */}
+            }
+          >
+            <div className="flex flex-row gap-4 mt-4">
+              <ColorPicker
+                color={getValues('color1')}
+                {...register('color1' /* { value: '#FF0000' } */)}
+                label="Color #1"
+              />
+              <ColorPicker
+                color={getValues('color2')}
+                {...register('color2' /* { value: '#00FF00' } */)}
+                label="Color #2"
+              />
+              <ColorPicker
+                color={getValues('color3')}
+                {...register('color3' /* { value: '#0000FF' } */)}
+                label="Color #3"
+              />
+            </div>
+          </FormControl>
 
           {/* <SelectElement selectList={numberOfRendersList} title={'NUMBER OF RENDERS'} /> */}
           {/* <SelectElement selectList={resolutionsList} title={'RESOLUTION'} /> */}
