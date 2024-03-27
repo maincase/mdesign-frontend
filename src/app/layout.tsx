@@ -82,7 +82,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </ThemeProvider>
         </AppRouterCacheProvider>
       </StyledEngineProvider>
-      <Script defer data-domain="moderndesign.ai" src="https://plausible.io/js/script.js"></Script>
+      <Script defer data-domain="moderndesign.ai,mdesign.ai" src="https://plausible.io/js/script.js"></Script>
     </html>
   )
 }
