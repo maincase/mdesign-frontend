@@ -78,25 +78,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               {/* <StyleGallery /> */}
               {/* </ThemeProvider>
         </CacheProvider> */}
-
-              <Script
-                src="https://www.googletagmanager.com/gtag/js?id=G-B62T0MRV0M"
-                strategy="afterInteractive"
-                async
-              />
-              <Script id="google-analytics" strategy="afterInteractive">
-                {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-B62T0MRV0M');
-        `}
-              </Script>
             </body>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </StyledEngineProvider>
+      <Script defer data-domain="moderndesign.ai" src="https://plausible.io/js/script.js"></Script>
     </html>
   )
 }
