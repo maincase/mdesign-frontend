@@ -1,6 +1,0 @@
-dispatch:
-  - url: '*/api/*'
-    service: mdesign-backend
-
-  - url: '*/*'
-    service: mdesign-frontend

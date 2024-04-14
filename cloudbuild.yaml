@@ -1,13 +1,20 @@
 steps:
-  - name: 'node:lts-hydrogen'
-    entrypoint: 'npm'
-    args: ['install']
-
-  - name: 'node:lts-hydrogen'
-    entrypoint: 'npm'
-    args: ['run', 'build']
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy']
-
-timeout: '1800s'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/modern-design-ai/mdesign-frontend:latest', '--platform', 'linux/amd64', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/modern-design-ai/mdesign-frontend:latest']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run',
+        'deploy',
+        'mdesign-frontend',
+        '--image',
+        'gcr.io/modern-design-ai/mdesign-frontend:latest',
+        '--region',
+        'us-central1',
+        '--platform',
+        'managed',
+      ]
+images: ['gcr.io/modern-design-ai/mdesign-frontend:latest']
