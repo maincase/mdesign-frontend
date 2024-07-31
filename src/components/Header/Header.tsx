@@ -3,7 +3,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import XIcon from '@mui/icons-material/X'
 import Image from 'next/image'
 import Link from 'next/link'
-import ColorButton from '../ColorButton/ColorButton'
 
 export default function Header() {
   return (
@@ -41,6 +40,10 @@ export default function Header() {
         </Link>
       </div>
 
+      {/*
+
+      TODO: Uncomment this to enable Interior creation.
+
       <Link href="/interior/create" className="flex ml-auto mt-2 md:mt-0 md:ml-4">
         <ColorButton className="!font-semibold">
           <span className="relative z-10">
@@ -51,7 +54,7 @@ export default function Header() {
             ✨
           </span>
         </ColorButton>
-      </Link>
+      </Link> */}
     </div>
   )
 }
